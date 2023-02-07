@@ -1,5 +1,5 @@
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
 
 // 自动按需注册全局组件
@@ -11,8 +11,8 @@ export const setupAutoComponents = () => Components({
     // allow auto import and register components used in markdown
     include: [ /\.vue$/, /\.vue\?vue/, /\.md$/ ],
     resolvers: [
-        // naive 组件
-        NaiveUiResolver(),
+        // ElementPlus 组件
+        ElementPlusResolver(),
         // icon
         IconsResolver({
             // 不要前缀
