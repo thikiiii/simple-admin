@@ -2,13 +2,18 @@
 </script>
 
 <template>
-  <div class="test" />
+  <div class="bg-theme">
+    <el-button type="primary">测试</el-button>
+  </div>
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
 </template>
 
 <style lang="scss" scoped>
 .test{
   width: 300px;
   height: 300px;
-  background: red;
+  background: $test2;
 }
 </style>

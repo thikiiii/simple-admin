@@ -12,7 +12,7 @@ export const setupAutoComponents = () => Components({
     include: [ /\.vue$/, /\.vue\?vue/, /\.md$/ ],
     resolvers: [
         // ElementPlus 组件
-        ElementPlusResolver(),
+        ElementPlusResolver({ importStyle: 'sass' }),
         // icon
         IconsResolver({
             // 不要前缀
