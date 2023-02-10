@@ -27,7 +27,6 @@ export default defineConfig(({ command, mode }) => {
             extensions: [ '.js', '.ts', '.tsx', '.jsx', '.vue' ]
         },
         build: { target: 'es2015' },
-        esbuild: { pure: VITE_DELETE_CONSOLE ? [ 'console.log', 'debugger' ] : [] },
-        css: { preprocessorOptions: { scss: { additionalData: '@use "@/assets/styles/element/theme.scss" as *;' } } }
+        esbuild: { pure: VITE_DELETE_CONSOLE ? [ 'console.log', 'debugger' ] : [] }
     }
 })

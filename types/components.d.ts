@@ -7,8 +7,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppLoading: typeof import('./../src/components/system/AppLoading/index.vue')['default']
+    AButton: typeof import('ant-design-vue/es')['Button']
+    AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
+    AppLoading: typeof import('./../src/components/system/AppLoading.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
+    ElCascader: typeof import('element-plus/es')['ElCascader']
+    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     HelloWorld: typeof import('./../src/components/HelloWorld.vue')['default']
     Icon: typeof import('./../src/components/common/Icon/index.vue')['default']
     NaiveProvider: typeof import('./../src/components/system/NaiveProvider/index.vue')['default']

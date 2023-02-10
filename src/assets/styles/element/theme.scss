@@ -1,9 +1,0 @@
-$test : var(--test,blue);
-$test2: red;
-@forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $colors: (
-    'primary': (
-      'base': $test2
-    ),
-  ),
-);

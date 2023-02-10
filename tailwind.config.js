@@ -9,7 +9,7 @@ module.exports = {
     theme: {
         extend: {
             colors: { theme: 'var(--el-color-primary)' },
-            backgroundColor: { base: 'var(--el-bg-color)' } ,
+            backgroundColor: { base: 'var(--el-bg-color-page)' } ,
             textColor: {}
         } 
     },

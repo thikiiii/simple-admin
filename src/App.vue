@@ -1,19 +1,20 @@
 <script setup lang="ts">
+import { ConfigProvider } from 'ant-design-vue'
+
+const test = () => {
+    ConfigProvider.config({ theme: { primaryColor: '#312123' } })
+}
 </script>
 
 <template>
-  <div class="bg-theme">
-    <el-button type="primary">测试</el-button>
-  </div>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <a-config-provider>
+    <a-button @click="test" type="primary">测试</a-button>
+    </a-config-provider>
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .test{
   width: 300px;
   height: 300px;
-  background: $test2;
 }
 </style>
