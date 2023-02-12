@@ -10,6 +10,7 @@ import legacy from '@vitejs/plugin-legacy'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import { setupIcons } from './icons'
 import { setupPwa } from './pwa'
+
 export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): PluginOption[] => {
     const { VITE_USE_MOCK, VITE_LEGACY, VITE_USE_PWA } = viteEnv
     const plugins: PluginOption[] = [
