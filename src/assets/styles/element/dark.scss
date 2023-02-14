@@ -1,4 +1,8 @@
 @forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+  $bg-color: (
+    'page': red,
+    'overlay': var(--text-base-color),
+  ),
  $colors: (
     'primary': (
       'base': #4f60fc,

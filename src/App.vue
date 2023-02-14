@@ -44,6 +44,13 @@ const options = [
         :value="item.value"
     />
   </el-select>
+  <el-card>
+    <template #header>
+        <span>Card name</span>
+        <el-button class="button" text>Operation button</el-button>
+    </template>
+    <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
+  </el-card>
 </template>
 
 <style lang="scss" scoped>
