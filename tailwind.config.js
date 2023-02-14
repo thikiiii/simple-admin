@@ -8,8 +8,8 @@ module.exports = {
     corePlugins: { preflight: false },
     theme: {
         extend: {
-            colors: { theme: 'var(--el-color-primary)' },
-            backgroundColor: { base: 'var(--el-bg-color-page)' } ,
+            colors: { theme: 'var(--el-primary-color)' },
+            backgroundColor: { base: 'var(--el-primary-color)' } ,
             textColor: {}
         } 
     },

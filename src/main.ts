@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import 'ant-design-vue/dist/antd.variable.min.css'
-import '@/assets/styles/index.less'
+import '@/assets/styles/index.scss'
+
 import AppLoading from '@/components/system/AppLoading.vue'
 
 const bootStart = async() => {
@@ -11,9 +11,7 @@ const bootStart = async() => {
 
     const app = createApp(App)
 
-    setTimeout(() => {
-        app.mount('#app')
-    }, 3000)
+    app.mount('#app')
 }
 
 

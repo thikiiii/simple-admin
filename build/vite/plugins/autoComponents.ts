@@ -1,5 +1,5 @@
 import Components from 'unplugin-vue-components/vite'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
 
 // 自动按需注册全局组件
@@ -12,7 +12,7 @@ export const setupAutoComponents = () => Components({
     include: [ /\.vue$/, /\.vue\?vue/, /\.md$/ ],
     resolvers: [
         // antd 组件
-        AntDesignVueResolver(),
+        ElementPlusResolver({ importStyle: 'sass' }),
         // icon
         IconsResolver({
             // 不要前缀

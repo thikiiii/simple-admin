@@ -114,8 +114,6 @@ module.exports = defineConfig({
         'no-multiple-empty-lines': 'error',
         // 强制单个语句的位置
         'nonblock-statement-body-position': [ 'error', 'beside' ],
-        // 强制在花括号内使用一致的换行符
-        'object-curly-newline': [ 'error', { multiline: true } ],
         // 强制在花括号中使用一致的空格
         'object-curly-spacing': [ 'error', 'always' ],
         // 强制操作符使用一致的换行符风格
@@ -173,7 +171,9 @@ module.exports = defineConfig({
         // 禁止出现未使用的变量
         '@typescript-eslint/no-unused-vars': [
             'error',
-            { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
+            {
+                vars: 'all', args: 'after-used', ignoreRestSiblings: false 
+            }
         ],
         'vue/html-indent': 'off'
     }
