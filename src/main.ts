@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import '@/assets/styles/index.scss'
-
+import '@/assets/index'
 import AppLoading from '@/components/system/AppLoading.vue'
+import { setupRouter } from '@/router'
+import { setupStore } from '@/store'
 
 const bootStart = async() => {
     // app loading
@@ -11,6 +12,11 @@ const bootStart = async() => {
 
     const app = createApp(App)
 
+    // 挂载状态管理
+    setupStore(app)
+
+    await setupRouter(app)
+    
     app.mount('#app')
 }
 

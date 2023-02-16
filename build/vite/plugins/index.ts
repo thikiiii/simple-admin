@@ -10,6 +10,8 @@ import legacy from '@vitejs/plugin-legacy'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import { setupIcons } from './icons'
 import { setupPwa } from './pwa'
+import { setupAutoStyle } from './autoStyle'
+import { setupArcoPlugins } from './arcoPlugins'
 
 export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): PluginOption[] => {
     const { VITE_USE_MOCK, VITE_LEGACY, VITE_USE_PWA } = viteEnv
@@ -20,8 +22,12 @@ export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): Plu
         vueJsx(),
         // 组件自动按需导入
         setupAutoComponents(),
+        // 组件样式自动导入
+        setupAutoStyle(),
         // 配置 ejs
         setupHtml(viteEnv, isBuild),
+        // arco组件主题
+        setupArcoPlugins(),
         // 配置icon
         ...setupIcons(viteEnv)
     ]

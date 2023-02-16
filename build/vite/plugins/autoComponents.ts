@@ -1,5 +1,5 @@
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
 
 // 自动按需注册全局组件
@@ -12,7 +12,7 @@ export const setupAutoComponents = () => Components({
     include: [ /\.vue$/, /\.vue\?vue/, /\.md$/ ],
     resolvers: [
         // antd 组件
-        ElementPlusResolver({ importStyle: 'sass' }),
+        ArcoResolver({ sideEffect: true,importStyle: 'less' }),
         // icon
         IconsResolver({
             // 不要前缀

@@ -1,4 +1,4 @@
-import { Settings } from '@/settings'
+import { Settings } from '@/global/settings'
 
 // 登录路由路径
 export const LOGIN_PATH = '/login'

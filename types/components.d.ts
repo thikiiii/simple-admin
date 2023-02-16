@@ -7,14 +7,14 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AButton: typeof import('ant-design-vue/es')['Button']
-    AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
+    AButton: typeof import('@arco-design/web-vue')['Button']
     AppLoading: typeof import('./../src/components/system/AppLoading.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElOption: typeof import('element-plus/es')['ElOption']
-    ElSelect: typeof import('element-plus/es')['ElSelect']
+    ASpace: typeof import('@arco-design/web-vue')['Space']
+    ElConfigProvider: typeof import('~icons/el/config-provider')['default']
+    ElIcon: typeof import('~icons/el/icon')['default']
+    IconPlus: typeof import('~icons/ic/on-plus')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./../src/components/common/SvgIcon.vue')['default']
   }
 }

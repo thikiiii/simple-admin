@@ -3,9 +3,8 @@ import { RouteRecordRaw } from 'vue-router'
 import { ROOT_ROUTE } from '@/router/constRoutes'
 import { Sort } from '@/enums/common'
 import { matchUrl } from '@/utils/regularCheck'
-import Icon from '@/components/common/Icon/index.vue'
 import { h } from 'vue'
-import { NEllipsis } from 'naive-ui'
+import { Icon } from '@iconify/vue'
 
 export class RouterHelpers {
     // 前端路由模块列表
@@ -66,12 +65,12 @@ export class RouterHelpers {
     // 路由转菜单
     static transformRouteToMenu({ path, meta, children }: Route.RouteRecordRaw): Store.MenuOption {
         return {
-            key: path,
-            label: () => h(NEllipsis, ()=>meta?.title),
-            icon: meta?.icon ? ()=> h(Icon, { icon: meta?.icon, size: '18px' }) : undefined,
-            meta,
-            children: children as Store.MenuOption['children'],
-            show: !meta?.hideMenu
+            // key: path,
+            // // label: () => h(NEllipsis, ()=>meta?.title),
+            // icon: meta?.icon ? ()=> h(Icon, { icon: meta?.icon, size: '18px' }) : undefined,
+            // meta,
+            // children: children as Store.MenuOption['children'],
+            // show: !meta?.hideMenu
         }
     }
 

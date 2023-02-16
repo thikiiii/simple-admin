@@ -19,7 +19,7 @@ const metaEnv = useMetaEnv()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .appLoading {
   width: 100vw;
   height: 100vh;
