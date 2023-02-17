@@ -2,13 +2,7 @@
 </script>
 
 <template>
+  <a-config-provider size="large">
     <router-view />
+  </a-config-provider>
 </template>
-
-<style lang="less" scoped>
-.test {
-  width: 300px;
-  height: 300px;
-  //background: @border-color-base;
-}
-</style>

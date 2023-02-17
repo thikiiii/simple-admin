@@ -23,7 +23,7 @@ export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): Plu
         // 组件自动按需导入
         setupAutoComponents(),
         // 组件样式自动导入
-        setupAutoStyle(),
+        // setupAutoStyle(),
         // 配置 ejs
         setupHtml(viteEnv, isBuild),
         // arco组件主题

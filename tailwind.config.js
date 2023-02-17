@@ -45,13 +45,13 @@ module.exports = {
             // 文本颜色
             textColor: {
                 // 正文标题
-                title: 'rgb(var(--color-text-1))',
+                title: 'var(--color-text-1)',
                 // 正文
-                body: 'rgb(var(--color-text-2))',
+                body: 'var(--color-text-2)',
                 // 次要信息
-                secondary: 'rgb(var(--color-text-3))',
+                secondary: 'var(--color-text-3)',
                 // 置灰信息
-                ashing: 'rgb(var(--color-text-4))'
+                ashing: 'var(--color-text-4)'
             },
             // 阴影
             boxShadowColor: {

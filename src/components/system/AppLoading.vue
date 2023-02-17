@@ -43,7 +43,7 @@ const metaEnv = useMetaEnv()
       position: absolute;
       top: 0;
       width: 60%;
-      background: red;
+      background: rgba(var(--primary-6));
       height: 60%;
       border-radius: 100%;
       animation: ball-spin-bounce 2s infinite ease-in-out;

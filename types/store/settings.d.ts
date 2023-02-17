@@ -4,9 +4,6 @@ declare type PageAnimationMode = | 'left-slide-fade' | 'right-slide-fade' | 'zoo
 // 布局模式：侧边 | 混合侧边 | 顶部
 declare type LayoutMode = 'Side' | 'MixSide' | 'Top'
 
-// 主题模式: 明亮 | 暗黑
-declare type ThemeMode = 'light' | 'dark'
-
 // 布局风格 侧边暗黑 | 侧边顶部暗黑 | 侧边顶部明亮
 declare type LayoutStyle = 'SideDark' | 'SideTopDark' | 'SideTopLight'
 
@@ -80,7 +77,7 @@ declare interface LayoutApp {
     themeModeFollowSystem: boolean
 
     // 主题模式
-    themeMode: ThemeMode
+    isDark: boolean
 
     // 是否开启页面切换动画
     isPageStartAnimation: boolean

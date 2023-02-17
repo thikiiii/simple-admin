@@ -14,7 +14,7 @@
   </svg>
 </template>
 
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 import useMetaEnv from '@/hooks/common/useMetaEnv'
@@ -47,7 +47,8 @@ const style = computed(() => ({
     cursor: props.pointer ? 'pointer' : undefined,
     color: props.color,
     width: isNumber(props.size) ? `${props.size}px` : props.size,
-    height: isNumber(props.size) ? `${props.size}px` : props.size
+    height: isNumber(props.size) ? `${ props.size }px` : props.size,
+    stroke: 'none'
 }))
 </script>
 

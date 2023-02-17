@@ -8,7 +8,7 @@ const initialSettings:SettingsStore = {
         theme: '#6675ff',
         themeModeFollowSystem: true,
         // 主题模式
-        themeMode: 'light',
+        isDark: false,
         // 是否开启页面切换动画
         isPageStartAnimation: true,
         // 页面动画

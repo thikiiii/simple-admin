@@ -1,40 +1,37 @@
 <template>
-  <div class="w-full h-full overflow-auto flex">
-    <div class="flex-1 flex-shrink-0 bg-theme-main flex justify-center items-center">
+  <div class="w-full h-full overflow-hidden flex">
+    <div class="w-[50%] flex-shrink-0 bg-theme-main flex justify-center items-center">
+      <img width="150" src="../../assets/images/logo.png" alt="">
+      <h1>Thik Admin</h1>
       <img class="w-[90%]" src="../../assets/images/login-coverPicture.png" alt="">
     </div>
-    <div class="flex-1 flex-shrink-0 relative p-[20%]">
-      <div class="absolute right-[15px] top-[15px]">
-        <theme-switch />
+    <div class="w-[50%] flex-shrink-0 relative flex flex-col justify-center items-center">
+      <theme-switch class="absolute right-[15px] top-[15px]" />
+      <div class="w-[400px]">
+        <transition mode="out-in" name="zoom-fade">
+          <qr-code-login v-if="currentAction==='QrCodeLogin'" />
+          <password-login v-else-if="currentAction==='PasswordLogin'" />
+          <phone-login v-else-if="currentAction==='PhoneLogin'" />
+        </transition>
       </div>
-      <a-space>
-        <a-button @click="test" type="primary">
-          <template #icon>
-            <svg-icon icon="ic:baseline-adb" />
-          </template>
-        </a-button>
-        <a-button @click="test" type="primary">
-          <template #icon>
-            <icon-plus />
-          </template>
-          测试
-        </a-button>
-        <a-button>test</a-button>
-      </a-space>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Message } from '@arco-design/web-vue'
-import ThemeSwitch from '@/views/login/components/themeSwitch.vue'
-import { IconPlus } from '@arco-design/web-vue/es/icon'
-defineOptions({ name: 'Login' })
-// 设置为暗黑主题
+import ThemeSwitch from '@/views/login/components/ThemeSwitch.vue'
+import PasswordLogin from '@/views/login/components/PasswordLogin.vue'
+import QrCodeLogin from '@/views/login/components/QrCodeLogin.vue'
+import PhoneLogin from '@/views/login/components/PhoneLogin.vue'
+import { useLoginContext } from '@/views/login/utils/useLoginContext'
+import { watch } from 'vue'
 
-const test = () => {
-    Message.success('成功')
-}
+defineOptions({ name: 'Login' })
+
+const { currentAction } = useLoginContext()
+watch(currentAction, () => {
+    console.log(currentAction)
+})
 </script>
 
 <style scoped>
