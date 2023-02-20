@@ -7,23 +7,19 @@ const { setAction } = useLoginContext()
 
 <template>
   <flex-space size="medium" direction="vertical">
-    <h1 class="text-base text-3xl ">登录</h1>
+    <h1 class="text-base text-3xl text-left w-full">登录</h1>
     <a-form>
       <a-form-item hide-label>
-        <a-input placeholder="用户名" />
+        <a-input placeholder="请输入账号" />
       </a-form-item>
       <a-form-item hide-label>
-        <a-input-password placeholder="密码" />
+        <a-input-password placeholder="请输入密码" />
       </a-form-item>
       <a-form-item hide-label>
-        <a-row class="w-full" justify="space-between" align="center">
-          <a-col :span="5">
-            <a-checkbox>记住密码</a-checkbox>
-          </a-col>
-          <a-col :span="5">
-            <a-link>忘记密码？</a-link>
-          </a-col>
-        </a-row>
+        <flex-space justify="space-between">
+          <a-checkbox>记住密码</a-checkbox>
+          <a-link>忘记密码？</a-link>
+        </flex-space>
       </a-form-item>
       <a-form-item hide-label>
         <a-button size="large" long type="primary">登录</a-button>

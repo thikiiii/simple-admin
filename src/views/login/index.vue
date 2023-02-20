@@ -1,17 +1,20 @@
 <template>
   <div class="w-full h-full overflow-hidden flex">
     <div class="w-[50%] flex-shrink-0 bg-theme-main flex justify-center items-center">
-      <img width="150" src="../../assets/images/logo.png" alt="">
-      <h1>Thik Admin</h1>
       <img class="w-[90%]" src="../../assets/images/login-coverPicture.png" alt="">
     </div>
     <div class="w-[50%] flex-shrink-0 relative flex flex-col justify-center items-center">
+      <div class="flex gap-1 items-center absolute left-[15px] top-[15px]">
+        <img width="90" src="../../assets/images/logo.png" alt="">
+        <h1>Thik Admin</h1>
+      </div>
       <theme-switch class="absolute right-[15px] top-[15px]" />
       <div class="w-[400px]">
-        <transition mode="out-in" name="zoom-fade">
+        <transition mode="out-in" :name="app.pageAnimationMode">
           <qr-code-login v-if="currentAction==='QrCodeLogin'" />
           <password-login v-else-if="currentAction==='PasswordLogin'" />
           <phone-login v-else-if="currentAction==='PhoneLogin'" />
+          <register v-else-if="currentAction==='Registered'" />
         </transition>
       </div>
     </div>
@@ -25,10 +28,13 @@ import QrCodeLogin from '@/views/login/components/QrCodeLogin.vue'
 import PhoneLogin from '@/views/login/components/PhoneLogin.vue'
 import { useLoginContext } from '@/views/login/utils/useLoginContext'
 import { watch } from 'vue'
+import Register from '@/views/login/components/Register.vue'
+import useLayoutStore from '@/store/modules/layout'
 
 defineOptions({ name: 'Login' })
 
 const { currentAction } = useLoginContext()
+const { app } = useLayoutStore()
 watch(currentAction, () => {
     console.log(currentAction)
 })
