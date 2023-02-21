@@ -1,12 +1,11 @@
 import { onMounted } from 'vue'
-import { useThemeStore } from '@/store/modules/theme'
+import useAppStore from '@/store/modules/app'
 
 // 全局初始化
 export const useGlobalInitialize = () => {
-    const themeStore = useThemeStore()
-
+    const settingStore = useAppStore()
     onMounted(() => {
         // dom加载完成后 初始化主题
-        themeStore.initTheme()
+        settingStore.initTheme()
     })
 }

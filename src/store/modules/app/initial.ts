@@ -3,12 +3,11 @@
 const mobileTriggerWidth = 800
 
 // 初始设置
-const initialSettings:SettingsStore = {
-    app: {
-        theme: '#6675ff',
+const initialApp:AppStore = {
+    base: {
         themeModeFollowSystem: true,
         // 主题模式
-        isDark: false,
+        themeMode: 'Light',
         // 是否开启页面切换动画
         isPageStartAnimation: true,
         // 页面动画
@@ -18,10 +17,8 @@ const initialSettings:SettingsStore = {
         // 布局风格
         layoutStyle: 'SideDark'
     } ,
-    el: {
-        size: 'default',
-        buttonAutoInsertSpace: true,
-        messageMax: null
+    arco: {
+        size: 'medium'
     },
     sidebar: {
         // 是否折叠侧边栏
@@ -59,4 +56,4 @@ const initialSettings:SettingsStore = {
     }
 }
 
-export default initialSettings
+export default initialApp

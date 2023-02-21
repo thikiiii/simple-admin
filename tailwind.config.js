@@ -31,16 +31,20 @@ module.exports = {
             backgroundColor: {
                 // 常规
                 base: 'var(--color-bg-1)',
-                // 一级容器背景
-                'container-1': 'var(--color-bg-2)',
-                // 二级容器背景
-                'container-2': 'var(--color-bg-3)',
-                // 三级容器背景
-                'container-3': 'var(--color-bg-4)',
+                // 容器背景
+                container: 'var(--color-bg-2)',
                 // 下拉弹出框、Tooltip 背景颜色
-                float: 'var(--primary-7)',
+                float: 'var(--color-bg-5)',
                 // 反色
-                inverted: 'var(--color-bg-white)'
+                invert: 'var(--color-bg-invert)',
+                // 悬浮
+                hover: {
+                    // 浅悬浮
+                    shallow: 'var(--color-bg-shallow-hover)',
+                    // 反色浅悬浮
+                    invertShallow: 'var(--color-bg-invert-shallow-hover)'
+                }
+       
             },
             // 文本颜色
             textColor: {
@@ -51,7 +55,9 @@ module.exports = {
                 // 次要信息
                 secondary: 'var(--color-text-3)',
                 // 置灰信息
-                ashing: 'var(--color-text-4)'
+                ashing: 'var(--color-text-4)',
+                // 反色
+                invert: 'var(--color-text-invert)'
             },
             // 阴影
             boxShadowColor: {

@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import useLayoutStore from '@/store/modules/layout'
-const layoutStore = useLayoutStore()
+import useAppStore from '@/store/modules/app'
+const settingStore = useAppStore()
 </script>
 
 <template>
     <svg-icon
-        v-if="layoutStore.app.isDark"
-        @click="layoutStore.toggleDark()"
+        v-if="settingStore.base.themeMode==='Dark'"
+        @click="settingStore.setThemeMode('Light')"
         pointer
         size="30"
         color="#4f60fc"
         icon="line-md:sunny-filled-loop-to-moon-filled-loop-transition" />
-    <svg-icon @click="layoutStore.toggleDark()" v-else pointer size="30" color="#ffb948" icon="line-md:sunny-filled-loop" />
+    <svg-icon @click="settingStore.setThemeMode('Dark')" v-else pointer size="30" color="#ffb948" icon="line-md:sunny-filled-loop" />
 </template>
 
 <style scoped>

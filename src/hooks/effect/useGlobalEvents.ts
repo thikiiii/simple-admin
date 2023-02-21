@@ -1,30 +1,20 @@
 import { useEventListener } from '@vueuse/core'
 import { AppStorage } from '@/storage/app'
-import { useThemeStore } from '@/store/modules/theme'
-import { useLayoutStore } from '@/store/modules/layout'
+import useAppStore from '@/store/modules/app'
 
 // 全局事件
 export const useGlobalEvents = () => {
-    const themeStore = useThemeStore()
-    const layoutStore = useLayoutStore()
-    const { header, sidebar, footer, app, mobile } = layoutStore.$state
+    const appStore = useAppStore()
 
     // 监听窗口关闭
     useEventListener(window, 'unload', () => {
-        const { theme, themeMode, followSystem } = themeStore.$state
-        AppStorage.setSettings({
-            theme,
-            themeMode,
-            followSystem,
-            header,
-            sidebar,
-            footer,
-            app
-        })
+        // 储存 AppConfig
+        AppStorage.setAppConfig(appStore.$state)
     })
 
     // 监听窗口大小变化
     useEventListener(window, 'resize', () => {
-        mobile.isMobile = document.body.offsetWidth <= mobile.mobileTriggerWidth
+        // 判断是否是移动端
+        appStore.mobile.isMobile = document.body.offsetWidth <= appStore.mobile.mobileTriggerWidth
     })
 }

@@ -7,6 +7,9 @@ declare type LayoutMode = 'Side' | 'MixSide' | 'Top'
 // 布局风格 侧边暗黑 | 侧边顶部暗黑 | 侧边顶部明亮
 declare type LayoutStyle = 'SideDark' | 'SideTopDark' | 'SideTopLight'
 
+// 主题模式
+declare type ThemeMode = 'Light' | 'Dark'
+
 type Option<T> = {
     value: T
     label: string
@@ -70,14 +73,11 @@ declare interface LayoutMobile {
 }
 
 declare interface LayoutApp {
-    // 主题色
-    theme: string
-
     // 主题模式跟随系统 优先级比 themeMode 大
     themeModeFollowSystem: boolean
 
     // 主题模式
-    isDark: boolean
+    themeMode: ThemeMode
 
     // 是否开启页面切换动画
     isPageStartAnimation: boolean
@@ -92,19 +92,13 @@ declare interface LayoutApp {
     layoutStyle: LayoutStyle
 }
 
-declare interface ElConfig {
+declare interface arcoConfig {
     // 全局组件大小
-    size: 'large' | 'default' | 'small'
-
-    // button 自动在两个中文字符之间插入空格
-    buttonAutoInsertSpace: boolean
-
-    // Message 可同时显示的消息最大数量
-    messageMax: Nullable<number>
+    size: 'mini' | 'small' | 'medium' | 'large'
 }
 
-declare interface SettingsStore {
-    app: LayoutApp
+declare interface AppStore {
+    base: LayoutApp
 
     // 侧边栏
     sidebar: LayoutSidebar
@@ -118,5 +112,5 @@ declare interface SettingsStore {
     // 移动端
     mobile: LayoutMobile
 
-    el: ElConfig
+    arco: arcoConfig
 }

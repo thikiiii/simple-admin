@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 interface Props {
+  block?:boolean
   // 大小
   size?: 'mini' | 'small' | 'medium' | 'large'
   // 水平对齐
@@ -17,7 +18,8 @@ withDefaults(defineProps<Props>(), {
     justify: 'space-between',
     direction: 'horizontal',
     align: 'center',
-    wrap: false
+    wrap: false,
+    block: false
 })
 
 
@@ -27,7 +29,7 @@ withDefaults(defineProps<Props>(), {
   <div
       class="flexSpace"
       :class="[size,direction]"
-      :style="{justifyContent:justify,alignItems:align, flexWrap:wrap?'wrap':undefined}">
+      :style="{justifyContent:justify,alignItems:align, flexWrap:wrap?'wrap':undefined,width:block?'100%':undefined}">
     <slot />
   </div>
 </template>
@@ -35,7 +37,6 @@ withDefaults(defineProps<Props>(), {
 <style lang="less" scoped>
 .flexSpace {
   display: flex;
-  width: 100%;
   &.mini {
     gap: 4px;
   }

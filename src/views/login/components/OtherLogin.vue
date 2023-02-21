@@ -27,18 +27,16 @@ const otherLoginMethods = [
 
 <template>
   <a-divider orientation="center">其他登录方式</a-divider>
-  <flex-space justify="space-around">
-    <a-popover
+  <flex-space block justify="space-around">
+    <a-tooltip
         v-for="item in otherLoginMethods"
         :key="item.icon"
         position="bottom"
-        trigger="hover"
+        mini
+        :content="item.title"
     >
       <svg-icon :icon="item.icon" pointer size="22" />
-      <template #content>
-        <span>{{ item.title }}</span>
-      </template>
-    </a-popover>
+    </a-tooltip>
   </flex-space>
 </template>
 

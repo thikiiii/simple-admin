@@ -6,7 +6,7 @@ const { setAction } = useLoginContext()
 
 <template>
   <flex-space class="pb-[20px]" direction="vertical">
-    <h1 class="text-base text-3xl text-left w-full">二维码登录</h1>
+    <h1 class="text-title w-full">二维码登录</h1>
     <img
         alt=""
         height="250"

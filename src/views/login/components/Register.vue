@@ -1,6 +1,6 @@
 <template>
   <flex-space size="medium" direction="vertical">
-    <h1 class="text-base text-3xl text-left w-full">注册</h1>
+    <h1 class="text-title text-left w-full">注册</h1>
     <a-form>
       <a-form-item hide-label>
         <a-input placeholder="请输入账号" />

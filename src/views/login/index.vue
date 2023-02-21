@@ -10,7 +10,7 @@
       </div>
       <theme-switch class="absolute right-[15px] top-[15px]" />
       <div class="w-[400px]">
-        <transition mode="out-in" :name="app.pageAnimationMode">
+        <transition mode="out-in" :name="settingStore.base.pageAnimationMode">
           <qr-code-login v-if="currentAction==='QrCodeLogin'" />
           <password-login v-else-if="currentAction==='PasswordLogin'" />
           <phone-login v-else-if="currentAction==='PhoneLogin'" />
@@ -27,17 +27,13 @@ import PasswordLogin from '@/views/login/components/PasswordLogin.vue'
 import QrCodeLogin from '@/views/login/components/QrCodeLogin.vue'
 import PhoneLogin from '@/views/login/components/PhoneLogin.vue'
 import { useLoginContext } from '@/views/login/utils/useLoginContext'
-import { watch } from 'vue'
 import Register from '@/views/login/components/Register.vue'
-import useLayoutStore from '@/store/modules/layout'
+import useAppStore from '@/store/modules/app'
 
 defineOptions({ name: 'Login' })
 
 const { currentAction } = useLoginContext()
-const { app } = useLayoutStore()
-watch(currentAction, () => {
-    console.log(currentAction)
-})
+const settingStore = useAppStore()
 </script>
 
 <style scoped>
