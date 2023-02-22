@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-defineOptions({ name: 'Settings' })
-</script>
 
+</script>
 <template>
-  <icon-settings />
+    <svg-icon hover icon="ant-design:github-filled" />
 </template>
 
 <style scoped>

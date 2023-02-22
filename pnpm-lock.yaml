@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@arco-design/web-vue': ^2.43.0
   '@arco-plugins/vite-vue': ^1.4.2
-  '@arco-themes/vue-thik-admin': ^1.0.0
+  '@arco-themes/vue-thik-admin': ^1.0.4
   '@iconify-json/el': ^1.1.3
   '@iconify-json/ic': ^1.1.13
   '@iconify-json/mdi': ^1.1.47
@@ -63,7 +63,7 @@ dependencies:
 
 devDependencies:
   '@arco-plugins/vite-vue': 1.4.2
-  '@arco-themes/vue-thik-admin': 1.0.0_pomaak4kpvna3eobgup5kms4ka
+  '@arco-themes/vue-thik-admin': 1.0.4_pomaak4kpvna3eobgup5kms4ka
   '@iconify-json/el': 1.1.4
   '@iconify-json/ic': 1.1.13
   '@iconify-json/mdi': 1.1.47
@@ -166,8 +166,8 @@ packages:
       - supports-color
     dev: true
 
-  /@arco-themes/vue-thik-admin/1.0.0_pomaak4kpvna3eobgup5kms4ka:
-    resolution: {integrity: sha512-25MW2RysnqYsYEoWVb9M2krcGqd3dt5Qw7QIzcdfx5FUWbBUGbB0hul3YpOntWcFXZlTRVyRVi/BVt3eTklEsQ==}
+  /@arco-themes/vue-thik-admin/1.0.4_pomaak4kpvna3eobgup5kms4ka:
+    resolution: {integrity: sha512-jxsFZYRNu963MbeGwKqDiF/vJECJBpGRQn9pTJO4K9KFuN6VLezwYl1z8I+fs7lvulgFvzCqxOYPJSo+gDbwEQ==}
     peerDependencies:
       '@arco-design/web-vue': ^2.43.1
     dependencies:

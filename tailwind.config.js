@@ -40,6 +40,8 @@ module.exports = {
                 // 悬浮
                 hover: {
                     // 浅悬浮
+
+
                     shallow: 'var(--color-bg-shallow-hover)',
                     // 反色浅悬浮
                     invertShallow: 'var(--color-bg-invert-shallow-hover)'

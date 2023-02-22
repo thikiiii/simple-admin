@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <icon-menu-fold class="cursor-pointer" />
+  <svg-icon icon="ant-design:menu-fold-outlined" hover />
 </template>
 
 <style scoped>

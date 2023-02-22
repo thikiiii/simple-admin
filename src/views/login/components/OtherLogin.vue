@@ -35,7 +35,7 @@ const otherLoginMethods = [
         mini
         :content="item.title"
     >
-      <svg-icon :icon="item.icon" pointer size="22" />
+      <svg-icon hover :icon="item.icon" pointer size="22" />
     </a-tooltip>
   </flex-space>
 </template>

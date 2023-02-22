@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppLoading: typeof import('./../src/components/system/AppLoading.vue')['default']
     FlexSpace: typeof import('./../src/components/common/FlexSpace.vue')['default']
+    IconHoverContainer: typeof import('./../src/components/common/IconHoverContainer.vue')['default']
+    IconHoverContaiter: typeof import('~icons/ic/on-hover-contaiter')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../src/components/common/SvgIcon.vue')['default']

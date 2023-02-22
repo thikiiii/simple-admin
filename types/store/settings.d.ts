@@ -37,6 +37,9 @@ declare interface LayoutSidebar {
 
     // 混合侧边栏抽屉是否可见
     mixedDrawerVisible: boolean
+
+    // 菜单是否开启手风琴模式
+    isMenuAccordion:boolean
 }
 
 // 头部

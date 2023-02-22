@@ -1,17 +1,19 @@
 <template>
-  <!-- iconify 图标 -->
-  <icon class="arco-icon" v-if="!localIcon" :icon="iconName" :style="style" />
-  <!-- 本地图标 -->
-  <svg
-      v-else
-      :height="size"
-      :style="{ cursor: pointer ? 'pointer' : undefined, color }"
-      :width="size"
-      aria-hidden="true"
-      class="icon"
-  >
-    <use :xlink:href="iconName" />
-  </svg>
+  <div class="inline-block" :class="hover?'rounded-[5px] hover:bg-hover-shallow p-[7px] flex items-center justify-center transition cursor-pointer':undefined">
+    <!-- iconify 图标 -->
+    <icon class="arco-icon" v-if="!localIcon" :icon="iconName" :style="style" />
+    <!-- 本地图标 -->
+    <svg
+        v-else
+        :height="size"
+        :style="{ cursor: pointer ? 'pointer' : undefined, color }"
+        :width="size"
+        aria-hidden="true"
+        class="arco-icon"
+    >
+      <use :xlink:href="iconName" />
+    </svg>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -36,17 +38,20 @@ export interface IconProps {
 
   // 指针
   pointer?: boolean
+
+  // 悬浮
+  hover?: boolean
 }
 
 defineOptions({ name: 'Icon' })
 const props = defineProps<IconProps>()
 
 const metaEnv = useMetaEnv()
-const iconName = computed(() => props.localIcon ? `#${metaEnv.VITE_ICON_LOCAL_PREFIX}-${props.localIcon}` : props.icon)
+const iconName = computed(() => props.localIcon ? `#${ metaEnv.VITE_ICON_LOCAL_PREFIX }-${ props.localIcon }` : props.icon)
 const style = computed(() => ({
     cursor: props.pointer ? 'pointer' : undefined,
     color: props.color,
-    width: isNumber(props.size) ? `${props.size}px` : props.size,
+    width: isNumber(props.size) ? `${ props.size }px` : props.size,
     height: isNumber(props.size) ? `${ props.size }px` : props.size,
     stroke: 'none'
 }))
