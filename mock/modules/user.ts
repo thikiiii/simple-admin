@@ -3,7 +3,7 @@ import { MockMethod } from 'vite-plugin-mock'
 export default [ {
     url: '/mock/passwordLogin',
     method: 'post',
-    timeout: 5000,
+    // timeout: 5000,
     // statusCode: 400,
     response: () => {
         return {

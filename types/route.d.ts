@@ -1,11 +1,12 @@
 declare namespace Route {
     /**
      * 路由组件类型
-     * Self 本身就是页面
-     * Layout 带有布局的页面
-     * View 菜单
+     * Single 单页面 （类似登录页）
+     * Self 没有目录的菜单
+     * Directory 目录
+     * Child 目录下面的菜单
      * */
-    type RouteComponentType = 'Self' | 'Layout' | 'View'
+    type RouteComponentType = 'Single' | 'Self' | 'Directory' | 'Child'
 
     interface RouteRecordRaw
         extends Omit<
@@ -19,7 +20,7 @@ declare namespace Route {
 
         children?: RouteRecordRaw[]
 
-        name: string
+        name?:string
     }
 
     // 路由元数据

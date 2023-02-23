@@ -13,7 +13,7 @@ const guardTactics = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext
 ) => {
-    const { isLogin, isAuth, initUserStore, getUserinfo, signOutLoading } = useAuthStore()
+    const { isLogin, isAuth, initAuthStore, getUserinfo, signOutLoading } = useAuthStore()
     const {
         initRouteStore,
         initFrontRouteAuth,
@@ -48,7 +48,7 @@ const guardTactics = (
             () => {
                 console.log('GUARD-------2')
                 discreteApi.message.warning('令牌已失效，请重新登录！')
-                initUserStore()
+                initAuthStore()
                 initRouteStore()
                 next(LOGIN_PATH)
             } ],

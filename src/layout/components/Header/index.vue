@@ -14,9 +14,7 @@ defineOptions({ name: 'HeaderContent' })
 <template>
   <a-layout-header class="h-[56px] bg-container w-full  flex justify-between items-center p-[10px] text-[18px]">
     <flex-space size="large" justify="flex-start" direction="horizontal">
-      <icon-hover-container>
         <menu-collapsed />
-      </icon-hover-container>
       <breadcrumb />
     </flex-space>
     <flex-space justify="flex-end" direction="horizontal">

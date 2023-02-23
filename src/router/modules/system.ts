@@ -3,8 +3,7 @@ import { RoleEnum } from '@/enums/auth'
 
 const system: Route.RouteRecordRaw = {
     path: '/system',
-    name: 'system',
-    component: 'Layout',
+    component: 'Directory',
     redirect: '/system/user',
     meta: {
         title: '系统管理',
@@ -14,30 +13,27 @@ const system: Route.RouteRecordRaw = {
     children: [
         {
             path: '/system/user',
-            name: 'system_user',
             meta: {
                 title: '用户',
                 roles: [ RoleEnum.SUPER ]
             },
-            component: 'View'
+            component: 'Child'
         },
         {
             path: '/system/role',
-            name: 'system_role',
             meta: {
                 title: '角色',
-                roles: [ RoleEnum.SUPER ]
+                roles: [ RoleEnum.TEST ]
             },
-            component: 'View'
+            component: 'Child'
         },
         {
             path: '/system/menu',
-            name: 'system_menu',
             meta: {
                 roles: [ RoleEnum.SUPER ],
                 title: '菜单'
             },
-            component: 'View'
+            component: 'Child'
         }
     ]
 }

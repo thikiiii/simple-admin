@@ -8,11 +8,14 @@ declare interface AuthStore {
     permissions: import('@/enums/auth').PermissionEnum[]
 
     // 用户信息
-    userinfo: Nullable<UserService.Response.UserDetails['userinfo']>
+    userinfo: Nullable<UserApiResponse.UserDetails['userinfo']>
 
-    // 登录 loading
-    loginLoading: boolean
+    // 路由鉴权模式
+    routeAuthMode: import('@/enums/auth').RouteAuthModeEnum
 
-    // 退出登录 loading
-    signOutLoading: boolean
+    // 是否初始化过权限路由
+    hasInitAuthRoute: boolean
+
+    // menu
+    menus: []
 }

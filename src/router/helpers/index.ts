@@ -1,10 +1,10 @@
 // 需要权限的路由模块列表
 import { RouteRecordRaw } from 'vue-router'
-import { ROOT_ROUTE } from '@/router/constRoutes'
 import { Sort } from '@/enums/common'
 import { matchUrl } from '@/utils/regularCheck'
-import { h } from 'vue'
-import { Icon } from '@iconify/vue'
+import { RoleEnum } from '@/enums/auth'
+import component from '*.vue'
+
 
 export class RouterHelpers {
     // 前端路由模块列表
@@ -21,10 +21,33 @@ export class RouterHelpers {
         return routerModules
     }, [])
 
+    // 获取用户路由
+    static getUserRouteList(roles: RoleEnum[]) {
+        // 不需要授权
+        const noNeedAuth = (route: Route.RouteRecordRaw) => !route.meta?.roles?.length
+
+        // 已授权
+        const hasAuth = (route: Route.RouteRecordRaw) => route.meta?.roles?.some(role => roles.includes(role))
+
+        const getFrontRoute = (routeList: Route.RouteRecordRaw[]) => routeList.reduce<Route.RouteRecordRaw[]>((userRoute, route) => {
+            // PUSH 权限路由
+            const pushAuthRoute = () => {
+                const cRoute = { ...route }
+                userRoute.push(cRoute)
+                if (cRoute.children?.length) cRoute.children = getFrontRoute(cRoute.children)
+                return userRoute
+            }
+            if (noNeedAuth(route) || hasAuth(route)) return pushAuthRoute()
+            return userRoute
+        }, [])
+        return getFrontRoute(this.routeList)
+    }
+
     // 获取页面组件
     static getViewComponent(route: Route.RouteRecordRaw) {
         // 组件路径
-        const componentPath = this.transformRouteNameToComponentPath(route.name)
+        const componentPath = this.transformRoutePathToComponentPath(route.path)
+        console.log(componentPath)
         const viewComponent = Object.keys(this.VIEW_COMPONENTS).find(path => path === componentPath)
         if (!viewComponent) console.warn('没有找到组件：', componentPath)
         return this.VIEW_COMPONENTS[viewComponent as string]
@@ -34,72 +57,56 @@ export class RouterHelpers {
     static transformCustomRouteToVueRoute(route: Route.RouteRecordRaw) {
         // 如果是外链就不转vue路由
         if (this.isExternalLink(route.path)) return undefined
-        const vueRoute = { ...route, component: undefined } as RouteRecordRaw
+
+        let vueRoute = { ...route, component: undefined } as RouteRecordRaw
+        vueRoute.name = route.path
+
         switch (route.component) {
-            // 本身就是页面
-            case 'Self':
+            // 单页面 （类似登录页）
+            case 'Single':
                 vueRoute.component = this.getViewComponent(route)
                 break
-            // 布局
-            case 'Layout':
+            // 没有目录的菜单
+            case 'Self':
+                console.log(route)
+                // 一级路由转二级路由
+                vueRoute = {
+                    path: '/',
+                    name: route.name,
+                    component: () => import('@/layout/index.vue'),
+                    children: [
+                        {
+                            ...route,
+                            component: this.getViewComponent(route)
+                        } as RouteRecordRaw
+                    ]
+                }
+                break
+            // 目录
+            case 'Directory':
                 vueRoute.component = () => import('@/layout/index.vue')
                 break
             // 菜单页面
-            case 'View':
+            case 'Child':
                 vueRoute.component = this.getViewComponent(route)
                 break
         }
         return vueRoute
     }
 
+    // 批量自定义路由转 vue 路由
     static transformCustomRoutesToVueRoutes(routes: Route.RouteRecordRaw[]) {
         return routes.reduce<RouteRecordRaw[]>((vueRoutes, route) => {
             const vueRoute = this.transformCustomRouteToVueRoute(route)
             if (route.children?.length && vueRoute) vueRoute.children = this.transformCustomRoutesToVueRoutes(route.children)
-
             vueRoute && vueRoutes.push(vueRoute)
             return vueRoutes
         }, [])
     }
 
-    // 路由转菜单
-    static transformRouteToMenu({ path, meta, children }: Route.RouteRecordRaw): Store.MenuOption {
-        return {
-            // key: path,
-            // // label: () => h(NEllipsis, ()=>meta?.title),
-            // icon: meta?.icon ? ()=> h(Icon, { icon: meta?.icon, size: '18px' }) : undefined,
-            // meta,
-            // children: children as Store.MenuOption['children'],
-            // show: !meta?.hideMenu
-        }
-    }
-
-    static transformRoutesToMenus(routes: Route.RouteRecordRaw[]): Store.MenuOption[] {
-        const menus = routes.map(route => {
-            if (!route.children) return this.transformRouteToMenu(route)
-            const menu = this.transformRouteToMenu(route)
-            menu.children = this.transformRoutesToMenus(route.children)
-            return menu
-        })
-        return menus.filter(menu => menu)
-    }
-
-    // 用layout包装单页面路由，一级路由转二级路由
-    static useLayoutWrapperSingleViewRoute(authRoutes: Route.RouteRecordRaw[]) {
-        return authRoutes.map(route => {
-            if (route.children) return route
-            const root: Route.RouteRecordRaw = {
-                ...ROOT_ROUTE,
-                name: route.name
-            }
-            root.children = [ route ]
-            return root
-        })
-    }
-
-    // 路由 name 转组件路径
-    static transformRouteNameToComponentPath(name: string) {
-        return `/src/views/${ name.replaceAll('_', '/') }/index.vue`
+    // 路由路径 转 组件路径
+    static transformRoutePathToComponentPath(name: string) {
+        return `/src/views/${ name.startsWith('/') ? name.replace(/^\//, '') : name }/index.vue`
     }
 
     // 排序路由, 默认升序
@@ -109,16 +116,6 @@ export class RouterHelpers {
             if (type === Sort.Descending) return Number(b.meta?.orderNo) - Number(a.meta?.orderNo)
             return 0
         })
-    }
-
-    // 删除空 Layout
-    static removeEmptyLayout(routes: Route.RouteRecordRaw[]) {
-        return routes.reduce<Route.RouteRecordRaw[]>((routes, route) => {
-            if (route.children?.length) route.children = this.removeEmptyLayout(route.children)
-            if (route.component === 'Layout' && !route.children?.length) return routes
-            routes.push(route)
-            return routes
-        }, [])
     }
 
     // 是否外链

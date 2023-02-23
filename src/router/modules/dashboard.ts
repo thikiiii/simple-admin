@@ -3,8 +3,7 @@ import { RoleEnum } from '@/enums/auth'
 
 const dashboard: Route.RouteRecordRaw = {
     path: '/dashboard',
-    name: 'dashboard',
-    component: 'Layout',
+    component: 'Directory',
     redirect: '/dashboard/analysis',
     meta: {
         title: '控制台',
@@ -13,14 +12,12 @@ const dashboard: Route.RouteRecordRaw = {
     },
     children: [ {
         path: '/dashboard/analysis',
-        name: 'dashboard_analysis',
         meta: {
             title: '分析页',
-            roles: [ RoleEnum.SUPER ],
             keepAlive: true,
             affix: true
         },
-        component: 'View'
+        component: 'Child'
     } ]
 }
 export default dashboard

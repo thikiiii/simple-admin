@@ -1,8 +1,7 @@
 // 不需要退出登录错误状态码
 import { AxiosError } from 'axios'
 import { extractNumbers } from '@/utils/regularCheck'
-import useAuthStore from '@/store/modules/auth'
-import { discreteApi } from '@/plugIn/naiveUi/discreteApi'
+import { Message } from '@arco-design/web-vue'
 
 const NO_SIGN_OUT_STATUS_CODE = new Map<number | string, string>([
     [ 400, '400: 请求出现语法错误 ~' ], [ 403, '403: 服务器拒绝访问 ~' ], [ 404, '404: 请求的资源不存在 ~' ], [ 405, '405: 请求方法未允许 ~' ], [ 408, '408: 网络请求超时 ~' ], [ 500, '500: 服务器内部错误 ~' ], [ 501, '501: 服务器未实现请求功能 ~' ], [ 502, '502: 错误网关 ~' ], [ 503, '503: 服务不可用 ~' ], [ 504, '504: 网关超时 ~' ], [ 505, '505: http版本不支持该请求 ~' ]
@@ -19,7 +18,7 @@ let lastMessage: string | undefined = undefined
 export const handleErrorMessage = (message: string) => {
     if (message === lastMessage) return
     // 解决重复错误提示
-    discreteApi.message.error(message, { onLeave: () => lastMessage = undefined })
+    Message.error({ content: message,onClose: ()=>lastMessage = undefined })
     lastMessage = message
 }
 
@@ -37,10 +36,9 @@ export const handleResponseStatusError = (data: Service.Result) => {
     }
     const signOutStatusMessage = SIGN_OUT_STATUS_CODE.get(data.code)
     // 退出登录
-    if (signOutStatusMessage) {
-        handleErrorMessage(signOutStatusMessage)
-        void useAuthStore().signOut()
-    }
+    if (signOutStatusMessage) handleErrorMessage(signOutStatusMessage)
+    // TODO: 完善退出登录
+    // void useAuthStore().signOut()
 }
 
 // 处理拦截器错误

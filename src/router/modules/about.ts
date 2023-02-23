@@ -1,6 +1,5 @@
 const about: Route.RouteRecordRaw = {
     path: '/about',
-    name: 'about',
     meta: {
         title: '关于',
         // roles: [ RoleEnum.SUPER ],
@@ -9,6 +8,6 @@ const about: Route.RouteRecordRaw = {
         orderNo: 3,
         affix: true
     },
-    component: 'View'
+    component: 'Self'
 }
 export default about

@@ -7,9 +7,7 @@
       测试
       <icon-right />
     </div>
-    <icon-hover-container>
       <icon-undo />
-    </icon-hover-container>
   </div>
 </template>
 

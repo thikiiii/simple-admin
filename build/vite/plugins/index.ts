@@ -10,7 +10,6 @@ import legacy from '@vitejs/plugin-legacy'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import { setupIcons } from './icons'
 import { setupPwa } from './pwa'
-import { setupAutoStyle } from './autoStyle'
 import { setupArcoPlugins } from './arcoPlugins'
 
 export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): PluginOption[] => {
