@@ -7,14 +7,16 @@ defineOptions({ name: 'Layout' })
 </script>
 
 <template>
-  <a-layout class="h-full bg-base">
+  <div class="h-full bg-base flex">
     <layout-sidebar />
-    <a-layout>
+    <div class="flex flex-col flex-1 overflow-auto">
       <layout-header />
-      <a-layout-content />
-      <a-layout-footer class="h-[34px] bg-container">footer</a-layout-footer>
-    </a-layout>
-  </a-layout>
+      <div class="flex-1 p-[1em]">
+        <router-view />
+      </div>
+      <div class="h-[34px] bg-container">footer</div>
+    </div>
+  </div>
 </template>
 
 <style scoped>

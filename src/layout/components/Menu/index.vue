@@ -1,39 +1,24 @@
 <script setup lang="ts">
+import MenuItem from '@/layout/components/Menu/components/MenuItem.vue'
+import useAuthStore from '@/store/modules/auth'
+import { useRoute } from 'vue-router'
+import useAppStore from '@/store/modules/app'
+
+interface Props {
+  collapsed?:boolean
+}
+
+defineProps<Props>()
+
 defineOptions({ name: 'Menu' })
+const authStore = useAuthStore()
+const route = useRoute()
+const { sidebar } = useAppStore()
 </script>
 
 <template>
-  <a-menu>
-    <a-sub-menu key="0">
-      <template #icon><IconApps /></template>
-      <template #title>Navigation 1</template>
-      <a-menu-item class="text-[18px]" key="0_0">Menu 1</a-menu-item>
-      <a-menu-item key="0_1">Menu 2</a-menu-item>
-      <a-menu-item key="0_2" disabled>
-        Menu 3
-      </a-menu-item>
-      <a-sub-menu>
-        <template #icon><IconApps /></template>
-        <template #title>Navigation 1</template>
-        <a-menu-item key="11">
-          dsad
-        </a-menu-item>
-      </a-sub-menu>
-    </a-sub-menu>
-    <a-sub-menu key="1">
-      <template #icon><IconBug /></template>
-      <template #title>Navigation 2</template>
-      <a-menu-item key="1_0">Menu 1</a-menu-item>
-      <a-menu-item key="1_1">Menu 2</a-menu-item>
-      <a-menu-item key="1_2">Menu 3</a-menu-item>
-    </a-sub-menu>
-    <a-sub-menu key="2">
-      <template #icon><IconBulb /></template>
-      <template #title>Navigation 3</template>
-      <a-menu-item key="2_0">Menu 1</a-menu-item>
-      <a-menu-item key="2_1">Menu 2</a-menu-item>
-      <a-menu-item key="2_2">Menu 3</a-menu-item>
-    </a-sub-menu>
+  <a-menu theme="dark" :collapsed-width="sidebar.collapsedSidebarWidth" :collapsed="collapsed" :accordion="sidebar.isMenuAccordion" :selected-keys="[route.path]">
+    <menu-item :menus="authStore.routes" />
   </a-menu>
 </template>
 

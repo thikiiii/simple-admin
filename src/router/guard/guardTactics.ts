@@ -1,11 +1,10 @@
 import useAuthStore from '@/store/modules/auth'
-import { useRouteStore } from '@/store/modules/route'
-import { LOGIN_PATH } from '@/router/constRoutes'
 import { AuthCookie } from '@/storage/auth'
 import { RouteAuthModeEnum } from '@/enums/auth'
 import { runTacticsAction } from '@/utils'
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import { discreteApi } from '@/plugIn/naiveUi/discreteApi'
+import { Message } from '@arco-design/web-vue'
+import { ROUTE_LOGIN_PATH } from '@/router/routes'
 
 // 守卫策略
 const guardTactics = (
@@ -13,20 +12,22 @@ const guardTactics = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext
 ) => {
-    const { isLogin, isAuth, initAuthStore, getUserinfo, signOutLoading } = useAuthStore()
     const {
-        initRouteStore,
+        isLogin,
+        isAuth,
+        getUserinfo,
+        routeAuthMode,
         initFrontRouteAuth,
         initServerRouteAuth,
-        routeAuthMode,
-        hasInitAuthRoute
-    } = useRouteStore()
+        initAuthStore,
+        isGeneratedRoutes
+    } = useAuthStore()
     // 处理路由鉴权模式
     const handleRouteAuthMode = async() => {
         switch (routeAuthMode) {
-        // 前端路由鉴权模式
+            // 前端路由鉴权模式
             case RouteAuthModeEnum.FRONT:
-            // 初始化路由
+                // 初始化路由
                 initFrontRouteAuth()
                 break
             // 服务端路由鉴权模式
@@ -35,58 +36,70 @@ const guardTactics = (
                 break
         }
     }
+
+    console.log(to)
+    // 忽略鉴权直接放行
+    if (to.meta?.ignoreAuth) return next()
+
     // 策略守卫
     const guardTacticsAction: TacticsAction[] = [
-        // 未登录跳转到登录页面
-        [ !isLogin,
+        // 未登录
+        [
+            !isLogin,
             () => {
-                console.log('GUARD-------1')
-                to.path === LOGIN_PATH ? next() : next(LOGIN_PATH)
-            } ],
+                console.info('---未登录，强制跳转到登录页---')
+                to.path === ROUTE_LOGIN_PATH ? next() : next(ROUTE_LOGIN_PATH)
+            }
+        ],
         // 登录的情况下在 cookie 中获取不到 token
-        [ !AuthCookie.getToken(),
+        [
+            !AuthCookie.getToken(),
             () => {
-                console.log('GUARD-------2')
-                discreteApi.message.warning('令牌已失效，请重新登录！')
+                console.info('---令牌已失效，请重新登录---')
+                Message.warning('令牌已失效，请重新登录！')
                 initAuthStore()
-                initRouteStore()
-                next(LOGIN_PATH)
-            } ],
+                next(ROUTE_LOGIN_PATH)
+            }
+        ],
         // 没有鉴权（没有用户信息和角色）
-        [ !isAuth,
+        [
+            !isAuth,
             async() => {
-                console.log('GUARD-------3')
-                // 初始化路由
-                initRouteStore()
+                console.info('---没有鉴权（没有用户信息和角色）---')
                 // 获取用户信息
                 await getUserinfo().catch(() => {
-                    next(LOGIN_PATH)
+                    next(ROUTE_LOGIN_PATH)
                     return Promise.reject()
                 })
                 await handleRouteAuthMode()
-
                 next({ path: to.path, query: to.query })
-            } ],
-        // 没有初始化鉴权路由
-        [ !hasInitAuthRoute,
+            }
+        ],
+        // 没有生成路由
+        [
+            !isGeneratedRoutes,
             async() => {
-                console.log('GUARD-------4')
-                initRouteStore()
+                console.info('---没有生成路由---')
                 await handleRouteAuthMode()
                 next({ ...to, replace: true })
-            } ],
+            }
+        ],
         // 登录情况下不能到登录页面
-        [ to.path === LOGIN_PATH && !signOutLoading,
+        [
+            to.path === ROUTE_LOGIN_PATH,
             () => {
-                console.log('GUARD-------5')
+                console.info('---登录情况下不能到登录页面---')
                 next(from.fullPath)
-            } ],
+            }
+        ],
         // 走到这步直接通过（走到这步就表示已经登录、有权限、有路由了）
-        [ true,
+        [
+            true,
             () => {
-                console.log('GUARD-------6')
+                console.info('---已经登录、有权限、有路由了---')
                 next()
-            } ]
+            }
+        ]
     ]
     runTacticsAction(guardTacticsAction)
 }

@@ -12,7 +12,7 @@ defineOptions({ name: 'HeaderContent' })
 </script>
 
 <template>
-  <a-layout-header class="h-[56px] bg-container w-full  flex justify-between items-center p-[10px] text-[18px]">
+  <div class="h-[56px] bg-container w-full  flex justify-between items-center p-[10px] text-[18px]">
     <flex-space size="large" justify="flex-start" direction="horizontal">
         <menu-collapsed />
       <breadcrumb />
@@ -25,7 +25,7 @@ defineOptions({ name: 'HeaderContent' })
       <avatar />
       <settings />
     </flex-space>
-  </a-layout-header>
+  </div>
 </template>
 
 <style scoped>

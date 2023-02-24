@@ -45,11 +45,22 @@ const useAppStore = defineStore('App', {
             // 监听主题变更
             matchMedia.addEventListener('change', this.systemThemeChange)
         },
+
         // 删除监听系统主题变化
         removeSystemThemeChange() {
             const matchMedia = window.matchMedia('(prefers-color-scheme:dark)')
             // 监听主题变更
             matchMedia.removeEventListener('change', this.systemThemeChange)
+        },
+
+        // 切换Sidebar折叠
+        toggleSidebarCollapsed(isCollapsed?:boolean) {
+            this.sidebar.isCollapsed = isCollapsed || !this.sidebar.isCollapsed
+        },
+
+        // 切换移动端Sidebar可见
+        toggleMobileSidebarVisible(isVisible?:boolean) {
+            this.sidebar.mobileSidebarVisible = isVisible || !this.sidebar.mobileSidebarVisible
         }
     }
 })

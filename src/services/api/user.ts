@@ -28,7 +28,7 @@ export abstract class UserApi {
     })
 
     // 获取用户路由
-    static getRoutes = () => serveRequest<UserApiResponse.UserRoutes[]>({
+    static getRoutes = () => serveRequest<UserApiResponse.UserRoutes>({
         method: 'GET',
         url: this.getRoutesUrl
     })

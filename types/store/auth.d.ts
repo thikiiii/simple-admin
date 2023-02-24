@@ -13,9 +13,9 @@ declare interface AuthStore {
     // 路由鉴权模式
     routeAuthMode: import('@/enums/auth').RouteAuthModeEnum
 
-    // 是否初始化过权限路由
-    hasInitAuthRoute: boolean
+    // 是否已生成路由
+    isGeneratedRoutes: boolean
 
-    // menu
-    menus: []
+    // 用户的路由
+    routes: Route.RouteRecordRaw[]
 }

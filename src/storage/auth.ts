@@ -8,7 +8,7 @@ export class AuthCookie {
     static setToken = (token: string) => Cookies.set(this.token, token, { expires: Settings.tokenExpirationTime })
 
     // 获取 token
-    static getToken = (): string | undefined => Cookies.get(this.token)
+    static getToken = ():Nullable<string> => Cookies.get(this.token) || null
 
     // 删除 token
     static removeToken = () => Cookies.remove(this.token)

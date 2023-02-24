@@ -34,20 +34,23 @@ declare namespace Route {
         // 角色
         roles?: import('@/enums/auth').RoleEnum[]
 
+        // 忽略鉴权，用户可以直接访问
+        ignoreAuth?:boolean
+
         // 是否缓存
         keepAlive?: boolean
 
         // 是否固定在tab上
         affix?: boolean
 
-        // 图标，只对目录和
+        // 图标
         icon?: string
 
         // 内部嵌套地址
         frameSrc?: string
 
-        // 菜单排序，只对第一级有效
-        orderNo?: number
+        // 菜单排序
+        order?: number
 
         // 隐藏菜单
         hideMenu?: boolean

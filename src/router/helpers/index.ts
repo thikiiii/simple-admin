@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router'
 import { Sort } from '@/enums/common'
 import { matchUrl } from '@/utils/regularCheck'
 import { RoleEnum } from '@/enums/auth'
-import component from '*.vue'
+import { ROUTE_ROOT } from '@/router/routes'
 
 
 export class RouterHelpers {
@@ -34,20 +34,28 @@ export class RouterHelpers {
             const pushAuthRoute = () => {
                 const cRoute = { ...route }
                 userRoute.push(cRoute)
-                if (cRoute.children?.length) cRoute.children = getFrontRoute(cRoute.children)
+
+                if (cRoute.children?.length) {
+                    cRoute.children = getFrontRoute(cRoute.children)
+                    // 排序 升序
+                    this.sortRoutes(cRoute.children,Sort.Ascending)
+                }
+
                 return userRoute
             }
             if (noNeedAuth(route) || hasAuth(route)) return pushAuthRoute()
             return userRoute
         }, [])
-        return getFrontRoute(this.routeList)
+        const userRoutes = getFrontRoute(this.routeList)
+        // 排序 升序
+        this.sortRoutes(userRoutes,Sort.Ascending)
+        return userRoutes
     }
 
     // 获取页面组件
     static getViewComponent(route: Route.RouteRecordRaw) {
         // 组件路径
-        const componentPath = this.transformRoutePathToComponentPath(route.path)
-        console.log(componentPath)
+        const componentPath = this.transformRouteNameToComponentPath(route.name as string)
         const viewComponent = Object.keys(this.VIEW_COMPONENTS).find(path => path === componentPath)
         if (!viewComponent) console.warn('没有找到组件：', componentPath)
         return this.VIEW_COMPONENTS[viewComponent as string]
@@ -57,10 +65,7 @@ export class RouterHelpers {
     static transformCustomRouteToVueRoute(route: Route.RouteRecordRaw) {
         // 如果是外链就不转vue路由
         if (this.isExternalLink(route.path)) return undefined
-
         let vueRoute = { ...route, component: undefined } as RouteRecordRaw
-        vueRoute.name = route.path
-
         switch (route.component) {
             // 单页面 （类似登录页）
             case 'Single':
@@ -68,11 +73,9 @@ export class RouterHelpers {
                 break
             // 没有目录的菜单
             case 'Self':
-                console.log(route)
                 // 一级路由转二级路由
                 vueRoute = {
-                    path: '/',
-                    name: route.name,
+                    ...ROUTE_ROOT,
                     component: () => import('@/layout/index.vue'),
                     children: [
                         {
@@ -104,16 +107,16 @@ export class RouterHelpers {
         }, [])
     }
 
-    // 路由路径 转 组件路径
-    static transformRoutePathToComponentPath(name: string) {
-        return `/src/views/${ name.startsWith('/') ? name.replace(/^\//, '') : name }/index.vue`
+    // 路由name 转 组件路径
+    static transformRouteNameToComponentPath(name: string) {
+        return `/src/views/${ name.replaceAll('_', '/') }/index.vue`
     }
 
     // 排序路由, 默认升序
     static sortRoutes(routes: Route.RouteRecordRaw[], type: Sort) {
         routes.sort((a, b) => {
-            if (type === Sort.Ascending) return Number(a.meta?.orderNo) - Number(b.meta?.orderNo)
-            if (type === Sort.Descending) return Number(b.meta?.orderNo) - Number(a.meta?.orderNo)
+            if (type === Sort.Ascending) return Number(a.meta?.order) - Number(b.meta?.order)
+            if (type === Sort.Descending) return Number(b.meta?.order) - Number(a.meta?.order)
             return 0
         })
     }

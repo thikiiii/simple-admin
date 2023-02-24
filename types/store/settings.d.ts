@@ -39,7 +39,19 @@ declare interface LayoutSidebar {
     mixedDrawerVisible: boolean
 
     // 菜单是否开启手风琴模式
-    isMenuAccordion:boolean
+    isMenuAccordion: boolean
+
+    // 移动端 Sidebar 可见
+    mobileSidebarVisible: boolean
+
+    // 侧边栏宽度
+    sidebarWidth: number
+
+    // 折叠侧边栏的宽度
+    collapsedSidebarWidth: number
+
+    // 混合侧边栏宽度
+    mixedSidebarWidth: number
 }
 
 // 头部
@@ -52,6 +64,12 @@ declare interface LayoutHeader {
 
     // 是否固定头部和标签栏
     isFixedHeaderAndTabBar: boolean
+
+    // 高度
+    headerHeight: number
+
+    // 标签栏高度
+    tabBarHeight:number
 }
 
 // 底部
@@ -59,21 +77,13 @@ declare interface LayoutFooter {
     // 底部可见
     visible: boolean
 
+    // 高度
+    height: number
+
     // 固定底部
     isFixed: boolean
 }
 
-// 移动端
-declare interface LayoutMobile {
-    // 移动端触发宽度
-    mobileTriggerWidth: number
-
-    // 是否移动端
-    isMobile: boolean
-
-    // 移动端 menu 可见
-    mobileMenuVisible: boolean
-}
 
 declare interface LayoutApp {
     // 主题模式跟随系统 优先级比 themeMode 大
@@ -93,6 +103,12 @@ declare interface LayoutApp {
 
     // 布局风格
     layoutStyle: LayoutStyle
+
+    // 移动端触发宽度
+    mobileTriggerWidth: number
+
+    // 是否移动端
+    isMobile: boolean
 }
 
 declare interface arcoConfig {
@@ -112,8 +128,6 @@ declare interface AppStore {
     // 底部
     footer: LayoutFooter
 
-    // 移动端
-    mobile: LayoutMobile
-
+    // arco 组件库配置
     arco: arcoConfig
 }
