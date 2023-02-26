@@ -26,6 +26,14 @@ export default defineConfig(({ command, mode }) => {
             },
             extensions: [ '.js', '.ts', '.tsx', '.jsx', '.vue' ]
         },
+        css: {
+            preprocessorOptions: {
+                less: {
+                    additionalData: `@import "${path.resolve('src/assets/styles/theme/index.less')}";`,
+                    javascriptEnabled: true
+                }
+            }
+        },
         build: { target: 'es2015' },
         esbuild: { pure: VITE_DELETE_CONSOLE ? [ 'console.log', 'debugger' ] : [] }
     }

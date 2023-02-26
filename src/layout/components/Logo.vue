@@ -1,11 +1,15 @@
 <script setup lang="ts">
-defineOptions({ name: '' })
+import useAppStore from '@/store/modules/app'
+import { computed } from 'vue'
+
+const appStore = useAppStore()
+const isHide = computed(()=>appStore.sidebar.isCollapsed || appStore.base.layoutMode === 'MixSide')
 </script>
 
 <template>
   <div class="flex items-center justify-center gap-1 h-[56px] ">
-    <img height="32" src="../../assets/images/logo.png" alt="">
-    <span class="font-bold text-[18px] ">Thik Admin</span>
+    <img height="28" src="../../assets/images/logo.png" alt="">
+    <span v-if="!isHide" class="font-bold text-[18px] whitespace-nowrap">Thik Admin</span>
   </div>
 </template>
 

@@ -60,6 +60,7 @@ const useAppStore = defineStore('App', {
 
         // 切换移动端Sidebar可见
         toggleMobileSidebarVisible(isVisible?:boolean) {
+            console.log(111)
             this.sidebar.mobileSidebarVisible = isVisible || !this.sidebar.mobileSidebarVisible
         }
     }

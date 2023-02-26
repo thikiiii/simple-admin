@@ -7,15 +7,17 @@ import Github from '@/layout/components/Header/components/Github.vue'
 import ToggleTheme from '@/layout/components/Header/components/ToggleTheme.vue'
 import Avatar from '@/layout/components/Header/components/Avatar.vue'
 import Settings from '@/layout/components/Header/components/Settings/index.vue'
+import useAppStore from '@/store/modules/app'
 
 defineOptions({ name: 'HeaderContent' })
+const { base } = useAppStore()
 </script>
 
 <template>
   <div class="h-[56px] bg-container w-full  flex justify-between items-center p-[10px] text-[18px]">
     <flex-space size="large" justify="flex-start" direction="horizontal">
-        <menu-collapsed />
-      <breadcrumb />
+      <menu-collapsed />
+      <breadcrumb v-if="!base.isMobile" />
     </flex-space>
     <flex-space justify="flex-end" direction="horizontal">
       <search />

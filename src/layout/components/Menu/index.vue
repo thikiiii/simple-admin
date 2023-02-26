@@ -17,11 +17,11 @@ const { sidebar } = useAppStore()
 </script>
 
 <template>
-  <a-menu theme="dark" :collapsed-width="sidebar.collapsedSidebarWidth" :collapsed="collapsed" :accordion="sidebar.isMenuAccordion" :selected-keys="[route.path]">
+  <a-menu :collapsed="collapsed" :accordion="sidebar.isMenuAccordion" :selected-keys="[route.path]">
     <menu-item :menus="authStore.routes" />
   </a-menu>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 
 </style>

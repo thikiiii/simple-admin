@@ -1,5 +1,7 @@
 <template>
-  <div class="inline-block" :class="hover?'rounded-[5px] hover:bg-hover-shallow p-[7px] flex items-center justify-center transition cursor-pointer':undefined">
+  <div
+      class="inline-block"
+      :class="hover?'rounded-medium hover:bg-hover-shallow p-[7px] flex items-center justify-center transition cursor-pointer':undefined">
     <!-- iconify 图标 -->
     <icon class="arco-icon" v-if="!localIcon" :icon="iconName" :style="style" />
     <!-- 本地图标 -->

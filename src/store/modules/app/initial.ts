@@ -43,7 +43,7 @@ const initialApp:AppStore = {
         isFixedMixed: false,
 
         // 混合侧边栏抽屉是否可见
-        mixedDrawerVisible: false,
+        mixedSidebarDrawerVisible: false,
 
         // 菜单是否开启手风琴模式
         isMenuAccordion: true,
@@ -58,7 +58,7 @@ const initialApp:AppStore = {
         mixedSidebarWidth: 94,
 
         // 折叠侧边栏的宽度
-        collapsedSidebarWidth: 64
+        collapsedSidebarWidth: 48
     },
     header: {
         // 是否开启面包屑

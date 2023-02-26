@@ -1,15 +1,15 @@
 <template>
-  <div class="w-full h-full overflow-hidden flex">
-    <div class="w-[50%] flex-shrink-0 bg-theme-main flex justify-center items-center">
-      <img class="w-[90%]" src="../../assets/images/login-coverPicture.png" alt="">
+  <div class="login">
+    <div class="login-cover">
+      <img src="../../assets/images/login-coverPicture.png" alt="">
     </div>
-    <div class="w-[50%] flex-shrink-0 relative flex flex-col justify-center items-center">
-      <div class="flex gap-1 items-center absolute left-[15px] top-[15px]">
+    <div class="login-main">
+      <div class="login-main-logo ">
         <img width="90" src="../../assets/images/logo.png" alt="">
         <h1>Thik Admin</h1>
       </div>
       <theme-switch class="absolute right-[15px] top-[15px]" />
-      <div class="w-[400px]">
+      <div class="login-main-form">
         <transition mode="out-in" :name="settingStore.base.pageAnimationMode">
           <qr-code-login v-if="currentAction==='QrCodeLogin'" />
           <password-login v-else-if="currentAction==='PasswordLogin'" />
@@ -36,6 +36,43 @@ const { currentAction } = useLoginContext()
 const settingStore = useAppStore()
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+.login{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  background: @bg-main;
+  &-cover{
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    background: @theme-main;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 90%;
+    }
+  }
+  &-main{
+    width: 50%;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &-logo{
+      display: flex;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      align-items: center;
+      gap: 10px;
+    }
+    &-form{
+      width: 400px;
+    }
+  }
+}
 </style>

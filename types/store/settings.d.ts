@@ -36,7 +36,7 @@ declare interface LayoutSidebar {
     isFixedMixed: boolean
 
     // 混合侧边栏抽屉是否可见
-    mixedDrawerVisible: boolean
+    mixedSidebarDrawerVisible: boolean
 
     // 菜单是否开启手风琴模式
     isMenuAccordion: boolean
