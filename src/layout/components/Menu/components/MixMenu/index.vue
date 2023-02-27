@@ -2,11 +2,17 @@
 import useAppStore from '@/store/modules/app'
 import useAuthStore from '@/store/modules/auth'
 import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import MixMenuDrawers from '@/layout/components/Menu/components/MixMenu/components/MixMenuDrawers.vue'
 
 defineOptions({ name: 'MixMenu' })
-const { footer } = useAppStore()
+const appStore = useAppStore()
+const { footer,sidebar } = appStore
 const authStore = useAuthStore()
 const route = useRoute()
+
+const collapsedIconName = computed(()=>sidebar.isCollapsedMixed ? 'ant-design:double-right-outlined' : 'ant-design:double-left-outlined')
+
 </script>
 
 <template>
@@ -17,13 +23,14 @@ const route = useRoute()
           :key="item.path"
           :class="item.path === route.path?'active':undefined"
           class="mixMenu-list-item">
-        <svg-icon pointer size="20" :icon="item?.meta?.icon" />
-        <span class="mixMenu-list-item-text">{{ item?.meta?.title }}</span>
+        <svg-icon pointer :size="sidebar.isCollapsedMixed ? 18: 24" :icon="item?.meta?.icon" />
+        <span v-if="!sidebar.isCollapsedMixed" class="mixMenu-list-item-text">{{ item?.meta?.title }}</span>
       </div>
     </div>
-    <div class="mixMenu-footer" :style="{height:`${footer.height}px`}">
-      <svg-icon size="20" icon="ant-design:double-left-outlined" />
+    <div @click="()=>appStore.toggleMixSidebarCollapsed()" class="mixMenu-footer" :style="{height:`${footer.height}px`}">
+      <svg-icon size="20" :icon="collapsedIconName" />
     </div>
+    <mix-menu-drawers />
   </div>
 </template>
 
@@ -31,21 +38,22 @@ const route = useRoute()
 .mixMenu {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 7px;
-  &-list{
+  &-list {
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
     gap: 7px;
-    &-item{
+
+    &-item {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -56,19 +64,27 @@ const route = useRoute()
       transition: .2s;
       border-radius: 7px;
       cursor: pointer;
-      &:hover:not(.active){
+
+      :deep(svg){
+        transition: width,height .2s ease-in-out;
+      }
+
+      &:hover:not(.active) {
         background: @full-deep;
       }
-      &.active{
+
+      &.active {
         background: @theme-shallow;
         color: @theme-main;
       }
-      &-text{
+
+      &-text {
         white-space: nowrap;
       }
     }
   }
-  &-footer{
+
+  &-footer {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -76,7 +92,8 @@ const route = useRoute()
     transition: .2s;
     cursor: pointer;
     border-radius: 7px;
-    &:hover{
+
+    &:hover {
       background: @full-deep;
     }
   }

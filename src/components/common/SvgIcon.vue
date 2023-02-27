@@ -60,13 +60,13 @@ const style = computed(() => ({
 <style lang="less" scoped>
 .svg-icon{
   display: inline-block;
+
   &.hover{
     border-radius: 7px;
     padding: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .2s;
     cursor: pointer;
     &:hover{
       background: @full-deep;

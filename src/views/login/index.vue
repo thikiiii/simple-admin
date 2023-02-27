@@ -42,7 +42,7 @@ const settingStore = useAppStore()
   height: 100%;
   overflow: hidden;
   display: flex;
-  background: @bg-main;
+  background: @bg-secondary;
 
   &-cover {
     width: 50%;

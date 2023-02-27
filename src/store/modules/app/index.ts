@@ -62,6 +62,11 @@ const useAppStore = defineStore('App', {
         toggleMobileSidebarVisible(isVisible?:boolean) {
             console.log(111)
             this.sidebar.mobileSidebarVisible = isVisible || !this.sidebar.mobileSidebarVisible
+        },
+
+        // 切换混合Sidebar折叠
+        toggleMixSidebarCollapsed(isCollapsed?:boolean) {
+            this.sidebar.isCollapsedMixed = isCollapsed || !this.sidebar.isCollapsedMixed
         }
     }
 })

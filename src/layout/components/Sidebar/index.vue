@@ -11,9 +11,16 @@ defineOptions({ name: 'LayoutSidebar' })
 const { sidebar, base } = useAppStore()
 
 const sidebarWidth = computed(() => {
-    if (sidebar.isCollapsed) return sidebar.collapsedSidebarWidth
-    else if (base.layoutMode === 'MixSide') return sidebar.mixedSidebarWidth
-    else return sidebar.sidebarWidth
+    switch (base.layoutMode) {
+        case 'Side':
+            if (sidebar.isCollapsed) return sidebar.collapsedSidebarWidth
+            return sidebar.sidebarWidth
+        case 'MixSide':
+            if (sidebar.isCollapsedMixed) return sidebar.collapsedSidebarWidth
+            return sidebar.mixedSidebarWidth
+        default:
+            return sidebar.sidebarWidth
+    }
 })
 
 </script>
@@ -36,8 +43,8 @@ const sidebarWidth = computed(() => {
   flex-direction: column;
   align-items: center;
   position: relative;
-  transition: width .2s;
-  overflow: hidden;
+  transition: width .2s ease-in-out;
+  border-right: 1px solid @line-shallow;
   &-container{
     flex: 1;
     overflow: auto;
