@@ -1,6 +1,6 @@
 <template>
   <flex-space size="medium" direction="vertical">
-    <h1 class="text-title text-left w-full">注册</h1>
+    <p class="login-title">注册</p>
     <a-form>
       <a-form-item hide-label>
         <a-input placeholder="请输入账号" />
@@ -9,7 +9,7 @@
         <a-input placeholder="请输入手机号" />
       </a-form-item>
       <a-form-item hide-label>
-        <flex-space direction="vertical">
+        <flex-space style="width: 100%" direction="vertical">
         <a-input-password placeholder="请输入密码" />
           <a-progress :steps="5" status="danger" :percent="0.6" :show-text="false" />
         </flex-space>
@@ -18,10 +18,8 @@
         <a-input-password placeholder="请输入确定密码" />
       </a-form-item>
       <a-form-item hide-label>
-        <flex-space justify="space-between">
           <a-input placeholder="请输入验证码" />
-          <a-button>发送验证码</a-button>
-        </flex-space>
+          <a-button style="margin-left: 10px">发送验证码</a-button>
       </a-form-item>
       <a-form-item hide-label>
         <flex-space justify="space-between">

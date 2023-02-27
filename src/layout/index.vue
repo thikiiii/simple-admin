@@ -7,9 +7,9 @@ defineOptions({ name: 'Layout' })
 </script>
 
 <template>
-  <div class="h-full bg-base flex">
+  <div class="layout ">
     <layout-sidebar />
-    <div class="flex flex-col flex-1 overflow-auto">
+    <div class="layout-container">
       <layout-header />
       <div class="flex-1 p-[1em]">
         <router-view />
@@ -19,6 +19,17 @@ defineOptions({ name: 'Layout' })
   </div>
 </template>
 
-<style scoped>
-
+<style lang="less" scoped>
+.layout{
+  width: 100vw;
+  height: 100vh;
+  background: @bg-main;
+  display: flex;
+  &-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+  }
+}
 </style>

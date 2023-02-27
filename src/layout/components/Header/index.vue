@@ -10,14 +10,14 @@ import Settings from '@/layout/components/Header/components/Settings/index.vue'
 import useAppStore from '@/store/modules/app'
 
 defineOptions({ name: 'HeaderContent' })
-const { base } = useAppStore()
+const { base,header } = useAppStore()
 </script>
 
 <template>
-  <div class="h-[56px] bg-container w-full  flex justify-between items-center p-[10px] text-[18px]">
+  <div class="layout-header" :style="{height:`${header.headerHeight}px`}">
     <flex-space size="large" justify="flex-start" direction="horizontal">
       <menu-collapsed />
-      <breadcrumb v-if="!base.isMobile" />
+      <breadcrumb v-if="!base.isMobile||header.breadcrumbVisible" />
     </flex-space>
     <flex-space justify="flex-end" direction="horizontal">
       <search />
@@ -30,6 +30,15 @@ const { base } = useAppStore()
   </div>
 </template>
 
-<style scoped>
-
+<style lang="less" scoped>
+.layout-header{
+  width: 100%;
+  height: 56px;
+  background: @bg-secondary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 18px;
+}
 </style>

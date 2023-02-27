@@ -19,12 +19,9 @@ const sidebarWidth = computed(() => {
 </script>
 
 <template>
-  <div
-      v-if="!base.isMobile"
-      :style="{width:`${sidebarWidth}px`}"
-      class="bg-container flex flex-col items-center relative transition-[width] overflow-hidden">
+  <div v-if="!base.isMobile" :style="{width:`${sidebarWidth}px`}" class="layout-sidebar">
     <logo />
-    <div class="flex-1 overflow-auto w-full">
+    <div class="layout-sidebar-container">
       <Menu v-if="base.layoutMode==='Side'" :collapsed="sidebar.isCollapsed" />
       <mix-menu v-else />
     </div>
@@ -32,6 +29,19 @@ const sidebarWidth = computed(() => {
   <mobile-sidebar v-else />
 </template>
 
-<style scoped>
-
+<style lang="less" scoped>
+.layout-sidebar {
+  background: @bg-secondary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: width .2s;
+  overflow: hidden;
+  &-container{
+    flex: 1;
+    overflow: auto;
+    width: 100%;
+  }
+}
 </style>

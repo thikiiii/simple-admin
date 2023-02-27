@@ -5,8 +5,8 @@ const { setAction } = useLoginContext()
 </script>
 
 <template>
-  <flex-space class="pb-[20px]" direction="vertical">
-    <h1 class="text-title w-full">二维码登录</h1>
+  <flex-space size="large" direction="vertical">
+    <p class="login-title">二维码登录</p>
     <img
         alt=""
         height="250"

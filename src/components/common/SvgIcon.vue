@@ -1,7 +1,5 @@
 <template>
-  <div
-      class="inline-block"
-      :class="hover?'rounded-medium hover:bg-hover-shallow p-[7px] flex items-center justify-center transition cursor-pointer':undefined">
+  <div class="svg-icon" :class="hover?'hover':undefined">
     <!-- iconify 图标 -->
     <icon class="arco-icon" v-if="!localIcon" :icon="iconName" :style="style" />
     <!-- 本地图标 -->
@@ -60,5 +58,19 @@ const style = computed(() => ({
 </script>
 
 <style lang="less" scoped>
-
+.svg-icon{
+  display: inline-block;
+  &.hover{
+    border-radius: 7px;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+    cursor: pointer;
+    &:hover{
+      background: @full-deep;
+    }
+  }
+}
 </style>

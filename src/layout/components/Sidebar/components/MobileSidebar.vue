@@ -7,17 +7,27 @@ const { sidebar } = useAppStore()
 
 <template>
 <a-drawer :width="sidebar.sidebarWidth" placement="left" v-model:visible="sidebar.mobileSidebarVisible" :header="false" unmount-on-close :footer="false" :hide-cancel="false">
-  <div class="w-full h-full flex flex-col">
+  <div class="mobileSidebar ">
     <logo />
-    <div class="flex-1 overflow-auto">
+    <div class="mobileSidebar-container">
       <Menu />
     </div>
   </div>
 </a-drawer>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 :global(.arco-drawer-body) {
   padding: 0;
+}
+.mobileSidebar{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &-container{
+    display: flex;
+    overflow: auto;
+  }
 }
 </style>

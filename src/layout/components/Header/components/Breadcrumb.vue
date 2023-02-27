@@ -37,6 +37,7 @@ const routes = [
   align-items: normal;
 }
 :global(.arco-breadcrumb-item) {
-  line-height: normal;
+  display: flex;
+  align-items: center;
 }
 </style>

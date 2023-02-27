@@ -39,7 +39,7 @@ const handleLogin = async({ values, errors }) => {
 
 <template>
   <flex-space size="medium" direction="vertical">
-    <h1 class="text-title  text-left w-full">登录</h1>
+    <p class="login-title">登录</p>
     <a-form @submit="handleLogin" :rules="rules" :model="form">
       <a-form-item field="username" hide-label>
         <a-input v-model="form.username" placeholder="请输入账号" />

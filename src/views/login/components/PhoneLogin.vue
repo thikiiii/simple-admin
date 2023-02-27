@@ -6,7 +6,7 @@ const { setAction } = useLoginContext()
 
 <template>
   <flex-space direction="vertical">
-    <h1 class="text-title text-left w-full">手机号登录</h1>
+    <p class="login-title">手机号登录</p>
     <a-form>
       <a-form-item hide-label>
         <a-input placeholder="请输入手机号" />
