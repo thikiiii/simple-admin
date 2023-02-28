@@ -1,24 +1,27 @@
 <script setup lang="ts">
 import MenuItem from '@/layout/components/Menu/components/MenuItem.vue'
-import useAuthStore from '@/store/modules/auth'
 import { useRoute } from 'vue-router'
 import useAppStore from '@/store/modules/app'
 
 interface Props {
+  // 折叠
   collapsed?:boolean
+  // 水平
+  horizontal?:boolean
+  // 菜单
+  menus:Route.RouteRecordRaw[]
 }
 
 defineProps<Props>()
 
 defineOptions({ name: 'Menu' })
-const authStore = useAuthStore()
 const route = useRoute()
 const { sidebar } = useAppStore()
 </script>
 
 <template>
-  <a-menu :collapsed="collapsed" :accordion="sidebar.isMenuAccordion" :selected-keys="[route.path]">
-    <menu-item :menus="authStore.routes" />
+  <a-menu :mode="horizontal?'horizontal':'vertical'" :collapsed="collapsed" :accordion="sidebar.isMenuAccordion" :selected-keys="[route.path]">
+    <menu-item :menus="menus" />
   </a-menu>
 </template>
 

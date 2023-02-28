@@ -7,6 +7,7 @@ const appStore = useAppStore()
 
 <template>
 <a-button @click="appStore.base.layoutMode='MixSide'">测试</a-button>
+<a-button @click="appStore.base.layoutMode='Side'">测试</a-button>
 </template>
 
 <style scoped>

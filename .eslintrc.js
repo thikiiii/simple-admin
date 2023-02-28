@@ -31,7 +31,7 @@ module.exports = defineConfig({
         // 强制把变量的使用限制在其定义的作用域范围内
         'block-scoped-var': 'error',
         // 默认情况下当 if、else、for、while 或 do 不使用大括号包裹代码时，会给出警告。然而，你可以指定当块中有多条语句时才使用大括号，而当代码块中只有一条语句时只会给出警告。
-        curly: [ 'error', 'multi' ],
+        curly: [ 'error', 'multi-line' ],
         // 强制在点号之前或之后换行
         'dot-location': [ 'error', 'property' ],
         // 要求使用 === 和 !==
@@ -117,7 +117,7 @@ module.exports = defineConfig({
         // 强制在花括号中使用一致的空格
         'object-curly-spacing': [ 'error', 'always' ],
         // 强制操作符使用一致的换行符风格
-        'operator-linebreak': [ 'error', 'none' ],
+        'operator-linebreak': [ 'error', 'after' ],
         // 要求或禁止块内填充
         'padded-blocks': [ 'error', 'never' ],
         // 要求对象字面量属性名称使用引号

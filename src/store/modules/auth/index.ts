@@ -130,6 +130,12 @@ const useAuthStore = defineStore('Auth', {
             // 添加路由
             vueRoutes.forEach(route => router.addRoute(route))
             this.isGeneratedRoutes = true
+        },
+
+        // 处理菜单跳转
+        handleMenuJumps(menu:Route.RouteRecordRaw) {
+            console.log(menu)
+            RouterHelpers.isExternalLink(menu.path) ? RouterHelpers.openTheLink(menu.path) : router.push(menu.path)
         }
     }
 })

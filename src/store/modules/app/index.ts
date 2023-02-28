@@ -3,6 +3,12 @@ import initialApp from '@/store/modules/app/initial'
 
 const useAppStore = defineStore('App', {
     state: (): AppStore => initialApp,
+    getters: {
+        // 动态侧边栏宽度
+        dynamicSidebarWidth: state => state.sidebar.isCollapsed ? state.sidebar.collapsedSidebarWidth : state.sidebar.sidebarWidth,
+        // 动态混合侧边栏宽度
+        dynamicMixSidebarWidth: state => state.sidebar.isCollapsedMix ? state.sidebar.collapsedSidebarWidth : state.sidebar.mixSidebarWidth
+    },
     actions: {
         // 初始化主题
         initTheme() {
@@ -55,18 +61,27 @@ const useAppStore = defineStore('App', {
 
         // 切换Sidebar折叠
         toggleSidebarCollapsed(isCollapsed?:boolean) {
-            this.sidebar.isCollapsed = isCollapsed || !this.sidebar.isCollapsed
+            this.sidebar.isCollapsed = isCollapsed !== undefined ? isCollapsed : !this.sidebar.isCollapsed
         },
 
         // 切换移动端Sidebar可见
         toggleMobileSidebarVisible(isVisible?:boolean) {
-            console.log(111)
-            this.sidebar.mobileSidebarVisible = isVisible || !this.sidebar.mobileSidebarVisible
+            this.sidebar.mobileSidebarVisible = isVisible !== undefined ? isVisible : !this.sidebar.mobileSidebarVisible
         },
 
         // 切换混合Sidebar折叠
         toggleMixSidebarCollapsed(isCollapsed?:boolean) {
-            this.sidebar.isCollapsedMixed = isCollapsed || !this.sidebar.isCollapsedMixed
+            this.sidebar.isCollapsedMix = isCollapsed !== undefined ? isCollapsed : !this.sidebar.isCollapsedMix
+        },
+
+        // 切换混合SidebarDrawer可见
+        toggleMixSidebarDrawerVisible(isVisible?:boolean) {
+            this.sidebar.mixSidebarDrawerVisible = isVisible !== undefined ? isVisible : !this.sidebar.mixSidebarDrawerVisible
+        },
+
+        // 切换混合SidebarDrawer可见
+        toggleFixedMixSidebarDrawer(isFixedMix?:boolean) {
+            this.sidebar.isFixedMixSidebarDrawer = isFixedMix !== undefined ? isFixedMix : !this.sidebar.isFixedMixSidebarDrawer
         }
     }
 })

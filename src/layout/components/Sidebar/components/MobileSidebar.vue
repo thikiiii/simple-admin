@@ -2,7 +2,9 @@
 import useAppStore from '@/store/modules/app'
 import Logo from '@/layout/components/Logo.vue'
 import Menu from '@/layout/components/Menu/index.vue'
+import useAuthStore from '@/store/modules/auth'
 const { sidebar } = useAppStore()
+const authStore = useAuthStore()
 </script>
 
 <template>
@@ -10,7 +12,7 @@ const { sidebar } = useAppStore()
   <div class="mobileSidebar ">
     <logo />
     <div class="mobileSidebar-container">
-      <Menu />
+      <Menu :menus="authStore.routes" />
     </div>
   </div>
 </a-drawer>

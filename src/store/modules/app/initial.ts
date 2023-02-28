@@ -37,13 +37,13 @@ const initialApp:AppStore = {
         isCollapsed: false,
 
         // 是否折叠混合侧边栏
-        isCollapsedMixed: false,
+        isCollapsedMix: false,
 
         // 是否固定混合侧边栏
-        isFixedMixed: false,
+        isFixedMixSidebarDrawer: false,
 
         // 混合侧边栏抽屉是否可见
-        mixedSidebarDrawerVisible: false,
+        mixSidebarDrawerVisible: false,
 
         // 菜单是否开启手风琴模式
         isMenuAccordion: true,
@@ -55,7 +55,7 @@ const initialApp:AppStore = {
         sidebarWidth: 220,
 
         // 混合侧边栏宽度
-        mixedSidebarWidth: 94,
+        mixSidebarWidth: 94,
 
         // 折叠侧边栏的宽度
         collapsedSidebarWidth: 48

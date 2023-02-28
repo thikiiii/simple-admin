@@ -1,9 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@arco-design/web-vue': ^2.43.0
+  '@arco-design/web-vue': ^2.43.2
   '@arco-plugins/vite-vue': ^1.4.2
-  '@arco-themes/vue-thik-admin': ^1.1.2
+  '@arco-themes/vue-thik-admin': ^1.1.4
   '@iconify-json/ic': ^1.1.13
   '@iconify-json/mdi': ^1.1.47
   '@iconify/vue': ^4.1.0
@@ -49,7 +49,7 @@ specifiers:
   vue-tsc: ^1.0.24
 
 dependencies:
-  '@arco-design/web-vue': 2.43.1_vue@3.2.47
+  '@arco-design/web-vue': 2.43.2_vue@3.2.47
   '@vueuse/core': 9.13.0_vue@3.2.47
   axios: 1.3.3
   gsap: 3.11.4
@@ -64,7 +64,7 @@ dependencies:
 
 devDependencies:
   '@arco-plugins/vite-vue': 1.4.2
-  '@arco-themes/vue-thik-admin': 1.1.2_pomaak4kpvna3eobgup5kms4ka
+  '@arco-themes/vue-thik-admin': 1.1.4_jtkx2iaptgeofxql7gjjb23pga
   '@iconify-json/ic': 1.1.13
   '@iconify-json/mdi': 1.1.47
   '@iconify/vue': 4.1.0_vue@3.2.47
@@ -136,8 +136,8 @@ packages:
     dependencies:
       color: 3.2.1
 
-  /@arco-design/web-vue/2.43.1_vue@3.2.47:
-    resolution: {integrity: sha512-bke0yfGcKjvXTbx/ndQNSY5u+dyMsizVJQrjOfG8Qa0omJr96XnkStnn48EomSuzmHzmw6wBu0FsKE2Z51Fg3w==}
+  /@arco-design/web-vue/2.43.2_vue@3.2.47:
+    resolution: {integrity: sha512-g07sP64WI7v+U0NzfhdOAOvGPbT3hksjLELHcNVb350y9SpjG7PGGK2wvOVGla+JTnE6LPqxwlIBbXErTI6hbw==}
     peerDependencies:
       vue: ^3.1.0
     dependencies:
@@ -164,12 +164,12 @@ packages:
       - supports-color
     dev: true
 
-  /@arco-themes/vue-thik-admin/1.1.2_pomaak4kpvna3eobgup5kms4ka:
-    resolution: {integrity: sha512-uPBuxEstWYbCKrNup/cR7y7vH3m7opaehPSSJI2fwtrJHE49zFzHbESN+ET/0rjpOVKGM+kh4f9fn/Q4fYlU+Q==}
+  /@arco-themes/vue-thik-admin/1.1.4_jtkx2iaptgeofxql7gjjb23pga:
+    resolution: {integrity: sha512-QVjqVhgWKxpR/7sC/umYUWVb5O5D3c7+4stgNDZ5buqwapuUcHDIHMD+6RnjVF4HSVuNRwe9MxFR7liDKKE/tw==}
     peerDependencies:
       '@arco-design/web-vue': ^2.43.2
     dependencies:
-      '@arco-design/web-vue': 2.43.1_vue@3.2.47
+      '@arco-design/web-vue': 2.43.2_vue@3.2.47
     dev: true
 
   /@babel/code-frame/7.18.6:

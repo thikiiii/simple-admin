@@ -30,13 +30,13 @@ declare interface LayoutSidebar {
     isCollapsed: boolean
 
     // 是否折叠混合侧边栏
-    isCollapsedMixed: boolean
+    isCollapsedMix: boolean
 
-    // 是否固定混合侧边栏
-    isFixedMixed: boolean
+    // 是否固定混合侧边栏抽屉
+    isFixedMixSidebarDrawer: boolean
 
     // 混合侧边栏抽屉是否可见
-    mixedSidebarDrawerVisible: boolean
+    mixSidebarDrawerVisible: boolean
 
     // 菜单是否开启手风琴模式
     isMenuAccordion: boolean
@@ -51,7 +51,7 @@ declare interface LayoutSidebar {
     collapsedSidebarWidth: number
 
     // 混合侧边栏宽度
-    mixedSidebarWidth: number
+    mixSidebarWidth: number
 }
 
 // 头部
