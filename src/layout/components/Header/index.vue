@@ -1,35 +1,34 @@
 <script lang="ts" setup>
-import Breadcrumb from '@/layout/components/Header/components/Breadcrumb.vue'
 import Search from '@/layout/components/Header/components/Search/index.vue'
-import MenuCollapsed from '@/layout/components/Header/components/MenuCollapsed.vue'
 import FullScreen from '@/layout/components/Header/components/FullScreen.vue'
 import Github from '@/layout/components/Header/components/Github.vue'
+import MenuCollapsed from '@/layout/components/Header/components/MenuCollapsed.vue'
+import Breadcrumb from '@/layout/components/Header/components/Breadcrumb.vue'
 import ToggleTheme from '@/layout/components/Header/components/ToggleTheme.vue'
 import Avatar from '@/layout/components/Header/components/Avatar.vue'
 import Settings from '@/layout/components/Header/components/Settings/index.vue'
 import useAppStore from '@/store/modules/app'
-// import Menu from '@/layout/components/Menu/index.vue'
-import Menu from '@/layout/components/Menu/Menu.vue'
+import Menu from '@/layout/components/Menu/index.vue'
 import useAuthStore from '@/store/modules/auth'
 import Logo from '@/layout/components/Logo.vue'
 
 defineOptions({ name: 'HeaderContent' })
-const { base,header } = useAppStore()
+const { base, header } = useAppStore()
 const authStore = useAuthStore()
+console.log(base.isMobile || base.layoutMode === 'Side')
 </script>
-  
+
 <template>
   <div class="layout-header" :style="{height:`${header.headerHeight}px`}">
-    <flex-space size="large" justify="flex-start" direction="horizontal">
-<!--      <menu-collapsed v-if="base.isMobile||base.layoutMode==='Side'" />-->
-<!--      <breadcrumb v-if="!base.layoutMode==='Top'||!base.isMobile||header.breadcrumbVisible" />-->
-      <Logo />
-
+    <flex-space style="flex: 1" size="large" justify="flex-start" direction="horizontal">
+      <menu-collapsed v-if="base.isMobile||base.layoutMode==='Side'" />
+      <breadcrumb v-if="base.layoutMode!=='Top'&&header.breadcrumbVisible" />
+      <template v-if="base.layoutMode==='Top'&&!base.isMobile">
+        <Logo />
+        <Menu horizontal :menus="authStore.routes" />
+      </template>
     </flex-space>
-    <div style="width: 100%;padding: 30px;box-sizing: border-box">
-<!--      <Menu :menus="authStore.routes" horizontal />-->
-      <Menu :menus="authStore.routes" />
-    </div>
+    <!--      <Menu :menus="authStore.routes" horizontal />-->
     <flex-space justify="flex-end" direction="horizontal">
       <search />
       <toggle-theme />
@@ -42,7 +41,7 @@ const authStore = useAuthStore()
 </template>
 
 <style lang="less" scoped>
-.layout-header{
+.layout-header {
   width: 100%;
   height: 56px;
   background: @bg-secondary;
@@ -53,5 +52,9 @@ const authStore = useAuthStore()
   font-size: 18px;
   overflow: hidden;
   border-bottom: 1px solid @line-shallow;
+
+  &-menu {
+    flex: 1;
+  }
 }
 </style>

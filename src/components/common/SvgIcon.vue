@@ -62,7 +62,7 @@ const style = computed(() => ({
   display: inline-block;
 
   &.hover{
-    border-radius: 7px;
+    border-radius: @round-small;
     padding: 7px;
     display: flex;
     justify-content: center;

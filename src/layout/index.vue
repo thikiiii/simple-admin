@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import LayoutHeader from '@/layout/components/Header/index.vue'
 import LayoutSidebar from '@/layout/components/Sidebar/index.vue'
+import TabBar from '@/layout/components/TabBar/index.vue'
 
 defineOptions({ name: 'Layout' })
 
@@ -11,6 +12,7 @@ defineOptions({ name: 'Layout' })
     <layout-sidebar />
     <div class="layout-container">
       <layout-header />
+      <tab-bar />
       <div class="flex-1 p-[1em]">
         <router-view />
       </div>

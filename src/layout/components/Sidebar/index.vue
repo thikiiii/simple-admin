@@ -26,9 +26,9 @@ const sidebarWidth = computed(() => {
 </script>
 
 <template>
-  <transition name="slideIn">
+  <transition name="fold">
     <div v-if="!base.isMobile && base.layoutMode!=='Top'" :style="{width:`${sidebarWidth}px`}" class="layout-sidebar">
-      <transition name="full">
+      <transition name="expand">
         <Sidebar v-if="base.layoutMode==='Side'" />
         <mix-sidebar v-else />
       </transition>
@@ -50,30 +50,5 @@ const sidebarWidth = computed(() => {
     overflow: auto;
     width: 100%;
   }
-}
-
-.slideIn-enter-active,
-.slideIn-leave-active {
-  transition: 0.2s;
-  overflow: hidden;
-}
-
-.slideIn-enter-from,
-.slideIn-leave-to {
-  width: 0 !important;
-}
-
-
-.full-enter-active,
-.full-leave-active {
-  transition: 0.2s ease;
-  position: absolute;
-}
-
-.full-enter-from,
-.full-leave-to {
-  width: 100%;
-  opacity: 0;
-  transform: scale(0.9) skew(15deg);
 }
 </style>

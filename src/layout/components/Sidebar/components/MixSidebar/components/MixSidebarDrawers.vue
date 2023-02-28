@@ -13,7 +13,7 @@ const { sidebar, header } = appStore
 </script>
 
 <template>
-  <transition name="slideIn">
+  <transition name="fold">
   <div v-if="sidebar.mixSidebarDrawerVisible" :style="{width:`${sidebar.sidebarWidth}px`}" class="mixMenuDrawers">
     <div class="mixMenuDrawers-header" :style="{height:`${header.headerHeight}px`}">
       Thik Admin

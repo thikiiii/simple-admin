@@ -1,30 +1,51 @@
-<script setup lang="ts">
-import MenuItem from '@/layout/components/Menu/components/MenuItem.vue'
+<script lang="tsx">
+import { defineComponent, PropType } from 'vue'
 import { useRoute } from 'vue-router'
 import useAppStore from '@/store/modules/app'
+import useAuthStore from '@/store/modules/auth'
 
-interface Props {
-  // 折叠
-  collapsed?:boolean
-  // 水平
-  horizontal?:boolean
-  // 菜单
-  menus:Route.RouteRecordRaw[]
-}
+export default defineComponent({
+    props: {
+        menus: {
+            type: Array as PropType<Route.RouteRecordRaw[]>,
+            required: true
+        },
+        horizontal: Boolean,
+        collapsed: Boolean
+    },
+    setup(props) {
+        const route = useRoute()
+        const { sidebar } = useAppStore()
+        const authStore = useAuthStore()
+        const renderSubMenu = (menus: Route.RouteRecordRaw[]) => {
+            return menus.map(item => {
+                const icon = () => <svg-icon size="16" icon={ item.meta?.icon }></svg-icon>
+                if (item.component === 'Self' || item.component === 'Child') {
+                    return (
+                        <a-menu-item onClick={()=>authStore.handleMenuJumps(item)} key={ item.path }
+                            v-slots={ { icon } }>
+                            { item.meta?.title }
+                        </a-menu-item>
+                    )
+                }
 
-defineProps<Props>()
+                if (item.component === 'Directory') {
+                    return (
+                        <a-sub-menu v-slots={ { icon, title: () => item.meta?.title } }
+                            key={ item.path }>
+                            { item.children?.length && renderSubMenu(item.children) }
+                        </a-sub-menu>
+                    )
+                }
+            })
+        }
 
-defineOptions({ name: 'Menu' })
-const route = useRoute()
-const { sidebar } = useAppStore()
+        return () => (
+            <a-menu selected-keys={ [ route.path ] } collapsed={ props.collapsed } accordion={ sidebar.isMenuAccordion }
+                mode={ props.horizontal ? 'horizontal' : 'vertical' }>
+                { renderSubMenu(props.menus) }
+            </a-menu>
+        )
+    }
+})
 </script>
-
-<template>
-  <a-menu :mode="horizontal?'horizontal':'vertical'" :collapsed="collapsed" :accordion="sidebar.isMenuAccordion" :selected-keys="[route.path]">
-    <menu-item :menus="menus" />
-  </a-menu>
-</template>
-
-<style lang="less" scoped>
-
-</style>

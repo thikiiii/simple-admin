@@ -1,0 +1,26 @@
+// 折叠
+.fold-enter-active,
+.fold-leave-active {
+  transition: 0.2s;
+  overflow: hidden;
+}
+
+.fold-enter-from,
+.fold-leave-to {
+  width: 0 !important;
+}
+
+
+// 展开
+.expand-enter-active,
+.expand-leave-active {
+  transition: 0.2s ease;
+  position: absolute;
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.9) skew(15deg);
+}

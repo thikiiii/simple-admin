@@ -122,7 +122,7 @@ const onMouseLeave = () => {
     align-items: center;
     transition: .2s;
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: @round-small;
 
     &:hover {
       background: @full-deep;
