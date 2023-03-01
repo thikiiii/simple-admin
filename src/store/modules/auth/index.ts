@@ -6,6 +6,7 @@ import router from '@/router'
 import { Settings } from '@/settings'
 import { RouteAuthModeEnum } from '@/enums/auth'
 import { RouterHelpers } from '@/router/helpers'
+import useTabBarStore from '@/store/modules/tabBar'
 
 const useAuthStore = defineStore('Auth', {
     state: (): AuthStore => ({
@@ -119,6 +120,8 @@ const useAuthStore = defineStore('Auth', {
             // 添加路由
             vueRoutes.forEach(route => router.addRoute(route))
 
+            const tabBarStore = useTabBarStore()
+            tabBarStore.initTabBar(this.routes)
             this.isGeneratedRoutes = true
         },
 
@@ -129,6 +132,7 @@ const useAuthStore = defineStore('Auth', {
             const vueRoutes = RouterHelpers.transformCustomRoutesToVueRoutes(this.routes)
             // 添加路由
             vueRoutes.forEach(route => router.addRoute(route))
+
             this.isGeneratedRoutes = true
         },
 

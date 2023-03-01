@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
 import { computed } from 'vue'
+import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
 
 const { base, sidebar, toggleSidebarCollapsed, toggleMobileSidebarVisible } = useAppStore()
 
@@ -13,7 +14,9 @@ const handle = () => {
 </script>
 
 <template>
-  <svg-icon @click="handle" :icon="iconName" hover />
+  <icon-hover-container @click="handle">
+    <svg-icon :icon="iconName" />
+  </icon-hover-container>
 </template>
 
 <style scoped>

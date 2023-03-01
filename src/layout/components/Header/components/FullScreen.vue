@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import { useFullscreen } from '@vueuse/core'
-const { isFullscreen, enter, exit } = useFullscreen()
+import { computed } from 'vue'
+import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
+const { isFullscreen,toggle } = useFullscreen()
+const iconName = computed(()=>!isFullscreen ? 'ant-design:expand-outlined' : 'ant-design:compress-outlined')
 </script>
 
 <template>
-  <svg-icon hover @click="enter" v-if="!isFullscreen" icon="ant-design:expand-outlined" />
-  <svg-icon hover @click="exit" v-else icon="ant-design:compress-outlined" />
+  <icon-hover-container @click="toggle">
+  <svg-icon :icon="iconName" />
+  </icon-hover-container>
 </template>

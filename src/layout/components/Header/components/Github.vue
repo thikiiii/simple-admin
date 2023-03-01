@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 
+import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
 </script>
 <template>
-    <svg-icon hover icon="ant-design:github-filled" />
+  <icon-hover-container>
+    <svg-icon icon="ant-design:github-filled" />
+  </icon-hover-container>
 </template>
 
 <style scoped>

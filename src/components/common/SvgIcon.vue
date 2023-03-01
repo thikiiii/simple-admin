@@ -1,7 +1,6 @@
 <template>
-  <div class="svg-icon" :class="hover?'hover':undefined">
     <!-- iconify 图标 -->
-    <icon class="arco-icon" v-if="!localIcon" :icon="iconName" :style="style" />
+    <icon v-if="!localIcon" :icon="iconName" :style="style" />
     <!-- 本地图标 -->
     <svg
         v-else
@@ -13,7 +12,6 @@
     >
       <use :xlink:href="iconName" />
     </svg>
-  </div>
 </template>
 
 <script lang="ts" setup>
@@ -38,9 +36,6 @@ export interface IconProps {
 
   // 指针
   pointer?: boolean
-
-  // 悬浮
-  hover?: boolean
 }
 
 defineOptions({ name: 'Icon' })
@@ -59,7 +54,7 @@ const style = computed(() => ({
 
 <style lang="less" scoped>
 .svg-icon{
-  display: inline-block;
+  display: inline;
 
   &.hover{
     border-radius: @round-small;

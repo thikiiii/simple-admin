@@ -1,12 +1,18 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
+import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
+import { computed } from 'vue'
 
 const appStore = useAppStore()
+const iconName = computed(() => appStore.base.themeMode === 'Dark' ? 'ic:baseline-mode-night' : 'ic:baseline-wb-sunny')
 </script>
 
 <template>
-    <svg-icon @click="appStore.setThemeMode('Dark')" v-if="appStore.base.themeMode==='Light'" hover icon="ic:baseline-wb-sunny" />
-    <svg-icon @click="appStore.setThemeMode('Light')" v-if="appStore.base.themeMode==='Dark'" hover icon="ic:baseline-mode-night" />
+  <icon-hover-container>
+    <svg-icon
+        @click="appStore.setThemeMode(appStore.base.themeMode === 'Dark'?'Light': 'Dark')"
+        :icon="iconName" />
+  </icon-hover-container>
 </template>
 
 <style scoped>
