@@ -37,7 +37,6 @@ const guardTactics = (
         }
     }
 
-    console.log(to)
     // 忽略鉴权直接放行
     if (to.meta?.ignoreAuth) return next()
 

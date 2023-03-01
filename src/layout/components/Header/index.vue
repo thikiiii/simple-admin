@@ -15,7 +15,6 @@ import Logo from '@/layout/components/Logo.vue'
 defineOptions({ name: 'HeaderContent' })
 const { base, header } = useAppStore()
 const authStore = useAuthStore()
-console.log(base.isMobile || base.layoutMode === 'Side')
 </script>
 
 <template>
