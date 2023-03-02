@@ -3,7 +3,9 @@ defineOptions({ name: 'DashboardAnalysis' })
 </script>
 
 <template>
-    <div class="dashboardAnalysis"></div>
+    <div class="dashboardAnalysis">
+      2321
+    </div>
 </template>
 
 <style lang="less" scoped>

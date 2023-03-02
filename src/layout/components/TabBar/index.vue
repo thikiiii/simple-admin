@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useAppStore from '@/store/modules/app'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import useTabBarStore from '@/store/modules/tabBar'
 import { useRoute, useRouter } from 'vue-router'
 import { useEventListener, useToggle } from '@vueuse/core'
@@ -132,20 +132,15 @@ useEventListener('resize', () => {
     isScroll()
 })
 
-onMounted(() => {
-    addTabStore()
-    isScroll()
-})
-
 // 监听路由变化
 watch(() => route.path, () => {
     addTabStore()
     scrollToActive()
-})
+},{ immediate: true })
 
 watch(tabBarStore.tabs, () => {
     isScroll()
-})
+},{ immediate: true })
 
 </script>
 

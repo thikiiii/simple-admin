@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import LayoutHeader from '@/layout/components/Header/index.vue'
 import LayoutSidebar from '@/layout/components/Sidebar/index.vue'
+import LayoutMain from '@/layout/components/Main/index.vue'
 import TabBar from '@/layout/components/TabBar/index.vue'
 
 defineOptions({ name: 'Layout' })
@@ -13,9 +14,7 @@ defineOptions({ name: 'Layout' })
     <div class="layout-container">
       <layout-header />
       <tab-bar />
-      <div class="flex-1 p-[1em]">
-        <router-view />
-      </div>
+      <layout-main />
       <div class="h-[34px] bg-container">footer</div>
     </div>
   </div>
@@ -31,7 +30,8 @@ defineOptions({ name: 'Layout' })
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 </style>

@@ -12,7 +12,7 @@ const useTabBarStore = defineStore('TabBar',{
         // 固定标签
         affixTabs: [],
         // 刷新
-        mainVisible: false
+        mainVisible: true
     }),
     actions: {
         // 是否激活

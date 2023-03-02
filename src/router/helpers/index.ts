@@ -109,7 +109,7 @@ export class RouterHelpers {
 
     // 路由name 转 组件路径
     static transformRouteNameToComponentPath(name: string) {
-        return `/src/views/${ name.replaceAll('_', '/') }/index.vue`
+        return `/src/views/${ name.replaceAll('-', '/') }/index.vue`
     }
 
     // 排序路由, 默认升序
