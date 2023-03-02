@@ -44,7 +44,7 @@ const sidebarWidth = computed(() => {
   flex-direction: column;
   position: relative;
   transition: width .2s ease-in-out;
-
+  overflow: hidden;
   &-container {
     flex: 1;
     overflow: auto;

@@ -1,26 +1,34 @@
 import { defineStore } from 'pinia'
 import initialApp from '@/store/modules/app/initial'
-
 const useAppStore = defineStore('App', {
     state: (): AppStore => initialApp,
     getters: {
         // 动态侧边栏宽度
-        dynamicSidebarWidth: state => state.sidebar.isCollapsed ? state.sidebar.collapsedSidebarWidth : state.sidebar.sidebarWidth,
+        dynamicSidebarWidth: ({ sidebar }) => sidebar.isCollapsed ? sidebar.collapsedSidebarWidth : sidebar.sidebarWidth,
         // 动态混合侧边栏宽度
-        dynamicMixSidebarWidth: state => state.sidebar.isCollapsedMix ? state.sidebar.collapsedSidebarWidth : state.sidebar.mixSidebarWidth
+        dynamicMixSidebarWidth: ({ sidebar }) => sidebar.isCollapsedMix ? sidebar.collapsedSidebarWidth : sidebar.mixSidebarWidth,
+        // 动态侧边栏暗黑模式
+        dynamicSidebarDark: ({ base }) => (base.layoutStyle === 'SideDark' || base.layoutStyle === 'SideTopDark') ?
+            {
+                isDark: true,
+                className: 'dark'
+            } :
+            {
+                isDark: false,
+                className: undefined
+            },
+        // 动态顶部暗黑模式
+        dynamicTopDark: ({ base }) => base.layoutStyle === 'SideTopLight' ?
+            {
+                isDark: true,
+                className: 'dark'
+            } :
+            {
+                isDark: false,
+                className: undefined
+            }
     },
     actions: {
-        // 初始化主题
-        initTheme() {
-            if (this.base.themeModeFollowSystem) {
-                this.setThemeMode(this.getSystemThemeMode())
-                this.onSystemThemeChange()
-            } else {
-                this.setThemeMode(this.base.themeMode)
-                this.removeSystemThemeChange()
-            }
-        },
-
         // 获取系统主题
         getSystemThemeMode(): ThemeMode {
             const themeMedia = window.matchMedia('(prefers-color-scheme: light)')
@@ -29,16 +37,7 @@ const useAppStore = defineStore('App', {
 
         // 设置主题模式
         setThemeMode(mode: ThemeMode) {
-            const body = document.body
             this.base.themeMode = mode
-            switch (mode) {
-                case 'Light':
-                    body.removeAttribute('arco-theme')
-                    break
-                case 'Dark':
-                    body.setAttribute('arco-theme', 'dark')
-                    break
-            }
         },
 
         systemThemeChange() {

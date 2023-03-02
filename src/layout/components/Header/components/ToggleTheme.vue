@@ -8,10 +8,8 @@ const iconName = computed(() => appStore.base.themeMode === 'Dark' ? 'ic:baselin
 </script>
 
 <template>
-  <icon-hover-container>
-    <svg-icon
-        @click="appStore.setThemeMode(appStore.base.themeMode === 'Dark'?'Light': 'Dark')"
-        :icon="iconName" />
+  <icon-hover-container @click="appStore.setThemeMode(appStore.base.themeMode === 'Dark'?'Light': 'Dark')">
+    <svg-icon :icon="iconName" />
   </icon-hover-container>
 </template>
 

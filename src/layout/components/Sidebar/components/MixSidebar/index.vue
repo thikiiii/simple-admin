@@ -84,6 +84,7 @@ const onMouseLeave = () => {
     display: flex;
     flex-direction: column;
     gap: 7px;
+
     &-menu {
       width: 100%;
       display: flex;

@@ -115,7 +115,7 @@ const scrollToActive = async() => {
         console.dir(container)
         const index = tabBarStore.getIndex(route.path)
         const child = container.children[index] as HTMLElement
-        // TODO: 滚动位置需要优化
+        // TODO: 激活项的滚动位置需要优化
         container.scrollTo({
             left: child.offsetLeft,
             behavior: 'smooth'
@@ -212,7 +212,7 @@ watch(tabBarStore.tabs, () => {
     user-select: none;
     cursor: pointer;
     height: 30px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, .05);
+    box-shadow: 5px 5px 5px @shadow;
     flex-shrink: 0;
     color: @text-main;
     gap: 5px;

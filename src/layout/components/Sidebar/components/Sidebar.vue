@@ -4,16 +4,19 @@ import Menu from '@/layout/components/Menu/index.vue'
 
 import useAppStore from '@/store/modules/app'
 import useAuthStore from '@/store/modules/auth'
+import { computed } from 'vue'
 const appStore = useAppStore()
-const { sidebar } = appStore
+const { sidebar,base } = appStore
+
 const authStore = useAuthStore()
+const isDark = computed(()=>base.layoutStyle === 'SideTopDark' || base.layoutStyle === 'SideDark')
 </script>
 
 <template>
   <div class="sidebar" :style="{width:`${appStore.dynamicSidebarWidth}px`}">
     <logo />
     <div class="sidebar-container">
-      <Menu :menus="authStore.routes" :collapsed="sidebar.isCollapsed" />
+      <Menu :dark="isDark" :menus="authStore.routes" :collapsed="sidebar.isCollapsed" />
     </div>
   </div>
 </template>

@@ -11,7 +11,8 @@ export default defineComponent({
             required: true
         },
         horizontal: Boolean,
-        collapsed: Boolean
+        collapsed: Boolean,
+        dark: Boolean
     },
     setup(props) {
         const route = useRoute()
@@ -41,7 +42,7 @@ export default defineComponent({
         }
 
         return () => (
-            <a-menu selected-keys={ [ route.path ] } collapsed={ props.collapsed } accordion={ sidebar.isMenuAccordion }
+            <a-menu theme={ props.dark ? 'dark' : 'light' } selected-keys={ [ route.path ] } collapsed={ props.collapsed } accordion={ sidebar.isMenuAccordion }
                 mode={ props.horizontal ? 'horizontal' : 'vertical' }>
                 { renderSubMenu(props.menus) }
             </a-menu>

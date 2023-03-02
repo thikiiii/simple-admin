@@ -13,12 +13,13 @@ import useAuthStore from '@/store/modules/auth'
 import Logo from '@/layout/components/Logo.vue'
 
 defineOptions({ name: 'HeaderContent' })
-const { base, header } = useAppStore()
+const appStore = useAppStore()
+const { base, header } = appStore
 const authStore = useAuthStore()
 </script>
 
 <template>
-  <div class="layout-header" :style="{height:`${header.headerHeight}px`}">
+  <div :class="appStore.dynamicTopDark.className" class="layout-header" :style="{height:`${header.headerHeight}px`}">
     <flex-space style="flex: 1" size="large" justify="flex-start" direction="horizontal">
       <menu-collapsed v-if="base.isMobile||base.layoutMode==='Side'" />
       <breadcrumb v-if="base.layoutMode!=='Top'&&header.breadcrumbVisible" />
@@ -51,6 +52,11 @@ const authStore = useAuthStore()
   font-size: 18px;
   overflow: hidden;
   border-bottom: 1px solid @line-shallow;
+
+  &.dark{
+    background: @bg-secondary;
+    color: @text-light;
+  }
 
   &-menu {
     flex: 1;
