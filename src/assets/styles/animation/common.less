@@ -1,7 +1,7 @@
 // 折叠
 .fold-enter-active,
 .fold-leave-active {
-  transition: 0.2s;
+  transition: .2s ease-in-out;
   overflow: hidden;
 }
 
@@ -11,16 +11,19 @@
 }
 
 
-// 展开
-.expand-enter-active,
-.expand-leave-active {
-  transition: 0.2s ease;
-  position: absolute;
+// 左滑
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all .25s ease-in-out;
+  position: absolute!important;
 }
 
-.expand-enter-from,
-.expand-leave-to {
-  width: 100%;
+.slide-left-enter-from {
   opacity: 0;
-  transform: scale(0.9) skew(15deg);
+  transform: scale(.9) translateX(30px);
+}
+
+.slide-left-leave-to {
+  opacity: 0;
+  transform: scale(.9) translateX(-30px);
 }

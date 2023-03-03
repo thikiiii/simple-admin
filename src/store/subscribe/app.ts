@@ -9,10 +9,10 @@ const AppSubscribe = () => {
     const setTheme = (mode:ThemeMode) => {
         const body = document.body
         switch (mode) {
-            case 'Light':
+            case 'light':
                 body.removeAttribute('arco-theme')
                 break
-            case 'Dark':
+            case 'dark':
                 body.setAttribute('arco-theme', 'dark')
                 break
         }

@@ -4,12 +4,12 @@ import useAppStore from '@/store/modules/app'
 import { ref, watch } from 'vue'
 
 const appStore = useAppStore()
-const isDark = ref(appStore.base.themeMode === 'Dark')
+const isDark = ref(appStore.base.themeMode === 'dark')
 
-const onUpdate = (value) => appStore.setThemeMode(value ? 'Dark' : 'Light')
+const onUpdate = (value) => appStore.setThemeMode(value ? 'dark' : 'light')
 
 watch(() => appStore.base.themeMode, () => {
-    isDark.value = appStore.base.themeMode === 'Dark'
+    isDark.value = appStore.base.themeMode === 'dark'
 })
 </script>
 

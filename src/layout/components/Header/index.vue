@@ -16,19 +16,19 @@ defineOptions({ name: 'HeaderContent' })
 const appStore = useAppStore()
 const { base, header } = appStore
 const authStore = useAuthStore()
+
 </script>
 
 <template>
   <div :class="appStore.dynamicTopDark.className" class="layout-header" :style="{height:`${header.headerHeight}px`}">
     <flex-space style="flex: 1" size="large" justify="flex-start" direction="horizontal">
-      <menu-collapsed v-if="base.isMobile||base.layoutMode==='Side'" />
-      <breadcrumb v-if="base.layoutMode!=='Top'&&header.breadcrumbVisible" />
-      <template v-if="base.layoutMode==='Top'&&!base.isMobile">
+      <menu-collapsed v-if="base.isMobile||base.layoutMode==='side'" />
+      <breadcrumb v-if="base.layoutMode!=='top'&&header.breadcrumbVisible" />
+      <template v-if="base.layoutMode==='top'&&!base.isMobile">
         <Logo />
-        <Menu horizontal :menus="authStore.routes" />
+        <Menu :dark="appStore.dynamicTopDark.isDark" horizontal :menus="authStore.routes" />
       </template>
     </flex-space>
-    <!--      <Menu :menus="authStore.routes" horizontal />-->
     <flex-space justify="flex-end" direction="horizontal">
       <search />
       <toggle-theme />
@@ -52,10 +52,11 @@ const authStore = useAuthStore()
   font-size: 18px;
   overflow: hidden;
   border-bottom: 1px solid @line-shallow;
-
+  flex-shrink: 0;
   &.dark{
-    background: @bg-secondary;
+    background: @bg-dark;
     color: @text-light;
+    border-bottom: 1px solid @line-dark;
   }
 
   &-menu {

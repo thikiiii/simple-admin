@@ -56,7 +56,18 @@ const system: Route.RouteRecordRaw = {
                 title: '角色',
                 order: 1
             },
-            component: 'Child'
+            component: 'Directory',
+            children: [
+                {
+                    path: '/test/test_test5/test1',
+                    name: 'test_test5_text1',
+                    meta: {
+                        title: '角999色',
+                        order: 1
+                    },
+                    component: 'Child'
+                }
+            ]
         }
 
     ]

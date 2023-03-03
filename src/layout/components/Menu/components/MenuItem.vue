@@ -18,16 +18,16 @@ const authStore = useAuthStore()
         :key="menuItem.path"
         v-if="menuItem.component==='Self'||menuItem.component==='Child'">
       <template v-if="menuItem?.meta?.icon" #icon>
-        <svg-icon size="16" :icon="menuItem?.meta.icon" />
+        <svg-icon size="16" :icon="menuItem.meta.icon" />
       </template>
       {{ menuItem?.meta?.title }}
     </a-menu-item>
     <a-sub-menu :key="menuItem.path" v-if="menuItem.component==='Directory'">
       <template v-if="menuItem?.meta?.icon" #icon>
-        <svg-icon size="16" :icon="menuItem?.meta.icon" />
+        <svg-icon size="16" :icon="menuItem.meta.icon" />
       </template>
       <template #title>{{ menuItem?.meta?.title }}</template>
-      <menu-item v-if="menuItem.children.length" :menus="menuItem.children" />
+      <menu-item v-if="menuItem.children?.length" :menus="menuItem.children" />
     </a-sub-menu>
   </template>
 </template>

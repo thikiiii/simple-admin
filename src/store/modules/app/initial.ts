@@ -9,7 +9,7 @@ const initialApp:AppStore = {
         themeModeFollowSystem: true,
 
         // 主题模式
-        themeMode: 'Light',
+        themeMode: 'light',
 
         // 是否开启页面切换动画
         isPageStartAnimation: true,
@@ -18,10 +18,10 @@ const initialApp:AppStore = {
         pageAnimationMode: 'zoom-fade',
 
         // 布局模式
-        layoutMode: 'Side',
+        layoutMode: 'side',
 
         // 布局风格
-        layoutStyle: 'SideDark',
+        layoutStyle: 'side-dark',
 
         // 移动端触发宽度
         mobileTriggerWidth: 800,

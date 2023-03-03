@@ -117,7 +117,7 @@ const scrollToActive = async() => {
         const child = container.children[index] as HTMLElement
         // TODO: 激活项的滚动位置需要优化
         container.scrollTo({
-            left: child.offsetLeft,
+            left: child?.offsetLeft,
             behavior: 'smooth'
         })
     },300)

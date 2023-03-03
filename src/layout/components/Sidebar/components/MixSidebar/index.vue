@@ -43,7 +43,7 @@ const onMouseLeave = () => {
 </script>
 
 <template>
-  <div @mouseleave="onMouseLeave" class="mixSidebar" :style="{width:`${appStore.dynamicMixSidebarWidth}px`}">
+  <div @mouseleave="onMouseLeave" :class="appStore.dynamicSidebarDark.className" class="mixSidebar" :style="{width:`${appStore.dynamicMixSidebarWidth}px`}">
     <logo />
     <div class="mixSidebar-container">
       <div
@@ -73,10 +73,21 @@ const onMouseLeave = () => {
   flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid @line-shallow;
-  position: relative;
-  transition: .2s;
   padding: 7px;
-
+  position: relative;
+  &.dark{
+    border-right: 1px solid @line-dark;
+    .mixSidebar-container-menu{
+      &:hover:not(.active) {
+        background: @full-dark;
+      }
+    }
+    .mixSidebar-footer{
+      &:hover {
+        background: @full-dark;
+      }
+    }
+  }
   &-container {
     flex: 1;
     overflow-x: hidden;
@@ -96,13 +107,14 @@ const onMouseLeave = () => {
       transition: .2s;
       border-radius: 7px;
       cursor: pointer;
+      font-size:12px;
 
       :deep(svg) {
         transition: width, height .2s ease-in-out;
       }
 
       &:hover:not(.active) {
-        background: @full-deep;
+        background: @full-shallow;
       }
 
       &.active {
@@ -121,7 +133,6 @@ const onMouseLeave = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .2s;
     cursor: pointer;
     border-radius: @round-small;
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SearchModal from '@/layout/components/Header/components/Search/components/SearchModal.vue'
 import { useToggle } from '@vueuse/core'
-import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
+import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
 
 defineOptions({ name: 'Search' })
 const [ visible, toggleVisible ] = useToggle()

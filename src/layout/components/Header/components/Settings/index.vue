@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
+import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
 import ThemeMode from '@/layout/components/Header/components/Settings/components/ThemeMode.vue'
 import { ref } from 'vue'
 

@@ -6,11 +6,13 @@ const appStore = useAppStore()
 </script>
 
 <template>
-<div>
-  <a-button @click="appStore.base.layoutMode='MixSide'">Mix</a-button>
-  <a-button @click="appStore.base.layoutMode='Side'">Side</a-button>
-  <a-button @click="appStore.base.layoutMode='Top'">Top</a-button>
-</div>
+<a-button @click="appStore.base.layoutMode='mix-side'">Mix</a-button>
+<a-button @click="appStore.base.layoutMode='side'">side</a-button>
+<a-button @click="appStore.base.layoutMode='top'">Top</a-button>
+  <br>
+  <a-button @click="appStore.base.layoutStyle='side-dark'">side-dark</a-button>
+  <a-button @click="appStore.base.layoutStyle='side-top-dark'">side-top-dark</a-button>
+  <a-button @click="appStore.base.layoutStyle='side-top-light'">side-top-light</a-button>
 </template>
 
 <style scoped>

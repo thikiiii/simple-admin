@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+import useAppStore from '@/store/modules/app'
+
+const appStore = useAppStore()
 </script>
 
 <template>
-  <div class="iconHoverContainer">
+  <div :class="appStore.dynamicTopDark.className" class="iconHoverContainer">
     <slot />
   </div>
 </template>
@@ -17,7 +20,10 @@
   cursor: pointer;
   transition: .1s;
   &:hover{
-    background: @full-deep;
+    background: @full-shallow;
+  }
+  &.dark{
+    background-color: @full-dark;
   }
 }
 </style>

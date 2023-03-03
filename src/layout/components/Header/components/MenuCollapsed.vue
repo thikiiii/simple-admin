@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
 import { computed } from 'vue'
-import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
+import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
 
 const { base, sidebar, toggleSidebarCollapsed, toggleMobileSidebarVisible } = useAppStore()
 

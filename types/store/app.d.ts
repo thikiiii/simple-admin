@@ -2,13 +2,13 @@
 declare type PageAnimationMode = | 'left-slide-fade' | 'right-slide-fade' | 'zoom-fade'
 
 // 布局模式：侧边 | 混合侧边 | 顶部
-declare type LayoutMode = 'Side' | 'MixSide' | 'Top'
+declare type LayoutMode = 'side' | 'mix-side' | 'top'
 
 // 布局风格 侧边暗黑 | 侧边顶部暗黑 | 侧边顶部明亮
-declare type LayoutStyle = 'SideDark' | 'SideTopDark' | 'SideTopLight'
+declare type LayoutStyle = 'side-dark' | 'side-top-dark' | 'side-top-light'
 
 // 主题模式
-declare type ThemeMode = 'Light' | 'Dark'
+declare type ThemeMode = 'light' | 'dark'
 
 type Option<T> = {
     value: T

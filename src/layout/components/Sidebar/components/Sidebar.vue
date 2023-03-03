@@ -6,17 +6,16 @@ import useAppStore from '@/store/modules/app'
 import useAuthStore from '@/store/modules/auth'
 import { computed } from 'vue'
 const appStore = useAppStore()
-const { sidebar,base } = appStore
+const { sidebar } = appStore
 
 const authStore = useAuthStore()
-const isDark = computed(()=>base.layoutStyle === 'SideTopDark' || base.layoutStyle === 'SideDark')
 </script>
 
 <template>
-  <div class="sidebar" :style="{width:`${appStore.dynamicSidebarWidth}px`}">
+  <div class="sidebar" :class="appStore.dynamicSidebarDark.className" :style="{width:`${appStore.dynamicSidebarWidth}px`}">
     <logo />
     <div class="sidebar-container">
-      <Menu :dark="isDark" :menus="authStore.routes" :collapsed="sidebar.isCollapsed" />
+      <Menu :dark="appStore.dynamicSidebarDark.isDark" :menus="authStore.routes" :collapsed="sidebar.isCollapsed" />
     </div>
   </div>
 </template>
@@ -28,6 +27,9 @@ const isDark = computed(()=>base.layoutStyle === 'SideTopDark' || base.layoutSty
   flex-direction: column;
   transition: .2s;
   border-right: 1px solid @line-shallow;
+  &.dark{
+    border-right: 1px solid @line-dark;
+  }
   &-container{
     flex: 1;
     overflow-y: auto;

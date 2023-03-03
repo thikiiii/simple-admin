@@ -8,7 +8,7 @@ const useAppStore = defineStore('App', {
         // 动态混合侧边栏宽度
         dynamicMixSidebarWidth: ({ sidebar }) => sidebar.isCollapsedMix ? sidebar.collapsedSidebarWidth : sidebar.mixSidebarWidth,
         // 动态侧边栏暗黑模式
-        dynamicSidebarDark: ({ base }) => (base.layoutStyle === 'SideDark' || base.layoutStyle === 'SideTopDark') ?
+        dynamicSidebarDark: ({ base }) => (base.layoutStyle === 'side-dark' || base.layoutStyle === 'side-top-dark') && base.themeMode !== 'dark' ?
             {
                 isDark: true,
                 className: 'dark'
@@ -18,7 +18,7 @@ const useAppStore = defineStore('App', {
                 className: undefined
             },
         // 动态顶部暗黑模式
-        dynamicTopDark: ({ base }) => base.layoutStyle === 'SideTopLight' ?
+        dynamicTopDark: ({ base }) => base.layoutStyle === 'side-top-dark' && base.themeMode !== 'dark' ?
             {
                 isDark: true,
                 className: 'dark'
@@ -32,7 +32,7 @@ const useAppStore = defineStore('App', {
         // 获取系统主题
         getSystemThemeMode(): ThemeMode {
             const themeMedia = window.matchMedia('(prefers-color-scheme: light)')
-            return themeMedia.matches ? 'Light' : 'Dark'
+            return themeMedia.matches ? 'light' : 'dark'
         },
 
         // 设置主题模式

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // 其他登录方式
 
-import IconHoverContainer from '@/components/common/IconHoverContainer.vue'
+import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
 
 const otherLoginMethods = [
     {
@@ -37,9 +37,7 @@ const otherLoginMethods = [
         mini
         :content="item.title"
     >
-      <icon-hover-container>
         <svg-icon :icon="item.icon" pointer size="22" />
-      </icon-hover-container>
     </a-tooltip>
   </flex-space>
 </template>
