@@ -145,7 +145,7 @@ watch(tabBarStore.tabs, () => {
 </script>
 
 <template>
-  <div class="tabBar" :style="{height:`${header.tabBarHeight}px`}">
+  <div class="tabBar" v-if="header.tabBarVisible" :style="{height:`${header.tabBarHeight}px`}">
       <div @click="toScroll('left')" v-if="scrollBtnVisible" class="tabBar-item action">
         <svg-icon size="18" icon="mdi:chevron-left" />
       </div>
@@ -195,6 +195,8 @@ watch(tabBarStore.tabs, () => {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
+  transition: height .2s ease-in-out;
 
   &-item {
     padding: 0 15px;

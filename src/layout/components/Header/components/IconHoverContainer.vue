@@ -23,7 +23,9 @@ const appStore = useAppStore()
     background: @full-shallow;
   }
   &.dark{
-    background-color: @full-dark;
+    &:hover{
+      background-color: @full-dark;
+    }
   }
 }
 </style>

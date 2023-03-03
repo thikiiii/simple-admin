@@ -20,7 +20,7 @@ console.log(transitionName)
         v-if="tabBarStore.mainVisible"
         v-slot="{ Component, route }"
     >
-      <transition appear :name="transitionName">
+      <transition appear mode="out-in" :name="transitionName">
         <keep-alive :include="cacheMenus">
           <component :is="Component" :key="route.fullPath" />
         </keep-alive>

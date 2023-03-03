@@ -30,6 +30,10 @@ performant. You can enable it by the following steps:
 
 1. arco 菜单组合折叠后，菜单单高亮效果不明显，风格不一致
 
+#样式
+
+1. 顶部菜单的图标与文字对不齐
+
 #未完成
 
 1. 新增 prettier 和 prettier-plugin-tailwindcss 插件，菜单单高亮效果不明显，风格不一致

@@ -53,7 +53,7 @@ const onMouseLeave = () => {
           :class="isActive(item.path)"
           class="mixSidebar-container-menu">
         <svg-icon pointer :size="sidebar.isCollapsedMix ? 18: 22" :icon="item?.meta?.icon" />
-        <span v-if="!sidebar.isCollapsedMix" class="mixMenu-list-item-text">{{ item?.meta?.title }}</span>
+        <span v-if="!sidebar.isCollapsedMix" class="mixSidebar-container-menu-text">{{ item?.meta?.title }}</span>
       </div>
     </div>
     <div
@@ -75,6 +75,7 @@ const onMouseLeave = () => {
   border-right: 1px solid @line-shallow;
   padding: 7px;
   position: relative;
+  transition:width .2s ease-in-out;
   &.dark{
     border-right: 1px solid @line-dark;
     .mixSidebar-container-menu{

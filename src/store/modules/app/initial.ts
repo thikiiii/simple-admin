@@ -68,7 +68,7 @@ const initialApp:AppStore = {
         tabBarVisible: true,
 
         // 是否固定头部和标签栏
-        isFixedHeaderAndTabBar: true,
+        isFixedHeaderAndTabBar: false,
 
         // 头部高度
         headerHeight: 56,
@@ -81,7 +81,7 @@ const initialApp:AppStore = {
         visible: true,
 
         // 固定底部
-        isFixed: true,
+        isFixed: false,
 
         height: 40
     }

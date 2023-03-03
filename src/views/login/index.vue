@@ -77,6 +77,7 @@ const settingStore = useAppStore()
 
     &-form {
       width: 400px;
+      position: relative;
     }
 
     &-theme {

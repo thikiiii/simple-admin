@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@arco-plugins/vite-vue": "^1.4.2",
-    "@arco-themes/vue-thik-admin": "^1.2.0",
+    "@arco-themes/vue-thik-admin": "^1.2.2",
     "@iconify-json/ic": "^1.1.13",
     "@iconify-json/mdi": "^1.1.47",
     "@iconify/vue": "^4.1.0",

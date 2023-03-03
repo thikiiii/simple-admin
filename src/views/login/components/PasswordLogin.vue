@@ -42,10 +42,10 @@ const handleLogin = async({ values, errors }) => {
     <p class="login-title">登录</p>
     <a-form @submit="handleLogin" :rules="rules" :model="form">
       <a-form-item field="username" hide-label>
-        <a-input v-model="form.username" placeholder="请输入账号" />
+        <a-input size="large" v-model="form.username" placeholder="请输入账号" />
       </a-form-item>
       <a-form-item field="password" hide-label>
-        <a-input-password v-model="form.password" placeholder="请输入密码" />
+        <a-input-password size="large" v-model="form.password" placeholder="请输入密码" />
       </a-form-item>
       <a-form-item hide-label>
         <flex-space block justify="space-between">

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import ConfigMenu from '@/layout/components/Header/components/Settings/components/ConfigMenu.vue'
+import ConfigMenu from '@/layout/components/Header/components/Settings/components/ContextMenu.vue'
 import useAppStore from '@/store/modules/app'
 import { ref, watch } from 'vue'
 

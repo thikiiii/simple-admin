@@ -4,7 +4,9 @@ defineOptions({ name: 'DashboardAnalysis' })
 
 <template>
     <div class="dashboardAnalysis">
-      2321
+      <h1>开始</h1>
+      <p v-for="item in 100">15556</p>
+      <h1>结束</h1>
     </div>
 </template>
 

@@ -9,12 +9,12 @@ const { setAction } = useLoginContext()
     <p class="login-title">手机号登录</p>
     <a-form>
       <a-form-item hide-label>
-        <a-input placeholder="请输入手机号" />
+        <a-input size="large" placeholder="请输入手机号" />
       </a-form-item>
       <a-form-item hide-label>
         <flex-space block justify="space-between">
-          <a-input placeholder="请输入验证码" />
-          <a-button>发送验证码</a-button>
+          <a-input size="large" placeholder="请输入验证码" />
+          <a-button size="large">发送验证码</a-button>
         </flex-space>
       </a-form-item>
       <a-form-item hide-label>

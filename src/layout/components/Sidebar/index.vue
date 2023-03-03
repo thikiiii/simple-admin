@@ -4,10 +4,8 @@ import { computed } from 'vue'
 import MobileSidebar from '@/layout/components/Sidebar/components/MobileSidebar.vue'
 import Sidebar from '@/layout/components/Sidebar/components/Sidebar.vue'
 import MixSidebar from '@/layout/components/Sidebar/components/MixSidebar/index.vue'
-import { useToggle } from '@vueuse/core'
 
 defineOptions({ name: 'LayoutSidebar' })
-const [ isHidden ] = useToggle()
 
 const appStore = useAppStore()
 const { sidebar, base } = appStore
@@ -32,16 +30,12 @@ const sidebarWidth = computed(() => {
     <div
         v-if="!base.isMobile && base.layoutMode!=='top'"
         :class="appStore.dynamicSidebarDark.className"
-        :style="{width:`${sidebarWidth}px`,overflow: isHidden ? 'hidden' : undefined}"
+        :style="{width:`${sidebarWidth}px`}"
         class="layout-sidebar">
-      <transition-group
-          name="slide-left"
-          @after-leave="isHidden = false"
-          @before-enter="isHidden = true"
-      >
+      <transition name="slide-left">
         <Sidebar v-if="base.layoutMode==='side'" />
         <mix-sidebar v-else-if="base.layoutMode==='mix-side'" />
-      </transition-group>
+      </transition>
     </div>
   </transition>
   <mobile-sidebar v-if="base.isMobile" />
@@ -53,11 +47,14 @@ const sidebarWidth = computed(() => {
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: .2s ease-in-out;
-  &.dark{
+  transition: width .2s ease-in-out;
+  overflow: hidden;
+
+  &.dark {
     background: @bg-dark;
     color: @text-light;
   }
+
   &-container {
     flex: 1;
     overflow: auto;

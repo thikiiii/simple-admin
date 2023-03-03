@@ -2,6 +2,11 @@
 import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
 import ThemeMode from '@/layout/components/Header/components/Settings/components/ThemeMode.vue'
 import { ref } from 'vue'
+import LayoutMode from '@/layout/components/Header/components/Settings/components/LayoutMode.vue'
+import LayoutStyle from '@/layout/components/Header/components/Settings/components/LayoutStyle.vue'
+import SidebarConfig from '@/layout/components/Header/components/Settings/components/SidebarConfig.vue'
+import HeaderConfig from '@/layout/components/Header/components/Settings/components/HeaderConfig.vue'
+import FooterConfig from '@/layout/components/Header/components/Settings/components/FooterConfig.vue'
 
 defineOptions({ name: 'Settings' })
 const visible = ref(false)
@@ -14,6 +19,11 @@ const visible = ref(false)
   <a-drawer :width="330" v-model:visible="visible" :footer="false" unmountOnClose>
     <template #title>系统配置</template>
     <theme-mode />
+    <layout-mode />
+    <layout-style />
+    <sidebar-config />
+    <header-config />
+    <footer-config />
   </a-drawer>
 </template>
 

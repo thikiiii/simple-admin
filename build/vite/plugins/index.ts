@@ -26,6 +26,7 @@ export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): Plu
         // 配置 ejs
         setupHtml(viteEnv, isBuild),
         // arco组件主题
+        // 使用按需加载，使用开发者模式配置的样式未生效
         setupArcoPlugins(),
         // 配置icon
         ...setupIcons(viteEnv)

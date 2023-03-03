@@ -3,7 +3,7 @@ import Search from '@/layout/components/Header/components/Search/index.vue'
 import FullScreen from '@/layout/components/Header/components/FullScreen.vue'
 import Github from '@/layout/components/Header/components/Github.vue'
 import MenuCollapsed from '@/layout/components/Header/components/MenuCollapsed.vue'
-import Breadcrumb from '@/layout/components/Header/components/Breadcrumb.vue'
+import Breadcrumb from '@/layout/components/Header/components/Breadcrumb/index.vue'
 import ToggleTheme from '@/layout/components/Header/components/ToggleTheme.vue'
 import Avatar from '@/layout/components/Header/components/Avatar.vue'
 import Settings from '@/layout/components/Header/components/Settings/index.vue'
@@ -16,7 +16,6 @@ defineOptions({ name: 'HeaderContent' })
 const appStore = useAppStore()
 const { base, header } = appStore
 const authStore = useAuthStore()
-
 </script>
 
 <template>
@@ -53,10 +52,15 @@ const authStore = useAuthStore()
   overflow: hidden;
   border-bottom: 1px solid @line-shallow;
   flex-shrink: 0;
-  &.dark{
+  transition: height .2s ease-in-out;
+  &.dark {
     background: @bg-dark;
     color: @text-light;
     border-bottom: 1px solid @line-dark;
+  }
+
+  &.fixed {
+    
   }
 
   &-menu {

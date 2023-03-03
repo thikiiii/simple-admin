@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Menu from '@/layout/components/Menu/index.vue'
 import useAppStore from '@/store/modules/app'
-import { watch } from 'vue'
+import { nextTick } from 'vue'
 
 interface Props {
   menus: Route.RouteRecordRaw[]
@@ -11,16 +11,26 @@ defineProps<Props>()
 
 const appStore = useAppStore()
 const { sidebar, header } = appStore
-watch(() => sidebar.mixSidebarDrawerVisible, () => {
-    console.log(sidebar.mixSidebarDrawerVisible)
-})
+
+const onBeforeEnter = async(el:HTMLElement) => {
+    await nextTick()
+    const parentElement = el.parentElement?.parentElement
+    if (parentElement) return parentElement.style.overflow = 'visible'
+}
+
+const onAfterLeave = async(el:HTMLElement) => {
+    await nextTick()
+    const parentElement = el.parentElement?.parentElement
+    if (parentElement) parentElement.style.overflow = 'hidden'
+}
+
 </script>
 
 <template>
-  <transition name="fold">
+  <transition name="fold" @after-leave="onAfterLeave" @before-enter="onBeforeEnter">
     <div
         :class="appStore.dynamicSidebarDark.className"
-        v-if="sidebar.mixSidebarDrawerVisible"
+        v-show="sidebar.mixSidebarDrawerVisible"
         :style="{width:`${sidebar.sidebarWidth}px`}"
         class="mixMenuDrawers">
       <div class="mixMenuDrawers-header" :style="{height:`${header.headerHeight}px`}">
@@ -42,7 +52,7 @@ watch(() => sidebar.mixSidebarDrawerVisible, () => {
 .mixMenuDrawers {
   height: 100%;
   position: absolute;
-  right: 0;
+  right: 1px;
   top: 0;
   border-left: 1px solid @line-shallow;
   border-right: 1px solid @line-shallow;
@@ -58,7 +68,8 @@ watch(() => sidebar.mixSidebarDrawerVisible, () => {
     color: @text-light;
     border-left: 1px solid @line-dark;
     border-right: 1px solid @line-dark;
-    .mixMenuDrawers-header{
+
+    .mixMenuDrawers-header {
       border-bottom: 1px solid @line-dark;
     }
   }

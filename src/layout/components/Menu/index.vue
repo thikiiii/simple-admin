@@ -20,7 +20,7 @@ export default defineComponent({
         const authStore = useAuthStore()
         const renderSubMenu = (menus: Route.RouteRecordRaw[]) => {
             return menus.map(item => {
-                const icon = () => <svg-icon size="16" icon={ item.meta?.icon }></svg-icon>
+                const icon = () => item.meta?.icon ? (<svg-icon size="14" icon={ item.meta?.icon }></svg-icon>) : undefined
                 if (item.component === 'Self' || item.component === 'Child') {
                     return (
                         <a-menu-item onClick={()=>authStore.handleMenuJumps(item)} key={ item.path }
