@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { RouteLocationMatched, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { BreadcrumbRoute } from '@arco-design/web-vue'
 
 interface Props {
-  routes:RouteLocationMatched[]
+  menus: BreadcrumbRoute[]
 }
 
 defineProps<Props>()
@@ -11,23 +12,23 @@ const router = useRouter()
 </script>
 
 <template>
-  <template v-for="item in routes" :key="item.path">
+  <template v-for="item in menus" :key="item.path">
     <a-doption @click="router.push(item.path)" v-if="!item.children?.length">
-      {{ item.meta?.title }}
+      {{ item.label }}
     </a-doption>
     <a-dsubmenu class="submenu" v-else :value="item.path">
-      <template #default>{{ item.meta?.title }}</template>
+      <template #default>{{ item.label }}</template>
       <template #content>
-        <dropdown-menu :routes="item.children" />
+        <dropdown-menu :menus="item.children" />
       </template>
     </a-dsubmenu>
   </template>
 </template>
 
 <style lang="less" scoped>
-.submenu{
+.submenu {
   :deep(.arco-breadcrumb-item-dropdown-icon) {
-    color: @text-light!important;
+    color: @text-light !important;
   }
 }
 </style>

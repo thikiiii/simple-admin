@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import Logo from '@/layout/components/Logo.vue'
-import Menu from '@/layout/components/Menu/index.vue'
+import Menu from '@/layout/components/Menu.vue'
 
 import useAppStore from '@/store/modules/app'
 import useAuthStore from '@/store/modules/auth'
-import { computed } from 'vue'
 const appStore = useAppStore()
 const { sidebar } = appStore
 

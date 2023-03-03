@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 // 其他登录方式
-
-import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
-
 const otherLoginMethods = [
     {
         icon: 'mdi:github',

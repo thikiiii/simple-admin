@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Menu from '@/layout/components/Menu/index.vue'
+import Menu from '@/layout/components/Menu.vue'
 import useAppStore from '@/store/modules/app'
 import { nextTick } from 'vue'
 

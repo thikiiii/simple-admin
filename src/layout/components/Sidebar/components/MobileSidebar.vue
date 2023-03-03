@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useAppStore from '@/store/modules/app'
 import Logo from '@/layout/components/Logo.vue'
-import Menu from '@/layout/components/Menu/index.vue'
+import Menu from '@/layout/components/Menu.vue'
 import useAuthStore from '@/store/modules/auth'
 const appStore = useAppStore()
 const { sidebar } = appStore
