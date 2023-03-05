@@ -23,6 +23,9 @@ const { sidebar } = appStore
     <context-menu label="侧边栏折叠宽度">
       <a-input-number mode="button" v-model="sidebar.collapsedSidebarWidth" :step="10" />
     </context-menu>
+    <context-menu label="菜单开启琴模式">
+      <a-switch v-model="sidebar.isMenuAccordion" />
+    </context-menu>
   </flex-space>
 </template>
 

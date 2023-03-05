@@ -1,9 +1,11 @@
+import { cloneDeep } from 'lodash-es'
+import { AppStorage } from '@/storage/app'
 
 // 移动端处罚宽度
 const mobileTriggerWidth = 800
 
 // 初始设置
-const initialApp:AppStore = {
+export const initialAppStore: AppStore = {
     base: {
         // 主题模式是否跟随系统
         themeModeFollowSystem: true,
@@ -28,7 +30,7 @@ const initialApp:AppStore = {
 
         // 是否移动端
         isMobile: document.body.offsetWidth <= mobileTriggerWidth
-    } ,
+    },
     arco: {
         size: 'medium'
     },
@@ -68,7 +70,7 @@ const initialApp:AppStore = {
         tabBarVisible: true,
 
         // 是否固定头部和标签栏
-        isFixedHeaderAndTabBar: false,
+        isFixedHeaderAndTabBar: true,
 
         // 头部高度
         headerHeight: 56,
@@ -81,10 +83,11 @@ const initialApp:AppStore = {
         visible: true,
 
         // 固定底部
-        isFixed: false,
+        isFixed: true,
 
         height: 40
     }
 }
 
-export default initialApp
+export const appStore = AppStorage.getAppConfig() || cloneDeep(initialAppStore)
+

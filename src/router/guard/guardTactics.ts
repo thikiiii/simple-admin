@@ -67,6 +67,7 @@ const guardTactics = (
                 console.info('---没有鉴权（没有用户信息和角色）---')
                 // 获取用户信息
                 await getUserinfo().catch(() => {
+                    initAuthStore()
                     next(ROUTE_LOGIN_PATH)
                     return Promise.reject()
                 })

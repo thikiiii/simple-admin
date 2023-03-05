@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import initialApp from '@/store/modules/app/initial'
+import { appStore } from '@/store/modules/app/initial'
 const useAppStore = defineStore('App', {
-    state: (): AppStore => initialApp,
+    state: (): AppStore => appStore,
     getters: {
         // 动态侧边栏宽度
         dynamicSidebarWidth: ({ sidebar }) => sidebar.isCollapsed ? sidebar.collapsedSidebarWidth : sidebar.sidebarWidth,

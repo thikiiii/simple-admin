@@ -7,6 +7,9 @@ import LayoutStyle from '@/layout/components/Header/components/Settings/componen
 import SidebarConfig from '@/layout/components/Header/components/Settings/components/SidebarConfig.vue'
 import HeaderConfig from '@/layout/components/Header/components/Settings/components/HeaderConfig.vue'
 import FooterConfig from '@/layout/components/Header/components/Settings/components/FooterConfig.vue'
+import ArcoConfig from '@/layout/components/Header/components/Settings/components/ArcoConfig.vue'
+import OtherConfig from '@/layout/components/Header/components/Settings/components/OtherConfig.vue'
+import ActionButton from '@/layout/components/Header/components/Settings/components/ActionButton.vue'
 
 defineOptions({ name: 'Settings' })
 const visible = ref(false)
@@ -14,19 +17,24 @@ const visible = ref(false)
 
 <template>
   <icon-hover-container @click="visible=!visible">
-    <svg-icon icon="ic:baseline-settings" />
+    <svg-icon icon="ic:baseline-settings"/>
   </icon-hover-container>
-  <a-drawer :width="330" v-model:visible="visible" :footer="false" unmountOnClose>
+  <a-drawer :width="330" v-model:visible="visible"  unmountOnClose>
     <template #title>系统配置</template>
-    <theme-mode />
-    <layout-mode />
-    <layout-style />
-    <sidebar-config />
-    <header-config />
-    <footer-config />
+    <theme-mode/>
+    <layout-mode/>
+    <layout-style/>
+    <sidebar-config/>
+    <header-config/>
+    <footer-config/>
+    <arco-config/>
+    <other-config/>
+    <template #footer>
+      <action-button/>
+    </template>
   </a-drawer>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 
 </style>
