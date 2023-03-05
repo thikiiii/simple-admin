@@ -36,7 +36,6 @@ const useAuthStore = defineStore('Auth', {
         initAuthStore() {
             this.removeToken()
             this.$reset()
-            console.log(this.$state)
         },
 
         // 初始路由

@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppLoading: typeof import('./../src/components/system/AppLoading.vue')['default']
+    Echarts: typeof import('./../src/components/common/Echarts/index.vue')['default']
     FlexSpace: typeof import('./../src/components/common/FlexSpace.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
