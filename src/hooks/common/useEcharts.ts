@@ -17,7 +17,7 @@ import {
     TransformComponent
 } from 'echarts/components'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
-import { CanvasRenderer } from 'echarts/renderers'
+import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
 
 export type ECOption = echarts.ComposeOption<
     | BarSeriesOption
@@ -39,14 +39,17 @@ echarts.use([
     LineChart,
     LabelLayout,
     UniversalTransition,
-    CanvasRenderer
+    CanvasRenderer,
+    SVGRenderer
 ])
 
 
-import { Ref } from 'vue'
+import { onMounted, Ref } from 'vue'
 
-const useEcharts = (elRef:Ref<HTMLElement>) => {
+const useEcharts = (elRef: Ref<HTMLElement>) => {
+    onMounted(() => {
 
+    })
 }
 
 

@@ -15,7 +15,7 @@ const { header } = appStore
   <div class="layout ">
     <layout-sidebar />
     <div class="layout-container">
-      <div :class="header.isFixedHeaderAndTabBar ? 'fixed' : undefined">
+      <div :class="{fixed:header.isFixedHeaderAndTabBar}">
         <layout-header />
         <tab-bar />
       </div>

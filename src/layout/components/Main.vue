@@ -32,7 +32,7 @@ console.log(transitionName)
 <style lang="less" scoped>
 .layout-main{
   flex: 1;
-  padding: 10px;
+  padding: 5px 10px;
   position: relative;
 }
 </style>

@@ -8,7 +8,6 @@
         :style="{ cursor: pointer ? 'pointer' : undefined, color }"
         :width="size"
         aria-hidden="true"
-        class="arco-icon"
     >
       <use :xlink:href="iconName" />
     </svg>

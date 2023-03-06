@@ -1,17 +1,22 @@
 <script lang="ts" setup>
+import TopBar from '@/views/dashboard/analysis/components/topBar.vue'
+
 defineOptions({ name: 'DashboardAnalysis' })
 </script>
 
 <template>
-    <div class="dashboardAnalysis">
-      <h1>开始</h1>
-      <p v-for="item in 100">15556</p>
-      <h1>结束</h1>
-    </div>
+  <div class="dashboardAnalysis">
+   <top-bar />
+  </div>
 </template>
 
 <style lang="less" scoped>
 .dashboardAnalysis {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 15px;
 }
 </style>
