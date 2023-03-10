@@ -43,14 +43,4 @@ echarts.use([
     SVGRenderer
 ])
 
-
-import { onMounted, Ref } from 'vue'
-
-const useEcharts = (elRef: Ref<HTMLElement>) => {
-    onMounted(() => {
-
-    })
-}
-
-
-export default useEcharts
+export default echarts
