@@ -90,7 +90,6 @@ const totalData = [
         align-items: center;
         gap: 5px;
         font-weight: bold;
-
       }
     }
 

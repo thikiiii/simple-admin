@@ -26,11 +26,18 @@ const useEcharts = (option: EChartsOption | Ref<EChartsOption>, renderMode?: Ren
     const echartsDom = ref<HTMLElement>()
     const eOption = isRef(option) ? option : ref(option)
 
-    onMounted(() => {
+    const init = () => {
         if (echartsDom.value) {
-            echartsInstance = echarts.init(echartsDom.value, base.themeMode, {
+            echartsInstance.dispose()
+            echarts.init(echartsDom.value, base.themeMode, {
                 renderer: renderMode
             })
+        }
+    }
+
+    onMounted(() => {
+        if (echartsDom.value) {
+            init()
             echartsInstance.setOption(eOption.value)
             echartsInstanceSet.add(echartsInstance)
             resizeObserver.observe(echartsDom.value)
@@ -40,11 +47,14 @@ const useEcharts = (option: EChartsOption | Ref<EChartsOption>, renderMode?: Ren
     onUnmounted(() => {
         echartsDom.value && resizeObserver.unobserve(echartsDom.value)
         echartsInstanceSet.delete(echartsInstance)
+        echartsInstance.dispose()
     })
 
     watch(eOption, () => {
         // echartsInstance.setOption(eOption.value)
     })
+
+    watch(() => base.themeMode, () =>init)
 
     return { echartsDom }
 }
