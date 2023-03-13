@@ -1,4 +1,5 @@
 import store from 'store2'
+
 // 系统
 export class AppStorage {
     // app

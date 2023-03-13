@@ -1,22 +1,21 @@
 <script lang="ts" setup>
-import TopBar from '@/views/dashboard/analysis/components/topBar.vue'
+import AnalysisStatisticsBar from '@/views/dashboard/analysis/components/statisticsBar/index.vue'
 
 defineOptions({ name: 'DashboardAnalysis' })
 </script>
 
 <template>
-  <div class="dashboardAnalysis">
-   <top-bar />
+  <div class="analysis">
+    <analysis-statistics-bar />
   </div>
 </template>
 
 <style lang="less" scoped>
-.dashboardAnalysis {
+.analysis {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  overflow: auto;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto auto;
   gap: 15px;
 }
 </style>

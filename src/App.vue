@@ -17,7 +17,7 @@ useGlobalSubscribe()
 </script>
 
 <template>
-  <a-config-provider :size="appStore.arco.size">
+  <a-config-provider  :size="appStore.arco.size">
     <router-view />
   </a-config-provider>
 </template>

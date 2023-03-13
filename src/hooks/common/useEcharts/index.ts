@@ -1,24 +1,52 @@
 import echarts from './core'
 
-import { onMounted, onUnmounted, Ref } from 'vue'
-import { EChartsType } from 'echarts'
+import { isRef, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
+import { EChartsOption } from 'echarts'
+import useAppStore from '@/store/modules/app'
+import { RendererType } from 'echarts/types/src/util/types'
 
 
-const eCharts = new Set<EChartsType>()
+type EchartsInstance = ReturnType<typeof echarts.init>
+
+const echartsInstanceSet = new Set<EchartsInstance>()
+
 // 用于监听 dom 大小变化
-const resizeObserver = new ResizeObserver((entries, observer) => {
-    // eCharts.
+const resizeObserver = new ResizeObserver((entries) => {
+    entries.forEach(item => {
+        const echartsInstance = [ ...echartsInstanceSet ].find(echartsInstance => echartsInstance.getDom() === item.target)
+        if (echartsInstance) echartsInstance.resize()
+    })
 })
 
-const useEcharts = (elRef: Ref<HTMLElement>) => {
+const useEcharts = (option: EChartsOption | Ref<EChartsOption>, renderMode?: RendererType) => {
+    const appStore = useAppStore()
+    const { base } = appStore
+
+    let echartsInstance: EchartsInstance
+    const echartsDom = ref<HTMLElement>()
+    const eOption = isRef(option) ? option : ref(option)
+
     onMounted(() => {
-        const echartsInstance = echarts.init(elRef.value)
-        resizeObserver.observe(elRef.value)
+        if (echartsDom.value) {
+            echartsInstance = echarts.init(echartsDom.value, base.themeMode, {
+                renderer: renderMode
+            })
+            echartsInstance.setOption(eOption.value)
+            echartsInstanceSet.add(echartsInstance)
+            resizeObserver.observe(echartsDom.value)
+        }
     })
 
     onUnmounted(() => {
-        resizeObserver.unobserve(elRef.value)
+        echartsDom.value && resizeObserver.unobserve(echartsDom.value)
+        echartsInstanceSet.delete(echartsInstance)
     })
+
+    watch(eOption, () => {
+        // echartsInstance.setOption(eOption.value)
+    })
+
+    return { echartsDom }
 }
 
 

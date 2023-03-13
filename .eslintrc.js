@@ -90,8 +90,6 @@ module.exports = defineConfig({
         'function-paren-newline': [ 'error', 'multiline' ],
         // 强制隐式返回的箭头函数体的位置
         'implicit-arrow-linebreak': [ 'error', 'beside' ],
-        // 强制使用一致的缩进
-        indent: [ 'error', 4, { SwitchCase: 1 } ],
         // 强制在 JSX 属性中使用一致的单引号或双引号
         'jsx-quotes': [ 'error', 'prefer-double' ],
         // 强制在对象字面量的键和值之间使用一致的空格
