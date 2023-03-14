@@ -5,7 +5,6 @@ import { EChartsOption } from 'echarts'
 import useAppStore from '@/store/modules/app'
 import { RendererType } from 'echarts/types/src/util/types'
 
-
 type EchartsInstance = ReturnType<typeof echarts.init>
 
 const echartsInstanceSet = new Set<EchartsInstance>()
@@ -22,14 +21,21 @@ const useEcharts = (option: EChartsOption | Ref<EChartsOption>, renderMode?: Ren
     const appStore = useAppStore()
     const { base } = appStore
 
-    let echartsInstance: EchartsInstance
+    const echartsInstance = ref<EchartsInstance>()
     const echartsDom = ref<HTMLElement>()
     const eOption = isRef(option) ? option : ref(option)
 
+    const dispose = () => {
+        if (echartsInstance.value) {
+            echartsInstance.value.dispose()
+            echartsInstanceSet.delete(echartsInstance.value)
+        }
+    }
+
     const init = () => {
         if (echartsDom.value) {
-            echartsInstance.dispose()
-            echarts.init(echartsDom.value, base.themeMode, {
+            dispose()
+            echartsInstance.value = echarts.init(echartsDom.value, base.themeMode, {
                 renderer: renderMode
             })
         }
@@ -38,25 +44,24 @@ const useEcharts = (option: EChartsOption | Ref<EChartsOption>, renderMode?: Ren
     onMounted(() => {
         if (echartsDom.value) {
             init()
-            echartsInstance.setOption(eOption.value)
-            echartsInstanceSet.add(echartsInstance)
+            echartsInstance.value?.setOption(eOption.value)
+            echartsInstance.value && echartsInstanceSet.add(echartsInstance.value)
             resizeObserver.observe(echartsDom.value)
         }
     })
 
     onUnmounted(() => {
         echartsDom.value && resizeObserver.unobserve(echartsDom.value)
-        echartsInstanceSet.delete(echartsInstance)
-        echartsInstance.dispose()
+        dispose()
     })
 
     watch(eOption, () => {
         // echartsInstance.setOption(eOption.value)
     })
 
-    watch(() => base.themeMode, () =>init)
+    watch(() => base.themeMode, () => init)
 
-    return { echartsDom }
+    return { echartsDom, echartsInstance: echartsInstance }
 }
 
 
