@@ -6,7 +6,7 @@ module.exports = {
       2,
       'always',
       [
-        'feat', 'fix', 'docs', 'style', 'refactor', 'build', 'revert', 'chore'
+        'feat','fix','docs','style','refactor','build','revert','chore'
       ]
     ]
   },
@@ -69,14 +69,14 @@ module.exports = {
     emptyScopesAlias: 'empty',
     upperCaseSubject: false,
     markBreakingChangeMode: false,
-    allowBreakingChanges: [ 'feat', 'fix' ],
+    allowBreakingChanges: [ 'feat','fix' ],
     breaklineNumber: 100,
     breaklineChar: '|',
-    skipQuestions: [ 'scope' ],
+    skipQuestions: [ 'scope','customScope','breaking','footerPrefixesSelect','customFooterPrefix','footer' ],
     issuePrefixes: [
       // 如果使用 gitee 作为开发管理
-      { value: 'link', name: 'link:     链接 ISSUES 进行中' },
-      { value: 'closed', name: 'closed:   标记 ISSUES 已完成' }
+      { value: 'link',name: 'link:     链接 ISSUES 进行中' },
+      { value: 'closed',name: 'closed:   标记 ISSUES 已完成' }
     ],
     emptyIssuePrefixAlias: 'skip',
     customIssuePrefixAlias: 'custom',

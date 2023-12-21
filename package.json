@@ -81,5 +81,10 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
+  },
+  "packageManager": "pnpm@8.1.0",
+  "engines": {
+    "node": ">=16.15.1",
+    "pnpm": ">=8.1.0"
   }
 }
