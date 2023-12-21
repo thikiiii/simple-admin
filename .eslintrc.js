@@ -135,7 +135,7 @@ module.exports = defineConfig({
     // 要求或禁止在一元操作符之前或之后存在空格
     'space-unary-ops': 'error',
     // 要求或禁止在注释前有空白
-    'spaced-comment': [ 'error','always' ],
+    'spaced-comment': [ 'error', 'always', { markers: [ '/' ] } ],
     // 强制在 switch 的冒号左右有空格
     'switch-colon-spacing': 'error',
     'vue/attributes-order': 'off',
