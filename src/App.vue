@@ -32,7 +32,9 @@ const themeConfig = computed(() => {
       :component-size="appStore.antdConfig.size"
       :theme="themeConfig"
   >
-    <router-view />
+    <a-app>
+      <router-view />
+    </a-app>
     <token-provider />
   </a-config-provider>
 </template>

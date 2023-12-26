@@ -102,7 +102,8 @@ export default [
                                         component: 'Menu'
                                     }
                                 ]
-                            } ]
+                            }
+                        ]
                     },
                     {
                         path: '/dashboard',
@@ -135,8 +136,17 @@ export default [
                             orderNo: 3
                         },
                         component: 'SelfMenu'
-                    } ]
+                    }
+                ]
             }
         }
     }
+    // {
+    //     url: '/mock/getUserList',
+    //     method: 'post',
+    //     timeout: 1000,
+    //     response(opt) {
+    //
+    //     }
+    // }
 ] as MockMethod[]

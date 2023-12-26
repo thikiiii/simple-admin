@@ -8,7 +8,7 @@ const { header } = appStore
 
 <template>
   <a-divider>头部</a-divider>
-  <flex-space direction="vertical">
+  <a-flex gap="middle" vertical>
     <context-menu label="头部高度">
       <a-input-number v-model:value="header.headerHeight" :step="10" addon-after="px" mode="button" />
     </context-menu>
@@ -21,7 +21,7 @@ const { header } = appStore
     <context-menu label="显示面包屑">
       <a-switch v-model:checked="header.breadcrumbVisible" />
     </context-menu>
-  </flex-space>
+  </a-flex>
 </template>
 
 <style scoped>

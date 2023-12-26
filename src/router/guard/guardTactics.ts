@@ -2,17 +2,14 @@ import useAuthStore from '@/store/modules/auth'
 import { AuthCookie } from '@/storage/auth'
 import { RouteAuthModeEnum } from '@/enums/auth'
 import { runTacticsAction } from '@/utils'
-import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
+import { NavigationGuardNext,RouteLocationNormalized } from 'vue-router'
 import { message } from 'ant-design-vue'
 import RouterConfig from '@/config/router'
 import { RouterHelpers } from '@/router/helpers'
+import useTabBarStore from '@/store/modules/tabBar'
 
 // 守卫策略
-const guardTactics = (
-        to: RouteLocationNormalized,
-        from: RouteLocationNormalized,
-        next: NavigationGuardNext
-) => {
+const guardTactics = (to: RouteLocationNormalized,from: RouteLocationNormalized,next: NavigationGuardNext) => {
     const {
         isLogin,
         isAuth,
@@ -21,19 +18,27 @@ const guardTactics = (
         initFrontRouteAuth,
         initServerRouteAuth,
         initAuthStore,
-        isGeneratedRoutes
+        isGeneratedRoutes,
+        $state
     } = useAuthStore()
+
+    const { initializeTabBar } = useTabBarStore()
     // 处理路由鉴权模式
     const handleRouteAuthMode = async () => {
         switch (routeAuthMode) {
-                // 前端路由鉴权模式
+            // 前端路由鉴权模式
             case RouteAuthModeEnum.FRONT:
-                // 初始化路由
+                // 初始化路由和菜单
                 initFrontRouteAuth()
+                // 初始化标签栏
+                initializeTabBar($state.routes)
                 break
-                // 服务端路由鉴权模式
+            // 服务端路由鉴权模式
             case RouteAuthModeEnum.SERVER:
+                // 初始化路由和菜单
                 await initServerRouteAuth()
+                // 初始化标签栏
+                initializeTabBar($state.routes)
                 break
         }
     }
@@ -72,7 +77,7 @@ const guardTactics = (
                     return Promise.reject()
                 })
                 await handleRouteAuthMode()
-                next({ path: to.path, query: to.query })
+                next({ path: to.path,query: to.query })
             }
         ],
         // 没有生成路由
@@ -81,7 +86,7 @@ const guardTactics = (
             async () => {
                 console.info('---没有生成路由---')
                 await handleRouteAuthMode()
-                next({ ...to, replace: true })
+                next({ ...to,replace: true })
             }
         ],
         // 登录情况下不能到登录页面

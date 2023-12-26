@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { UserApi } from '@/services/api/user'
 import { AuthCookie } from '@/storage/auth'
-import { message, notification } from 'ant-design-vue'
+import { message,notification } from 'ant-design-vue'
 import router from '@/router'
 import { RouteAuthModeEnum } from '@/enums/auth'
 import { RouterHelpers } from '@/router/helpers'
@@ -9,7 +9,7 @@ import RouterConfig from '@/config/router'
 import Hint from '@/config/hint'
 
 
-const useAuthStore = defineStore('Auth', {
+const useAuthStore = defineStore('Auth',{
     state: (): AuthStore => ({
         token: AuthCookie.getToken(),
         // 角色
@@ -53,7 +53,7 @@ const useAuthStore = defineStore('Auth', {
 
         // 密码登录
         async passwordLogin(form: UserApiRequest.PasswordLogin) {
-            const { code, token, msg } = await UserApi.passwordLogin(form).catch(() => {
+            const { code,token,msg } = await UserApi.passwordLogin(form).catch(() => {
                 this.initAuthStore()
                 return Promise.reject()
             })
@@ -68,7 +68,7 @@ const useAuthStore = defineStore('Auth', {
 
         // 获取用户信息
         async getUserinfo() {
-            const { code, msg, result } = await UserApi.getUserinfo().catch(() => {
+            const { code,msg,result } = await UserApi.getUserinfo().catch(() => {
                 this.initAuthStore()
                 return Promise.reject()
             })
@@ -84,7 +84,7 @@ const useAuthStore = defineStore('Auth', {
 
         // 获取用户路由
         async getUserRoutes() {
-            const { code, msg, result } = await UserApi.getRoutes().catch(() => {
+            const { code,msg,result } = await UserApi.getRoutes().catch(() => {
                 this.initAuthStore()
                 return Promise.reject()
             })
@@ -133,10 +133,8 @@ const useAuthStore = defineStore('Auth', {
             console.log(this.routes)
             // 自定义路由转Vue路由
             const vueRoutes = RouterHelpers.transformCustomRoutesToVueRoutes(this.routes)
-            console.log(vueRoutes)
             // 添加路由
             vueRoutes.forEach(route => router.addRoute(route))
-            console.log(router.getRoutes())
             this.isGeneratedRoutes = true
         },
 

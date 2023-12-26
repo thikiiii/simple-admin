@@ -14,29 +14,29 @@ import Logo from '@/layout/components/Logo.vue'
 
 defineOptions({ name: 'HeaderContent' })
 const appStore = useAppStore()
-const { base, header } = appStore
+const { base,header } = appStore
 const authStore = useAuthStore()
 </script>
 
 <template>
-    <div :class="appStore.dynamicTopDark.className" :style="{height:`${header.headerHeight}px`}" class="layout-header">
-        <flex-space direction="horizontal" size="large">
-            <menu-collapsed v-if="base.isMobile||base.layoutMode==='side'" />
-            <breadcrumb v-if="base.layoutMode!=='top'&&header.breadcrumbVisible&&!base.isMobile" />
-            <template v-if="base.layoutMode==='top'&&!base.isMobile">
-                <Logo />
-                <Menu :dark="appStore.dynamicTopDark.isDark" :menus="authStore.routes" horizontal />
-            </template>
-        </flex-space>
-        <flex-space direction="horizontal" justify="flex-end">
-            <menu-search />
-            <toggle-theme />
-            <full-screen />
-            <github />
-            <avatar />
-            <settings />
-        </flex-space>
-    </div>
+  <div :class="appStore.dynamicTopDark.className" :style="{height:`${header.headerHeight}px`}" class="layout-header">
+    <a-flex gap="small">
+      <menu-collapsed v-if="base.isMobile||base.layoutMode==='side'" />
+      <breadcrumb v-if="base.layoutMode!=='top'&&header.breadcrumbVisible&&!base.isMobile" />
+      <template v-if="base.layoutMode==='top'&&!base.isMobile">
+        <Logo />
+        <Menu :dark="appStore.dynamicTopDark.isDark" :menus="authStore.routes" horizontal />
+      </template>
+    </a-flex>
+    <a-flex gap="small" justify="flex-end">
+      <menu-search />
+      <toggle-theme />
+      <full-screen />
+      <github />
+      <avatar />
+      <settings />
+    </a-flex>
+  </div>
 </template>
 
 <style lang="less" scoped>

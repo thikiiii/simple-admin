@@ -5,9 +5,9 @@ const appStore = useAppStore()
 </script>
 
 <template>
-    <div :class="appStore.dynamicTopDark.className" class="iconHoverContainer">
-        <slot />
-    </div>
+  <div :class="appStore.dynamicTopDark.className" class="iconHoverContainer">
+    <slot />
+  </div>
 </template>
 
 <style lang="less" scoped>
@@ -19,6 +19,7 @@ const appStore = useAppStore()
   align-items: center;
   cursor: pointer;
   transition: .1s;
+  font-size: 16px;
 
   &:hover {
     background: @fill-tertiary;
