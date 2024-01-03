@@ -1,24 +1,21 @@
-// 用户请求
-declare namespace UserApiRequest {
-    // 密码登录请求
-    interface PasswordLogin {
+// 用户模型
+declare namespace UserApiModel {
+    // 密码登录参数
+    interface PasswordLoginParams {
         // 用户名
         username: string
         // 密码
         password: string
     }
-}
 
-// 用户响应
-declare namespace UserApiResponse {
-    // 密码登录响应
-    interface PasswordLogin {
+    // 密码登录模型
+    interface PasswordLoginModel {
         // token
         token: string
     }
 
-    // 用户详情
-    interface UserDetails {
+    // 用户详情模型
+    interface UserDetailsModel {
         // 权限
         permissions: import('@/enums/auth').PermissionEnum[]
         // 角色
@@ -33,6 +30,6 @@ declare namespace UserApiResponse {
         }
     }
 
-    // 路由
-    type UserRoutes = Route.RouteRecordRaw[]
+    // 路由模型
+    type UserRoutesModel = Route.RouteRecordRaw[]
 }

@@ -23,7 +23,6 @@ const themeConfig = computed(() => {
     algorithm: appStore.base.themeMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
   }
 })
-
 </script>
 
 <template>

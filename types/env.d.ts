@@ -1,5 +1,3 @@
-/// <reference types="vite/client" />
-
 declare interface ImportMetaEnv {
     // 端口
     readonly VITE_PORT: number

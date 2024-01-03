@@ -1,0 +1,54 @@
+<script lang="ts" setup>
+import type { SurelyTableProps } from '@surely-vue/table'
+
+
+interface Props extends SurelyTableProps {
+  // 标题
+  heading?: string
+
+  // 隐藏工具栏
+  hideToolBar?: boolean
+
+  // 隐藏头部
+  hideHeader?: boolean
+}
+
+
+const props = withDefaults(defineProps<Props>(),{
+  // 显示表头
+  showHeader: true
+})
+console.log(props)
+</script>
+
+<template>
+  <a-card>
+    <div v-if="!hideHeader" class="baseTable-header">
+      <h3 class="baseTable-header-title">{{ heading }}</h3>
+    </div>
+    <s-table v-bind.prop="$props" />
+  </a-card>
+</template>
+
+<style lang="less" scoped>
+.baseTable-header {
+  margin-bottom: 17px;
+
+  &-title {
+    position: relative;
+    display: inline-block;
+
+    &::before {
+      content: "";
+      width: 80%;
+      height: 5px;
+      display: block;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      background: @primary;
+      border-radius: @radius-base;
+    }
+  }
+}
+</style>

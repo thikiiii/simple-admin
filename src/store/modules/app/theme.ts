@@ -1,5 +1,4 @@
-// css 主题变量 key
-import { ComputedRef, nextTick } from 'vue'
+import { ComputedRef,nextTick } from 'vue'
 import { setCSSVariable } from '@/utils'
 import { GlobalToken } from 'ant-design-vue/es/theme/interface'
 
@@ -40,15 +39,15 @@ export const CSS_THEME_VARIABLE_KEY = [
 
 // 系统主题色
 export const THEME_COLOR = [
-    '#6675ff', '#E74C3C', '#8E44AD', '#3498DB', '#16A085', '#2ECC71', '#F1C40F', '#F39C12', '#D35400'
+    '#6675ff','#E74C3C','#8E44AD','#3498DB','#16A085','#2ECC71','#F1C40F','#F39C12','#D35400'
 ]
 
 // 初始化主题Css变量
 export const initializeThemeCSSVariable = async (token: ComputedRef<GlobalToken>) => {
     await nextTick()
-    const themeVariable = CSS_THEME_VARIABLE_KEY.reduce((initialThemeVariable, key) => {
+    const themeVariable = CSS_THEME_VARIABLE_KEY.reduce((initialThemeVariable,key) => {
         initialThemeVariable[key] = token.value[key]
         return initialThemeVariable
-    }, {})
+    },{})
     setCSSVariable(themeVariable)
 }

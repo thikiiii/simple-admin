@@ -8,7 +8,6 @@ import { RouterHelpers } from '@/router/helpers'
 import RouterConfig from '@/config/router'
 import Hint from '@/config/hint'
 
-
 const useAuthStore = defineStore('Auth',{
     state: (): AuthStore => ({
         token: AuthCookie.getToken(),
@@ -52,7 +51,7 @@ const useAuthStore = defineStore('Auth',{
         },
 
         // 密码登录
-        async passwordLogin(form: UserApiRequest.PasswordLogin) {
+        async passwordLogin(form: UserApiModel.PasswordLoginParams) {
             const { code,token,msg } = await UserApi.passwordLogin(form).catch(() => {
                 this.initAuthStore()
                 return Promise.reject()

@@ -7,9 +7,9 @@ export const setupAutoComponents = () => Components({
     // 为全局组件生成 TypeScript 声明
     // 并指定生成目录
     dts: 'types/components.d.ts',
-    extensions: [ 'vue', 'md' ],
+    extensions: [ 'vue','md' ],
     // allow auto import and register components used in markdown
-    include: [ /\.vue$/, /\.vue\?vue/, /\.md$/ ],
+    include: [ /\.vue$/,/\.vue\?vue/,/\.md$/ ],
     resolvers: [
         AntDesignVueResolver({ importStyle: false }),
         // icon
