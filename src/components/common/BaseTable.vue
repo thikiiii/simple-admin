@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { SurelyTableProps } from '@surely-vue/table'
 
 
-interface Props extends SurelyTableProps {
+interface Props {
   // 标题
   heading?: string
 

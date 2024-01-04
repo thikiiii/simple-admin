@@ -31,7 +31,8 @@ export default defineConfig(({ command, mode }) => {
         css: {
             preprocessorOptions: {
                 less: {
-                    additionalData: `@import "${ path.resolve('src/assets/styles/theme/index.less') }";`,
+                    // 设置 less 全局变量
+                    additionalData: `@import "${ path.resolve('src/assets/styles/themeVariable') }";`,
                     javascriptEnabled: true
                 }
             }

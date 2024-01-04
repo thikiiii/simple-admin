@@ -15,7 +15,9 @@ console.log(tabBarStore.tabs)
 <template>
   <div class="analysis">
     <p
-        v-for="item in 100" :key="item" @click="router.push({
+      class="bg-primary-shallow fill-amber-100 shadow-base"
+      style="margin-bottom: 20px"
+      v-for="item in 100" :key="item" @click="router.push({
       path:'/form/baseForm',
       query:{id:'8888'}
     })">test</p>
