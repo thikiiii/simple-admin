@@ -1,11 +1,8 @@
 <script generic="T" lang="ts" setup>
-import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 
 defineOptions({ name: 'BaseForm' })
-const route = useRoute()
 
-console.log(route.query)
 const columns = [
   {
     title: 'name',
