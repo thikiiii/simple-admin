@@ -129,7 +129,6 @@ const useAuthStore = defineStore('Auth',{
         initFrontRouteAuth() {
             // 获取用户路由
             this.routes = RouterHelpers.getUserRouteList(this.roles)
-            console.log(this.routes)
             // 自定义路由转Vue路由
             const vueRoutes = RouterHelpers.transformCustomRoutesToVueRoutes(this.routes)
             // 添加路由

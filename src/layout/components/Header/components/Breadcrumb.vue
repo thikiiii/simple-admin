@@ -30,7 +30,6 @@ const accessMenu = (menu) => {
 }
 
 watch(() => route.path, () => {
-    console.log(route.matched)
     routes.value = routeMatchedToBreadcrumb(route.matched).filter(item => !item.key.includes(RouterConfig.BASIC_SELF_CONTAINER_ROUTE_PATH_SUFFIX))
 }, { immediate: true })
 

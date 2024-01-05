@@ -8,14 +8,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { setupIcons } from './icons'
 import { setupPwa } from './pwa'
-import { visualizer } from 'rollup-plugin-visualizer'
 import { setupAutoComponents } from './autoComponents'
-
+import UnoCSS from 'unocss/vite'
 export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): PluginOption[] => {
     const { VITE_USE_MOCK, VITE_LEGACY, VITE_USE_PWA } = viteEnv
     const plugins: PluginOption[] = [
-        // @ts-ignore
-        visualizer(),
+        UnoCSS(),
         vue(),
         // Jsx 语法
         vueJsx(),

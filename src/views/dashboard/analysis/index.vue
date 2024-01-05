@@ -1,15 +1,8 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import { useRequest } from 'vue-request'
-import { UserApi } from '@/services/api/user'
-import useTabBarStore from '@/store/modules/tabBar'
 
 defineOptions({ name: 'DashboardAnalysis' })
 const router = useRouter()
-let result = useRequest(UserApi.getRoutes)
-console.log(result)
-const tabBarStore = useTabBarStore()
-console.log(tabBarStore.tabs)
 </script>
 
 <template>

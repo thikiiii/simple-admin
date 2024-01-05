@@ -105,7 +105,6 @@ onMounted(() => {
 })
 
 watch(searchText,(value) => {
-  console.log(searchText)
   searchResult.value = menus.value.filter(item => item.labels.some(name => value && name.includes(value)))
 })
 </script>

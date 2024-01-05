@@ -1,5 +1,5 @@
 <template>
-    <div class="login">
+    <div class="w-full h-full flex">
         <div v-if="!appStore.base.isMobile" class="login-cover">
             <img alt="" src="../../assets/images/login-coverPicture.png">
         </div>
