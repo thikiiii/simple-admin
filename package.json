@@ -12,7 +12,7 @@
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx",
     "preview": "vite preview --open --port 9999",
-    "lint-staged": "lint-staged",
+    "lint-staged": "lint-staged --no-stash",
     "prepare": "husky install",
     "commit": "git cz",
     "add-commit": "git add . && git cz"
