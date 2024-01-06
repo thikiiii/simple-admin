@@ -1,9 +1,6 @@
 lockfileVersion: '6.0'
 
 dependencies:
-  '@surely-vue/table':
-    specifier: ^4.2.5
-    version: 4.2.5(vue@3.4.3)
   '@vueuse/core':
     specifier: ^10.7.0
     version: 10.7.0(vue@3.4.3)
@@ -142,8 +139,8 @@ devDependencies:
     specifier: ^0.5.1
     version: 0.5.1(vite@5.0.10)
   vite-plugin-html:
-    specifier: ^3.2.0
-    version: 3.2.0(vite@5.0.10)
+    specifier: ^3.2.1
+    version: 3.2.1(vite@5.0.10)
   vite-plugin-mock:
     specifier: ^2.9.8
     version: 2.9.8(mockjs@1.1.0)(vite@5.0.10)
@@ -181,24 +178,8 @@ packages:
       '@ctrl/tinycolor': 3.6.0
     dev: false
 
-  /@ant-design/colors@7.0.0:
-    resolution: {integrity: sha512-iVm/9PfGCbC0dSMBrz7oiEXZaaGH7ceU40OJEfKmyuzR9R5CRimJYPlRiFtMQGQcbNMea/ePcoIebi4ASGYXtg==}
-    dependencies:
-      '@ctrl/tinycolor': 3.6.0
-    dev: false
-
   /@ant-design/icons-svg@4.2.1:
     resolution: {integrity: sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==}
-    dev: false
-
-  /@ant-design/icons-vue@6.1.0(vue@3.4.3):
-    resolution: {integrity: sha512-EX6bYm56V+ZrKN7+3MT/ubDkvJ5rK/O2t380WFRflDcVFgsvl3NLH7Wxeau6R8DbrO5jWR6DSTC3B6gYFp77AA==}
-    peerDependencies:
-      vue: '>=3.0.3'
-    dependencies:
-      '@ant-design/colors': 6.0.0
-      '@ant-design/icons-svg': 4.2.1
-      vue: 3.4.3(typescript@5.3.3)
     dev: false
 
   /@ant-design/icons-vue@7.0.1(vue@3.4.3):
@@ -2232,20 +2213,6 @@ packages:
       nanopop: 2.3.0
     dev: false
 
-  /@surely-vue/table@4.2.5(vue@3.4.3):
-    resolution: {integrity: sha512-MvaSC4+YD5A2rjrZOJHGPFvmj9Z/MaLo+XeApfkLCOOOWYu4Pit2/mKjKoubCOf0FutOQlInskzoKWncMaumOg==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      vue: ^3.2.34
-    dependencies:
-      '@ant-design/colors': 7.0.0
-      '@ant-design/icons-vue': 6.1.0(vue@3.4.3)
-      ant-design-vue: 4.0.8(vue@3.4.3)
-      lodash-es: 4.17.21
-      resize-observer-polyfill: 1.5.1
-      vue: 3.4.3(typescript@5.3.3)
-    dev: false
-
   /@surma/rollup-plugin-off-main-thread@2.2.3:
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
     dependencies:
@@ -3547,10 +3514,6 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
-    dev: true
-
-  /colorette@2.0.19:
-    resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
     dev: true
 
   /colorette@2.0.20:
@@ -8037,19 +8000,19 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-html@3.2.0(vite@5.0.10):
-    resolution: {integrity: sha512-2VLCeDiHmV/BqqNn5h2V+4280KRgQzCFN47cst3WiNK848klESPQnzuC3okH5XHtgwHH/6s1Ho/YV6yIO0pgoQ==}
+  /vite-plugin-html@3.2.1(vite@5.0.10):
+    resolution: {integrity: sha512-UuNTUvGPa9BxZK1I/VC+hWMSl0eIE5ClEdXza3SGGb09jxxS7oAAjRGalUJNZI9lAPvu0W817GD53K/p78wxQw==}
     peerDependencies:
       vite: '>=2.0.0'
     dependencies:
       '@rollup/pluginutils': 4.2.1
-      colorette: 2.0.19
+      colorette: 2.0.20
       connect-history-api-fallback: 1.6.0
       consola: 2.15.3
       dotenv: 16.0.3
       dotenv-expand: 8.0.3
       ejs: 3.1.8
-      fast-glob: 3.2.12
+      fast-glob: 3.3.2
       fs-extra: 10.1.0
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2

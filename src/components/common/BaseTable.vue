@@ -25,7 +25,6 @@ console.log(props)
     <div v-if="!hideHeader" class="baseTable-header">
       <h3 class="baseTable-header-title">{{ heading }}</h3>
     </div>
-    <s-table v-bind.prop="$props" />
   </a-card>
 </template>
 

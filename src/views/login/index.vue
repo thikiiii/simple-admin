@@ -1,24 +1,24 @@
 <template>
-    <div class="w-full h-full flex">
-        <div v-if="!appStore.base.isMobile" class="login-cover">
-            <img alt="" src="../../assets/images/login-coverPicture.png">
-        </div>
-        <div class="login-main">
-            <!--      <div class="login-main-logo">-->
-            <!--        <img width="90" src="../../assets/images/logo.png" alt="">-->
-            <!--        <h1>Simple Admin</h1>-->
-            <!--      </div>-->
-            <theme-switch class="login-main-theme" />
-            <div class="login-main-form">
-                <transition :name="appStore.base.pageAnimationMode" mode="out-in">
-                    <qr-code-login v-if="currentAction==='QrCodeLogin'" />
-                    <password-login v-else-if="currentAction==='PasswordLogin'" />
-                    <phone-login v-else-if="currentAction==='PhoneLogin'" />
-                    <register v-else-if="currentAction==='Registered'" />
-                </transition>
-            </div>
-        </div>
+  <div class="full-hidden">
+    <div v-if="!appStore.base.isMobile" class="login-cover">
+      <img alt="" src="../../assets/images/login-coverPicture.png">
     </div>
+    <div class="login-main">
+      <div class="login-main-logo">
+        <img width="90" src="../../assets/images/logo.png" alt="">
+        <h1>Simple Admin</h1>
+      </div>
+      <theme-switch class="login-main-theme" />
+      <div class="login-main-form">
+        <transition :name="appStore.base.pageAnimationMode" mode="out-in">
+          <qr-code-login v-if="currentAction==='QrCodeLogin'" />
+          <password-login v-else-if="currentAction==='PasswordLogin'" />
+          <phone-login v-else-if="currentAction==='PhoneLogin'" />
+          <register v-else-if="currentAction==='Registered'" />
+        </transition>
+      </div>
+    </div>
+  </div>
 
 </template>
 
@@ -73,10 +73,9 @@ const appStore = useAppStore()
       align-items: center;
       gap: 10px;
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 15px;
-      font-size: 20px;
+      left: 0;
+      top: 0;
+      font-size: 16px;
     }
 
     &-form {

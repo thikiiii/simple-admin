@@ -8,5 +8,6 @@ export const setupHtml = (viteEnv: ImportMetaEnv, isBuild: boolean) => createHtm
             // index.html 标题
             title: viteEnv.VITE_GLOB_APP_TITLE
         }
-    }
+    },
+    viteNext: true
 })
