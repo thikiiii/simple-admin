@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { useLoginContext } from '@/views/login/hook/useLoginContext'
+import { useLoginContext } from '@/views/login/utils/useLoginContext'
+import { LoginAction } from '@/views/login/utils/type'
 
 const { setAction } = useLoginContext()
 const form = {}
@@ -7,7 +8,7 @@ const form = {}
 
 <template>
   <a-flex gap="middle" vertical>
-    <p class="login-title">手机号登录</p>
+    <h1>手机号登录</h1>
     <a-form :model="form">
       <a-form-item>
         <a-input placeholder="请输入手机号" size="large" />
@@ -22,7 +23,7 @@ const form = {}
         <a-button block size="large" type="primary">登录</a-button>
       </a-form-item>
       <a-form-item>
-        <a-button block size="large" @click="setAction('PasswordLogin')">返回</a-button>
+        <a-button block size="large" @click="setAction(LoginAction.PasswordLogin)">返回</a-button>
       </a-form-item>
     </a-form>
   </a-flex>

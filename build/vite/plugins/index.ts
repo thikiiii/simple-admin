@@ -9,11 +9,10 @@ import legacy from '@vitejs/plugin-legacy'
 import { setupIcons } from './icons'
 import { setupPwa } from './pwa'
 import { setupAutoComponents } from './autoComponents'
-import UnoCSS from 'unocss/vite'
+
 export const createVitePlugins = (viteEnv: ImportMetaEnv, isBuild: boolean): PluginOption[] => {
     const { VITE_USE_MOCK, VITE_LEGACY, VITE_USE_PWA } = viteEnv
     const plugins: PluginOption[] = [
-        UnoCSS(),
         vue(),
         // Jsx 语法
         vueJsx(),

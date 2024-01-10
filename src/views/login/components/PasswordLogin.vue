@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import OtherLogin from '@/views/login/components/OtherLogin.vue'
-import { useLoginContext } from '@/views/login/hook/useLoginContext'
+import { useLoginContext } from '@/views/login/utils/useLoginContext'
 import { reactive,ref } from 'vue'
 import useAuthStore from '@/store/modules/auth'
 import { useToggle } from '@vueuse/core'
 import type { FormInstance,Rule } from 'ant-design-vue/es/form'
+import { LoginAction } from '@/views/login/utils/type'
 
-const { setAction } = useLoginContext()
+const loginContext = useLoginContext()
 const authStore = useAuthStore()
 const [ loading,toggleLoading ] = useToggle()
 
@@ -40,7 +41,7 @@ const handleLogin = async () => {
 
 <template>
   <a-flex gap="middle" vertical>
-    <p class="login-title">登录</p>
+    <h1>登录</h1>
     <a-form ref="formRef" :model="form" :rules="rules">
       <a-form-item name="username">
         <a-input v-model:value="form.username" placeholder="请输入账号" size="large" />
@@ -59,9 +60,9 @@ const handleLogin = async () => {
       </a-form-item>
     </a-form>
     <a-flex gap="middle" justify="space-between">
-      <a-button block @click="setAction('PhoneLogin')">手机号登录</a-button>
-      <a-button block @click="setAction('QrCodeLogin')">二维码登录</a-button>
-      <a-button block @click="setAction('Registered')">注册</a-button>
+      <a-button block @click="loginContext.setAction(LoginAction.PhoneLogin)">手机号登录</a-button>
+      <a-button block @click="loginContext.setAction(LoginAction.QrCodeLogin)">二维码登录</a-button>
+      <a-button block @click="loginContext.setAction(LoginAction.Register)">注册</a-button>
     </a-flex>
     <other-login />
   </a-flex>

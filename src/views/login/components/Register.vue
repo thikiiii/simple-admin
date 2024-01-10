@@ -1,6 +1,6 @@
 <template>
   <a-flex gap="middle" vertical>
-    <p class="login-title">注册</p>
+    <h1>注册</h1>
     <a-form :model="form">
       <a-form-item>
         <a-input placeholder="请输入账号" />
@@ -32,14 +32,15 @@
         <a-button block size="large" type="primary">注册</a-button>
       </a-form-item>
       <a-form-item>
-        <a-button block size="large" @click="setAction('PasswordLogin')">返回</a-button>
+        <a-button block size="large" @click="setAction(LoginAction.PasswordLogin)">返回</a-button>
       </a-form-item>
     </a-form>
   </a-flex>
 </template>
 
 <script lang="ts" setup>
-import { useLoginContext } from '@/views/login/hook/useLoginContext'
+import { useLoginContext } from '@/views/login/utils/useLoginContext'
+import { LoginAction } from '@/views/login/utils/type'
 
 const { setAction } = useLoginContext()
 const form = {}

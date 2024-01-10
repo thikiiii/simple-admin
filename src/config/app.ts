@@ -4,7 +4,7 @@ export default class AppConfig {
         '#6675ff','#E74C3C','#8E44AD','#3498DB','#16A085','#2ECC71','#F1C40F','#F39C12','#D35400'
     ]
 
-    // Antd主题属性的 key (方便于TailwindCss引用)
+    // Antd主题属性的 key (用于生成CSS变量，方便于TailwindCss引用)
     static ANTD_THEME_KEY = [
         'colorPrimary',
         'colorPrimaryBg',
