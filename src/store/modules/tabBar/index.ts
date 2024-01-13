@@ -135,7 +135,7 @@ const useTabBarStore = defineStore('TabBar',{
         // 初始化标签栏
         initializeTabBar(routes: Route.RouteRecordRaw[]) {
             // 初始化固定标签
-            this.tabs.push(...this.getRouterAffixTabs(routes))
+            this.tabs = [ ...this.getRouterAffixTabs(routes) ]
             // 初始化缓存菜单
             this.setCacheMenus()
         }

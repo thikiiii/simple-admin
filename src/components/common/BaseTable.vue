@@ -14,8 +14,6 @@ interface Props {
 
 
 const props = withDefaults(defineProps<Props>(),{
-  // 显示表头
-  showHeader: true
 })
 console.log(props)
 </script>

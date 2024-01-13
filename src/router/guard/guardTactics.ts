@@ -86,7 +86,7 @@ const guardTactics = (to: RouteLocationNormalized,from: RouteLocationNormalized,
             async () => {
                 console.info('---没有生成路由---')
                 await handleRouteAuthMode()
-                next({ ...to,replace: true })
+                next({ path: to.path,query: to.query })
             }
         ],
         // 登录情况下不能到登录页面

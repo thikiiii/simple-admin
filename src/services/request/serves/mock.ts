@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios,{ AxiosRequestConfig } from 'axios'
 import { handleInterceptorError } from '@/services/request/utils'
 import ServicesConfig from '@/config/services'
 import { message } from 'ant-design-vue'
@@ -12,7 +12,7 @@ const mockAxiosInstance = axios.create({
 
 mockAxiosInstance.interceptors.request.use(config => {
     return config
-}, error => {
+},error => {
     return Promise.reject(error)
 })
 
@@ -23,10 +23,15 @@ mockAxiosInstance.interceptors.response.use(config => {
         void message.error(logOut)
         return authStore.signOut()
     }
-    return { ...config.data, $responseBody: config }
-}, error => {
+    return { ...config.data,$responseBody: config }
+},error => {
     handleInterceptorError(error)
     return Promise.reject(error)
 })
 
-export default mockAxiosInstance
+// 用泛型包装
+export const mockRequest = <Data = {},Expand = {},Params = {}>(config: AxiosRequestConfig) => {
+    return mockAxiosInstance.request<Data,MainService.Result<Data,Expand>,Params>(config)
+}
+
+export default { mockAxiosInstance }

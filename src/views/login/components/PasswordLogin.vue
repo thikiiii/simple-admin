@@ -13,7 +13,7 @@ const [ loading,toggleLoading ] = useToggle()
 
 const formRef = ref<FormInstance>()
 
-const form: UserApiModel.PasswordLoginParams = reactive({
+const form: UserModel.PasswordLoginParams = reactive({
   username: 'admin',
   password: '123456'
 })

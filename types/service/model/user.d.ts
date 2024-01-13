@@ -1,5 +1,5 @@
 // 用户模型
-declare namespace UserApiModel {
+declare namespace UserModel {
     // 密码登录参数
     interface PasswordLoginParams {
         // 用户名

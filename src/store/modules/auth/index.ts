@@ -3,7 +3,6 @@ import { UserApi } from '@/services/api/user'
 import { AuthCookie } from '@/storage/auth'
 import { message,notification } from 'ant-design-vue'
 import router from '@/router'
-import { RouteAuthModeEnum } from '@/enums/auth'
 import { RouterHelpers } from '@/router/helpers'
 import RouterConfig from '@/config/router'
 import Hint from '@/config/hint'
@@ -51,7 +50,7 @@ const useAuthStore = defineStore('Auth',{
         },
 
         // 密码登录
-        async passwordLogin(form: UserApiModel.PasswordLoginParams) {
+        async passwordLogin(form: UserModel.PasswordLoginParams) {
             const { code,token,msg } = await UserApi.passwordLogin(form).catch(() => {
                 this.initAuthStore()
                 return Promise.reject()
@@ -106,19 +105,12 @@ const useAuthStore = defineStore('Auth',{
 
         // 处理登录后
         async handleLoginAfter() {
+            // 获取用户信息
             await this.getUserinfo()
-
-            switch (this.routeAuthMode) {
-                case RouteAuthModeEnum.FRONT:
-                    this.initFrontRouteAuth()
-                    break
-                case RouteAuthModeEnum.SERVER:
-                    await this.initServerRouteAuth()
-                    break
-            }
-
+            // 重定向路径
             const redirect = router.currentRoute.value.query.redirect
             await router.replace(redirect as string || RouterConfig.HOME_PATH)
+            console.log(11)
             notification.success({
                 message: '登录成功',
                 description: `欢迎回来，${ this.userinfo?.username }！`

@@ -1,5 +1,5 @@
 // 匹配数字
-export const matchNumbers = /\D/gi
+export const matchNumbers = /\Data/gi
 
 // 提取数字
 export const extractNumbers = (str: string) => Number(str.replace(matchNumbers, ''))

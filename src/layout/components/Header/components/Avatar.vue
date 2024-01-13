@@ -15,14 +15,14 @@ const signOut = async () => {
 
 <template>
   <a-dropdown>
-    <a-flex align="center" class="cursor-pointer" gap="small">
+    <div class="flex-y-center gap-[10px] cursor-pointer">
       <a-avatar :size="32" shape="square">
         <template #icon>
           <svg-icon local-icon="avatar" size="32" />
         </template>
       </a-avatar>
       <span>admin</span>
-    </a-flex>
+    </div>
     <template #overlay>
       <a-menu>
         <a-menu-item>个人中心</a-menu-item>

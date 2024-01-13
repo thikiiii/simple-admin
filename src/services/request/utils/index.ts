@@ -9,7 +9,7 @@ let lastMessage: string | undefined = undefined
 // 解决重复错误提示
 export const handleRepeatErrorMessage = (messageContent: string) => {
     if (messageContent === lastMessage && ServicesConfig.CLOSE_REPEAT_ERROR_MESSAGE) return
-    message.error({ content: messageContent, onClose: () => lastMessage = undefined })
+    message.error({ content: messageContent,onClose: () => lastMessage = undefined })
     lastMessage = messageContent
 }
 
@@ -20,7 +20,7 @@ export const handleInterceptorError = (axiosError: AxiosError) => {
     let message = ServicesConfig.ERROR_STATUS_CODE.get(code)
     if (message) return handleRepeatErrorMessage(message)
 
-    ServicesConfig.INTERCEPTOR_ERROR_MESSAGE.forEach((value, key) => {
+    ServicesConfig.INTERCEPTOR_ERROR_MESSAGE.forEach((value,key) => {
         if (axiosError.message.includes(key)) message = value
     })
 
