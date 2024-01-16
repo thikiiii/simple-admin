@@ -1,15 +1,16 @@
 import { defineStore } from 'pinia'
 import { UserApi } from '@/services/api/user'
-import { AuthCookie } from '@/storage/auth'
 import { message,notification } from 'ant-design-vue'
 import router from '@/router'
-import { RouterHelpers } from '@/router/helpers'
+import { RouterTool } from '@/router/uitls/tool'
 import RouterConfig from '@/config/router'
 import Hint from '@/config/hint'
+import { tokenCache } from '@/store/cache'
+import ServicesConfig from '@/config/services'
 
 const useAuthStore = defineStore('Auth',{
     state: (): AuthStore => ({
-        token: AuthCookie.getToken(),
+        token: tokenCache.get(),
         // 角色
         roles: [],
         // 细粒度权限
@@ -40,13 +41,13 @@ const useAuthStore = defineStore('Auth',{
         // 设置 Token
         setToken(token) {
             this.token = token
-            AuthCookie.setToken(token)
+            tokenCache.set(token,ServicesConfig.TOKEN_EXPIRATION_TIME)
         },
 
         // 删除 Token
         removeToken() {
             this.token = null
-            AuthCookie.removeToken()
+            tokenCache.remove()
         },
 
         // 密码登录
@@ -108,9 +109,7 @@ const useAuthStore = defineStore('Auth',{
             // 获取用户信息
             await this.getUserinfo()
             // 重定向路径
-            const redirect = router.currentRoute.value.query.redirect
-            await router.replace(redirect as string || RouterConfig.HOME_PATH)
-            console.log(11)
+            await router.replace(RouterConfig.HOME_PATH)
             notification.success({
                 message: '登录成功',
                 description: `欢迎回来，${ this.userinfo?.username }！`
@@ -120,9 +119,9 @@ const useAuthStore = defineStore('Auth',{
         // 初始化前端路由权限
         initFrontRouteAuth() {
             // 获取用户路由
-            this.routes = RouterHelpers.getUserRouteList(this.roles)
+            this.routes = RouterTool.getUserRouteList(this.roles)
             // 自定义路由转Vue路由
-            const vueRoutes = RouterHelpers.transformCustomRoutesToVueRoutes(this.routes)
+            const vueRoutes = RouterTool.transformCustomRoutesToVueRoutes(this.routes)
             // 添加路由
             vueRoutes.forEach(route => router.addRoute(route))
             this.isGeneratedRoutes = true
@@ -132,7 +131,7 @@ const useAuthStore = defineStore('Auth',{
         async initServerRouteAuth() {
             await this.getUserRoutes()
             // 自定义路由转Vue路由
-            const vueRoutes = RouterHelpers.transformCustomRoutesToVueRoutes(this.routes)
+            const vueRoutes = RouterTool.transformCustomRoutesToVueRoutes(this.routes)
             // 添加路由
             vueRoutes.forEach(route => router.addRoute(route))
             this.isGeneratedRoutes = true

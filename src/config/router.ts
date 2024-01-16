@@ -13,7 +13,4 @@ export default class RouterConfig {
 
     // 路由鉴权模式
     static ROUTE_AUTH_MODE = RouteAuthModeEnum.FRONT
-
-    // 访问路由目录的路径 自动重定向到目录下的第一个菜单
-    static AUTO_REDIRECT_CHILD_FIRST_MENU = true
 }

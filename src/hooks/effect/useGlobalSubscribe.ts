@@ -1,8 +1,8 @@
 import { useEventListener } from '@vueuse/core'
-import { AppStorage } from '@/storage/app'
 import useAppStore from '@/store/modules/app'
 import { theme } from 'ant-design-vue'
 import { watch } from 'vue'
+import { appCache } from '@/store/cache'
 
 // 全局订阅(包含事件、监听器)
 export const useGlobalSubscribe = () => {
@@ -29,7 +29,7 @@ export const useGlobalSubscribe = () => {
     // 监听窗口关闭
     useEventListener(window,'unload',() => {
         // 储存 AppConfig
-        AppStorage.setAppConfig(appStore.$state)
+        appCache.set(appStore.$state)
     })
 
     // 监听窗口大小变化

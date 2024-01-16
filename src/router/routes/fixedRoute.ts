@@ -17,6 +17,7 @@ export const ROUTE_LOGIN: Route.RouteRecordRaw = {
 }
 
 // 404页面
+
 export const ROUTE_404: Route.RouteRecordRaw = {
     path: '/:NotFound(.*)*',
     name: 'notFound',

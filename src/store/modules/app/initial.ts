@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash-es'
-import { AppStorage } from '@/storage/app'
+import { appCache } from '@/store/cache'
 
 // 移动端处罚宽度
 const mobileTriggerWidth = 800
@@ -87,5 +87,5 @@ export const initialAppStore: AppStore = {
     }
 }
 
-export const appStore = AppStorage.getAppConfig() || cloneDeep(initialAppStore)
+export const appStore = appCache.get() || cloneDeep(initialAppStore)
 

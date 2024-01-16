@@ -5,34 +5,35 @@ import { matchUrl } from '@/utils/regularCheck'
 import { RoleEnum } from '@/enums/auth'
 import RouterConfig from '@/config/router'
 
-export class RouterHelpers {
+// 路由工具
+export class RouterTool {
     // 前端路由模块列表
-    static readonly ROUTER_MODULES_LIST = import.meta.glob('../modules/**.ts', { eager: true })
+    static readonly ROUTER_MODULES_LIST = import.meta.glob('../modules/**.ts',{ eager: true })
 
     // 静态路由模块
-    static STATIC_ROUTES = import.meta.glob('../routes/**.ts', { eager: true })
+    static STATIC_ROUTES = import.meta.glob('../routes/**.ts',{ eager: true })
 
     // 页面组件
     static readonly VIEW_COMPONENTS = import.meta.glob('@/views/**/**.vue')
 
     // 静态路由列表
     static getStaticRoutes() {
-        return Object.keys(this.STATIC_ROUTES).reduce<Route.RouteRecordRaw[]>((routerModules, routerKey) => {
+        return Object.keys(this.STATIC_ROUTES).reduce<Route.RouteRecordRaw[]>((routerModules,routerKey) => {
             const router = (this.STATIC_ROUTES[routerKey] as any).default
             if (!(router instanceof Object)) return routerModules
             routerModules.push(...router)
             return routerModules
-        }, [])
+        },[])
     }
 
     // 前端路由列表
     static getRouteList() {
-        return Object.keys(this.ROUTER_MODULES_LIST).reduce<Route.RouteRecordRaw[]>((routerModules, routerKey) => {
+        return Object.keys(this.ROUTER_MODULES_LIST).reduce<Route.RouteRecordRaw[]>((routerModules,routerKey) => {
             const router = (this.ROUTER_MODULES_LIST[routerKey] as any).default
             if (!(router instanceof Object)) return routerModules
             routerModules.push(router)
             return routerModules
-        }, [])
+        },[])
     }
 
 
@@ -44,7 +45,7 @@ export class RouterHelpers {
         // 已授权
         const hasAuth = (route: Route.RouteRecordRaw) => route.meta?.roles?.some(role => roles.includes(role))
 
-        const getFrontRoute = (routeList: Route.RouteRecordRaw[]) => routeList.reduce<Route.RouteRecordRaw[]>((userRoute, route) => {
+        const getFrontRoute = (routeList: Route.RouteRecordRaw[]) => routeList.reduce<Route.RouteRecordRaw[]>((userRoute,route) => {
             // PUSH 权限路由
             const pushAuthRoute = () => {
                 const cRoute = { ...route }
@@ -53,17 +54,17 @@ export class RouterHelpers {
                 if (cRoute.children?.length) {
                     cRoute.children = getFrontRoute(cRoute.children)
                     // 排序 升序
-                    this.sortRoutes(cRoute.children, Sort.Ascending)
+                    this.sortRoutes(cRoute.children,Sort.Ascending)
                 }
 
                 return userRoute
             }
             if (noNeedAuth(route) || hasAuth(route)) return pushAuthRoute()
             return userRoute
-        }, [])
+        },[])
         const userRoutes = getFrontRoute(this.getRouteList())
         // 排序 升序
-        this.sortRoutes(userRoutes, Sort.Ascending)
+        this.sortRoutes(userRoutes,Sort.Ascending)
         return userRoutes
     }
 
@@ -72,7 +73,7 @@ export class RouterHelpers {
         // 组件路径
         const componentPath = this.transformRouteNameToComponentPath(route.name as string)
         const viewComponent = Object.keys(this.VIEW_COMPONENTS).find(path => path === componentPath)
-        if (!viewComponent) console.warn('没有找到组件：', componentPath)
+        if (!viewComponent) console.warn('没有找到组件：',componentPath)
         return this.VIEW_COMPONENTS[viewComponent as string]
     }
 
@@ -80,7 +81,7 @@ export class RouterHelpers {
     static transformCustomRouteToVueRoute(route: Route.RouteRecordRaw) {
         // 如果是外链就不转vue路由
         if (this.isExternalLink(route.path)) return undefined
-        let vueRoute = { ...route, component: undefined } as RouteRecordRaw
+        let vueRoute = { ...route,component: undefined } as RouteRecordRaw
         switch (route.component) {
             // 空白页面
             case 'blank':
@@ -94,8 +95,8 @@ export class RouterHelpers {
             case 'basic-self':
                 // 一级路由转二级路由
                 vueRoute = {
-                    path: `${route.path}${RouterConfig.BASIC_SELF_CONTAINER_ROUTE_PATH_SUFFIX}`,
-                    name: `${route.path}${RouterConfig.BASIC_SELF_CONTAINER_ROUTE_PATH_SUFFIX}`,
+                    path: `${ route.path }${ RouterConfig.BASIC_SELF_CONTAINER_ROUTE_PATH_SUFFIX }`,
+                    name: `${ route.path }${ RouterConfig.BASIC_SELF_CONTAINER_ROUTE_PATH_SUFFIX }`,
                     redirect: route.path,
                     component: () => import('@/layout/index.vue'),
                     children: [
@@ -109,7 +110,7 @@ export class RouterHelpers {
             // 基础布局
             case 'basic':
                 // 访问目录路由 自动重定向到目录下的第一个子菜单
-                if (RouterConfig.AUTO_REDIRECT_CHILD_FIRST_MENU && !vueRoute.redirect && vueRoute.children?.length) {
+                if (!vueRoute.redirect && vueRoute.children?.length) {
                     vueRoute.redirect = vueRoute.children[0].path
                 }
                 vueRoute.component = () => import('@/layout/index.vue')
@@ -124,22 +125,22 @@ export class RouterHelpers {
 
     // 批量自定义路由转 vue 路由
     static transformCustomRoutesToVueRoutes(routes: Route.RouteRecordRaw[]) {
-        return routes.reduce<RouteRecordRaw[]>((vueRoutes, route) => {
+        return routes.reduce<RouteRecordRaw[]>((vueRoutes,route) => {
             const vueRoute = this.transformCustomRouteToVueRoute(route)
             if (route.children?.length && vueRoute) vueRoute.children = this.transformCustomRoutesToVueRoutes(route.children)
             vueRoute && vueRoutes.push(vueRoute)
             return vueRoutes
-        }, [])
+        },[])
     }
 
     // 路由name 转 组件路径
     static transformRouteNameToComponentPath(name: string) {
-        return `/src/views/${name.replaceAll('_', '/')}/index.vue`
+        return `/src/views/${ name.replaceAll('_','/') }/index.vue`
     }
 
     // 排序路由, 默认升序
-    static sortRoutes(routes: Route.RouteRecordRaw[], type: Sort) {
-        routes.sort((a, b) => {
+    static sortRoutes(routes: Route.RouteRecordRaw[],type: Sort) {
+        routes.sort((a,b) => {
             if (type === Sort.Ascending) return Number(a.meta?.order) - Number(b.meta?.order)
             if (type === Sort.Descending) return Number(b.meta?.order) - Number(a.meta?.order)
             return 0
