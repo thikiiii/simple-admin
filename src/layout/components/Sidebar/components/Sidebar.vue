@@ -24,16 +24,16 @@ const authStore = useAuthStore()
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .sidebar {
   height: 100%;
   display: flex;
   flex-direction: column;
   transition: width .2s;
-  border-right: 1px solid @border-secondary;
+  border-right: 1px solid theme('borderColor.secondary');
 
   &.dark {
-    border-right: 1px solid @border-dark;
+    border-right: 1px solid theme('borderColor.dark');
   }
 
   &-container {

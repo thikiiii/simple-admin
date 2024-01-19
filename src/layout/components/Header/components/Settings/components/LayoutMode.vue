@@ -57,7 +57,7 @@ const { base } = appStore
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layoutMode {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -83,22 +83,22 @@ const { base } = appStore
   .mixSide,
   .main {
     border-radius: 2px;
-    background: @primary-bg;
+    background: theme('colors.primary-shallow');
   }
 
   .header {
     height: 10px;
-    background: @primary-bg;
+    background: theme('colors.primary-shallow');
   }
 
   .primary {
-    background: @primary;
+    background: theme('colors.primary');
   }
 
   .side {
     width: 13px;
     height: 100%;
-    background: @primary;
+    background: theme('colors.primary');
   }
 
   .mixSide {
@@ -109,12 +109,12 @@ const { base } = appStore
     div:first-of-type {
       width: 6px;
       height: 100%;
-      background: @primary;
+      background: theme('colors.primary');
       border-radius: 3px;
     }
 
     div:last-of-type {
-      background: @primary-bg;
+      background: theme('colors.primary-shallow');
       width: 10px;
       height: 100%;
     }

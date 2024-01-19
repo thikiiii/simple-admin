@@ -17,7 +17,7 @@ const router = useRouter()
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .analysis {
   width: 100%;
   height: 100%;

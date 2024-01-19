@@ -20,11 +20,11 @@ defineOptions({ name: 'Layout' })
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layout {
   width: 100vw;
   height: 100vh;
-  background: @bg-layout;
+  background: theme('backgroundColor.layout');
   display: flex;
 
   &-wrapper {

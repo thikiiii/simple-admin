@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { RouteLocationMatched, useRoute, useRouter } from 'vue-router'
-import { ref, watch } from 'vue'
+import { RouteLocationMatched,useRoute,useRouter } from 'vue-router'
+import { ref,watch } from 'vue'
 import useAppStore from '@/store/modules/app'
 import RouterConfig from '@/config/router'
 
@@ -51,24 +51,24 @@ watch(() => route.path, () => {
 
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .breadcrumb {
   display: flex;
   align-items: center;
 
   &.dark {
-    color: @text-light;
+    color: theme('textColor.light');
 
     &:hover {
-      color: @text-light;
+      color: theme('textColor.light');
     }
 
     :deep(.ant-dropdown-trigger) {
-      color: @text-light;
+      color: theme('textColor.light');
     }
 
     :deep(li:last-child), :deep(.ant-breadcrumb-separator) {
-      color: @text-light;
+      color: theme('textColor.light');
     }
   }
 }

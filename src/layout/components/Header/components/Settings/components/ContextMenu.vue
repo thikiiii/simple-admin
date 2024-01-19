@@ -17,7 +17,7 @@ defineProps<Props>()
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .configMenu {
   display: flex;
   justify-content: space-between;
@@ -25,7 +25,7 @@ defineProps<Props>()
   width: 100%;
 
   &-title {
-    color: @text;
+    color: theme('textColor.base');
   }
 
   &-content {

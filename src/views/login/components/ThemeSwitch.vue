@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
+
 const settingStore = useAppStore()
 </script>
 
@@ -15,7 +16,5 @@ const settingStore = useAppStore()
 </template>
 
 <style scoped>
-p {
-  color: #4f60fc;
-}
+
 </style>

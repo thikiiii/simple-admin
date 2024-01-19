@@ -21,11 +21,11 @@ import AppConfig from '@/config/app'
 const appStore = useAppStore()
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .themeCard {
   width: 20px;
   height: 20px;
-  border-radius: @radius-small;
+  border-radius: theme('borderRadius.sm');
   cursor: pointer;
   display: flex;
   justify-content: center;

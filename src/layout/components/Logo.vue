@@ -13,7 +13,7 @@ const isHide = computed(() => sidebar.isCollapsed || base.layoutMode === 'mix-si
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .logo {
   display: flex;
   align-items: center;

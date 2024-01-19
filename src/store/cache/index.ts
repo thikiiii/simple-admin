@@ -5,4 +5,3 @@ export const tokenCache = createCacheTemplate<string>('SIMPLE_TOKEN',CacheType.C
 
 // App配置缓存
 export const appCache = createCacheTemplate<AppStore>('SIMPLE_APP',CacheType.LOCAL)
-

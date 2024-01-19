@@ -15,7 +15,7 @@ const visible = ref(false)
   <menu-search-modal v-model:visible="visible" />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 
 </style>

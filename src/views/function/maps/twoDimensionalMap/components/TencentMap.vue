@@ -26,7 +26,7 @@ onMounted(() => {
     <div ref="mapRef" class="baiduMap" />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .baiduMap {
     width: 100%;
     height: 100%;

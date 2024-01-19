@@ -22,7 +22,7 @@ v-model:open="sidebar.mobileSidebarVisible" :footer="false" :header="false" :hid
     </a-drawer>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .mobileSidebar {
   width: 100%;
   height: 100%;
@@ -33,8 +33,8 @@ v-model:open="sidebar.mobileSidebarVisible" :footer="false" :header="false" :hid
   top: 0;
 
   &.dark {
-    background: @bg-container;
-    color: @text-light;
+    background: theme('backgroundColor.container');
+    color: theme('textColor.light');
   }
 
   &-container {

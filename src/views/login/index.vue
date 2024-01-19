@@ -35,6 +35,6 @@ const loginContext = useLoginContext()
 loginContext.$reset()
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 </style>
 

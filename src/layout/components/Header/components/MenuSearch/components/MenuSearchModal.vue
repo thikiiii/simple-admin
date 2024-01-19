@@ -105,6 +105,7 @@ onMounted(() => {
 })
 
 watch(searchText,(value) => {
+  // TODO: 优化搜索，现在有bug,可以搜索目录，改为只可以搜索菜单
   searchResult.value = menus.value.filter(item => item.labels.some(name => value && name.includes(value)))
 })
 </script>
@@ -164,12 +165,11 @@ watch(searchText,(value) => {
   </a-modal>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .menuSearchModal {
   max-height: 500px;
   overflow: auto;
   width: 100%;
-  padding: 0 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -182,17 +182,18 @@ watch(searchText,(value) => {
     cursor: pointer;
     gap: 15px;
     padding: 15px;
-    border-radius: @radius-base;
-
+    border-radius: theme('borderRadius.md');
+    border: 1px solid theme('borderColor.secondary');
 
     &.active {
-      background: @primary;
+      background: theme('colors.primary');
+      color: white;
 
-      :deep(.arco-card-body) {
-        color: white;
-      }
+      //:deep(.arco-card-body) {
+      //  color: white;
+      //}
 
-      box-shadow: 5px 5px 5px @primary-bg;
+      box-shadow: 5px 5px 5px theme('colors.primary-shallow');
     }
 
 

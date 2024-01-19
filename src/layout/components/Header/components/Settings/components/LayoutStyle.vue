@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
 import LayoutCard from '@/layout/components/Header/components/Settings/components/LayoutCard.vue'
+import { temporaryClearTransition } from '@/utils'
 
 const layoutStyleList: LayoutStyleOption[] = [
     {
@@ -18,6 +19,11 @@ const layoutStyleList: LayoutStyleOption[] = [
 ]
 const appStore = useAppStore()
 const { base } = appStore
+const switchStyle = (option:LayoutStyleOption) => {
+  temporaryClearTransition(() => {
+    base.layoutStyle = option.value
+  })
+}
 </script>
 
 <template>
@@ -30,7 +36,7 @@ const { base } = appStore
                 :key="item.value"
                 :active="item.value === base.layoutStyle"
                 :popover-content="item.label"
-                @click-card="base.layoutStyle = item.value"
+                @click-card="switchStyle(item)"
         >
             <div v-if="item.value === 'side-dark'" class="vertical">
                 <div class="side dark" />
@@ -57,9 +63,9 @@ const { base } = appStore
     </div>
 </template>
 
-<style lang="less" scoped>
-@darkColor: #464e62;
-@lightColor: #eaeaea;
+<style lang="scss" scoped>
+$darkColor: #464e62;
+$lightColor: #eaeaea;
 .layoutStyle {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -76,7 +82,7 @@ const { base } = appStore
   .side,
   .main {
     border-radius: 2px;
-    background: @primary-bg;
+    background: theme('colors.primary-shallow');
   }
 
   .header {
@@ -96,11 +102,11 @@ const { base } = appStore
   }
 
   .dark {
-    background: @darkColor;
+    background: $darkColor;
   }
 
   .light {
-    background: @lightColor;
+    background: $lightColor;
   }
 
   .main {

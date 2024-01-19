@@ -64,7 +64,7 @@ export const initialAppStore: AppStore = {
         mixSidebarWidth: 94,
 
         // 折叠侧边栏的宽度
-        collapsedSidebarWidth: 80
+        collapsedSidebarWidth: 56
     },
     header: {
         // 是否开启面包屑

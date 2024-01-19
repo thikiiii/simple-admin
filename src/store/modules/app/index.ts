@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { appStore } from '@/store/modules/app/initial'
 import { ComputedRef,nextTick } from 'vue'
 import { GlobalToken } from 'ant-design-vue/es/theme/interface'
-import { setCSSVariable } from '@/utils'
+import { setCSSVariable,temporaryClearTransition } from '@/utils'
 import AppConfig from '@/config/app'
 import { theme } from 'ant-design-vue'
 import { ThemeConfig } from 'ant-design-vue/es/config-provider/context'
@@ -53,11 +53,10 @@ const useAppStore = defineStore('App',{
 
         // 设置主题模式
         setThemeMode(mode: ThemeMode) {
-            document.body.classList.add('noTransition')
-            this.base.themeMode = mode
-            setTimeout(() => {
-                document.body.classList.remove('noTransition')
-            },200)
+            // 临时清除过渡效果
+            temporaryClearTransition(() => {
+                this.base.themeMode = mode
+            })
         },
 
         // 设置主题颜色

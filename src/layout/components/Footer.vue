@@ -14,14 +14,14 @@ const { footer } = appStore
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layoutFooter {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: @bg-container;
+  background: theme('backgroundColor.container');
   width: 100%;
   flex-shrink: 0;
-  box-shadow: @shadow-base;
+  box-shadow: theme('boxShadow.base');
 }
 </style>

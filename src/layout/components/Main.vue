@@ -27,7 +27,7 @@ const transitionName = computed(() => base.isPageStartAnimation ? base.pageAnima
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layout-main {
   flex: 1;
   padding: 5px 10px;

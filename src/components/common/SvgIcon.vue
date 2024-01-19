@@ -51,6 +51,6 @@ const style = computed(() => ({
 }))
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

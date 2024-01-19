@@ -37,6 +37,6 @@ const maps: Map[] = [
     </a-card>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

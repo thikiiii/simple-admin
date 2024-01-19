@@ -37,6 +37,6 @@ const open = ref(false)
     </icon-hover-container>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

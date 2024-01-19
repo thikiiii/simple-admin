@@ -47,7 +47,7 @@ watch(() => appStore.base.themeMode,() => {
   </a-flex>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .themeSwitch {
   background: #464e62;
 

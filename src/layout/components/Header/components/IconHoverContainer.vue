@@ -10,9 +10,9 @@ const appStore = useAppStore()
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .iconHoverContainer {
-  border-radius: @radius-base;
+  border-radius: theme('borderRadius.md');
   padding: 7px;
   display: inline-flex;
   justify-content: center;
@@ -22,12 +22,12 @@ const appStore = useAppStore()
   font-size: 16px;
 
   &:hover {
-    background: @fill-tertiary;
+    background: theme('colors.fill-tertiary');
   }
 
   &.dark {
     &:hover {
-      background-color: @fill-dark;
+      background-color: theme('colors.fill-dark');
     }
   }
 }

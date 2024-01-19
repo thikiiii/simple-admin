@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
-import { computed, ref } from 'vue'
+import { computed,ref } from 'vue'
 import useAuthStore from '@/store/modules/auth'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute,useRouter } from 'vue-router'
 import Logo from '@/layout/components/Logo.vue'
 import MixSidebarDrawers from '@/layout/components/Sidebar/components/MixSidebar/components/MixSidebarDrawers.vue'
 
 defineOptions({ name: 'MixSidebar' })
 
 const appStore = useAppStore()
-const { footer, sidebar } = appStore
+const { footer,sidebar } = appStore
 const authStore = useAuthStore()
 const route = useRoute()
 const router = useRouter()
@@ -17,84 +17,86 @@ const router = useRouter()
 const menus = ref<Route.RouteRecordRaw[]>([])
 const temporaryActivePath = ref<Nullable<string>>()
 
-const collapsedIconName = computed(() => sidebar.isCollapsedMix ? 'ant-design:double-right-outlined' : 'ant-design:double-left-outlined')
+const collapsedIconName = computed(() => sidebar.isCollapsedMix ?
+                                         'ant-design:double-right-outlined' :
+                                         'ant-design:double-left-outlined')
 
 const handleMixMenuItem = (menu: Route.RouteRecordRaw) => {
-    temporaryActivePath.value = menu.path
-    if (menu.children?.length) {
-        menus.value = menu.children
-        appStore.toggleMixSidebarDrawerVisible(true)
-    } else {
-        router.push(menu.path)
-        if (!sidebar.isFixedMixSidebarDrawer) sidebar.mixSidebarDrawerVisible = false
-        menus.value = []
-    }
+  temporaryActivePath.value = menu.path
+  if (menu.children?.length) {
+    menus.value = menu.children
+    appStore.toggleMixSidebarDrawerVisible(true)
+  } else {
+    router.push(menu.path)
+    if (!sidebar.isFixedMixSidebarDrawer) sidebar.mixSidebarDrawerVisible = false
+    menus.value = []
+  }
 }
 
 const isActive = (path: string) => {
-    if (temporaryActivePath.value) return temporaryActivePath.value === path ? 'active' : undefined
-    return route.matched.some(item => item.path === path) ? 'active' : undefined
+  if (temporaryActivePath.value) return temporaryActivePath.value === path ? 'active' : undefined
+  return route.matched.some(item => item.path === path) ? 'active' : undefined
 }
 
 const onMouseLeave = () => {
-    !sidebar.isFixedMixSidebarDrawer && appStore.toggleMixSidebarDrawerVisible(false)
-    temporaryActivePath.value = null
+  !sidebar.isFixedMixSidebarDrawer && appStore.toggleMixSidebarDrawerVisible(false)
+  temporaryActivePath.value = null
 }
 
 </script>
 
 <template>
-    <div
-            :class="appStore.dynamicSidebarDark.className" :style="{width:`${appStore.dynamicMixSidebarWidth}px`}"
-            class="mixSidebar"
-            @mouseleave="onMouseLeave">
-        <logo />
-        <div class="mixSidebar-container">
-            <div
-                    v-for="(item) in authStore.routes"
-                    :key="item.path"
-                    :class="isActive(item.path)"
-                    class="mixSidebar-container-menu"
-                    @click="handleMixMenuItem(item)">
-                <svg-icon :icon="item?.meta?.icon" :size="sidebar.isCollapsedMix ? 18: 22" pointer />
-                <span v-if="!sidebar.isCollapsedMix" class="mixSidebar-container-menu-text">{{
-                    item?.meta?.title
-                    }}</span>
-            </div>
-        </div>
-        <div
-                :style="{height:`${footer.height}px`}"
-                class="mixSidebar-footer"
-                @click="()=>appStore.toggleMixSidebarCollapsed()">
-            <svg-icon :icon="collapsedIconName" size="20" />
-        </div>
-        <mix-sidebar-drawers :menus="menus" />
+  <div
+      :class="appStore.dynamicSidebarDark.className" :style="{width:`${appStore.dynamicMixSidebarWidth}px`}"
+      class="mixSidebar"
+      @mouseleave="onMouseLeave">
+    <logo />
+    <div class="mixSidebar-container">
+      <div
+          v-for="(item) in authStore.routes"
+          :key="item.path"
+          :class="isActive(item.path)"
+          class="mixSidebar-container-menu"
+          @click="handleMixMenuItem(item)">
+        <svg-icon :icon="item?.meta?.icon" :size="sidebar.isCollapsedMix ? 18: 22" pointer />
+        <span v-if="!sidebar.isCollapsedMix" class="mixSidebar-container-menu-text">{{
+            item?.meta?.title
+                                                                                    }}</span>
+      </div>
     </div>
+    <div
+        :style="{height:`${footer.height}px`}"
+        class="mixSidebar-footer"
+        @click="()=>appStore.toggleMixSidebarCollapsed()">
+      <svg-icon :icon="collapsedIconName" size="20" />
+    </div>
+    <mix-sidebar-drawers :menus="menus" />
+  </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .mixSidebar {
   display: flex;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  border-right: 1px solid @border-secondary;
+  border-right: 1px solid theme('borderColor.secondary');
   padding: 7px;
   position: relative;
   transition: width .2s ease-in-out;
 
   &.dark {
-    border-right: 1px solid @border-dark;
+    border-right: 1px solid theme('borderColor.dark');
 
     .mixSidebar-container-menu {
       &:hover:not(.active) {
-        background: @fill-dark;
+        background: theme('colors.fill-dark');
       }
     }
 
     .mixSidebar-footer {
       &:hover {
-        background: @fill-dark;
+        background: theme('colors.fill-dark');
       }
     }
   }
@@ -116,7 +118,7 @@ const onMouseLeave = () => {
       padding: 10px 7px;
       gap: 7px;
       transition: .2s;
-      border-radius: 7px;
+      border-radius: theme('borderRadius.md');
       cursor: pointer;
       font-size: 12px;
 
@@ -125,12 +127,12 @@ const onMouseLeave = () => {
       }
 
       &:hover:not(.active) {
-        background: @fill-tertiary;
+        background: theme('colors.fill-tertiary');
       }
 
       &.active {
-        background: @primary-bg;
-        color: @primary;
+        background: theme('colors.primary');
+        color: white;
       }
 
       &-text {
@@ -145,10 +147,10 @@ const onMouseLeave = () => {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: @radius-small;
+    border-radius: theme('borderRadius.md');
 
     &:hover {
-      background: @fill-quaternary;
+      background: theme('colors.fill-quaternary');
     }
   }
 }

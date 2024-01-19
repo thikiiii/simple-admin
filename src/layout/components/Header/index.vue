@@ -39,25 +39,25 @@ const authStore = useAuthStore()
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layout-header {
   width: 100%;
   height: 56px;
-  background: @bg-container;
+  background: theme('backgroundColor.container');
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   font-size: 18px;
   overflow: hidden;
-  border-bottom: 1px solid @border-secondary;
+  border-bottom: 1px solid theme('borderColor.secondary');
   flex-shrink: 0;
   transition: height .2s ease-in-out;
 
   &.dark {
-    background: @bg-dark;
-    color: @text-light;
-    border-bottom: 1px solid @border-dark;
+    background: theme('backgroundColor.dark');
+    color: theme('textColor.light');
+    border-bottom: 1px solid theme('borderColor.dark');
   }
 
   &.fixed {

@@ -48,29 +48,29 @@ const onAfterLeave = async (el: HTMLElement) => {
     </transition>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .mixMenuDrawers {
   height: 100%;
   position: absolute;
-  right: 1px;
+  right: -1px;
   top: 0;
-  border-left: 1px solid @border-secondary;
-  border-right: 1px solid @border-secondary;
+  border-left: 1px solid theme('borderColor.secondary');
+  border-right: 1px solid theme('borderColor.secondary');
   transform: translateX(100%);
   z-index: 100;
   overflow: hidden;
-  background: @bg-container;
+  background: theme('backgroundColor.container');
   display: flex;
   flex-direction: column;
 
   &.dark {
-    background: @bg-dark;
-    color: @text-light;
-    border-left: 1px solid @border-dark;
-    border-right: 1px solid @border-dark;
+    background: theme('backgroundColor.dark');
+    color: theme('textColor.light');
+    border-left: 1px solid theme('borderColor.dark');
+    border-right: 1px solid theme('borderColor.dark');
 
     .mixMenuDrawers-header {
-      border-bottom: 1px solid @border-dark;
+      border-bottom: 1px solid theme('borderColor.dark');
     }
   }
 
@@ -82,7 +82,7 @@ const onAfterLeave = async (el: HTMLElement) => {
     padding: 15px;
     font-size: 24px;
     font-weight: bold;
-    border-bottom: 1px solid @border-secondary;
+    border-bottom: 1px solid theme('borderColor.secondary');
     position: relative;
     white-space: nowrap;
 

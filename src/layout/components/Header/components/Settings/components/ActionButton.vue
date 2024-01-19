@@ -33,6 +33,6 @@ const resetCurrentConfig = () => {
   </a-modal>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

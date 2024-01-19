@@ -16,7 +16,7 @@ const goHome = () => {
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .notFound {
     display: flex;
     justify-content: center;

@@ -31,22 +31,22 @@ const emits = defineEmits<Emits>()
     </a-popover>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layoutCard {
-  background: @bg-container;
+  background:theme('backgroundColor.container');
   height: 65px;
   width: 75px;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: @shadow-base;
+  box-shadow: theme('boxShadow.base');
   transition: 0.2s ease-in-out;
-  border: 3px solid @primary-bg;
+  border: 3px solid theme('colors.primary-shallow');
   padding: 3px;
   gap: 4px;
 
   &.active {
-    box-shadow: 5px 5px 5px @primary-bg;
-    border-color: @primary;
+    box-shadow: 5px 5px 5px theme('colors.primary-shallow');
+    border-color:theme('colors.primary');
   }
 }
 </style>

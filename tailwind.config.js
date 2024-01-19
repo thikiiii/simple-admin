@@ -18,7 +18,9 @@ module.exports = {
         // 三级填充色
         'fill-tertiary': 'var(--colorFillTertiary)',
         // 四级填充色
-        'fill-quaternary': 'var(--colorFillQuaternary)'
+        'fill-quaternary': 'var(--colorFillQuaternary)',
+        // 填充暗黑色
+        'fill-dark': 'rgba(255, 255, 255, .1)'
       },
       textColor: {
         // 一级文本色
@@ -28,7 +30,9 @@ module.exports = {
         // 三级文本色
         'tertiary': 'var(--colorTextTertiary)',
         // 四级文本色
-        'quaternary': 'var(--colorTextQuaternary)'
+        'quaternary': 'var(--colorTextQuaternary)',
+        // 亮色
+        'light': 'rgba(255, 255, 255, 0.85)'
       },
       backgroundColor: {
         // 组件容器背景色
@@ -40,11 +44,26 @@ module.exports = {
         // 引起注意的背景色
         'spotlight': 'var(--colorBgSpotlight)',
         // 浮层的背景蒙层颜色
-        'mask': 'var(--colorBgMask)'
+        'mask': 'var(--colorBgMask)',
+        // 背景暗黑色
+        'dark': '#001529'
+      },
+      borderColor: {
+        // 一级边框色
+        'base': 'var(--colorBorder)',
+        // 二级边框色
+        'secondary': 'var(--colorBorderSecondary)',
+        // 边框黑色
+        'dark': '#2b2f34'
       },
       boxShadow: {
         'base': 'var(--boxShadow)',
         'secondary': 'var(--boxShadowSecondary)'
+      },
+      transitionProperty: {
+        'width': 'width',
+        'height': 'height',
+        'spacing': 'margin, padding'
       }
     }
   },

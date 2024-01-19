@@ -1,6 +1,6 @@
 <script lang="tsx">
-import { defineComponent, PropType } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { defineComponent,PropType } from 'vue'
+import { useRoute,useRouter } from 'vue-router'
 import useAppStore from '@/store/modules/app'
 
 export default defineComponent({
@@ -57,14 +57,9 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 :global(.ant-menu-horizontal >.ant-menu-submenu), :global(.ant-menu-horizontal >.ant-menu-item) {
   display: flex;
   align-items: center;
 }
-
-//:global(.ant-menu-horizontal >.ant-menu-item) {
-//  display: flex;
-//  align-items: center;
-//}
 </style>

@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig,loadEnv } from 'vite'
 import * as path from 'path'
 import { createVitePlugins } from './build/vite/plugins'
 import { wrapperEnv } from './build/utils'
@@ -27,15 +27,6 @@ export default defineConfig(({ command, mode }) => {
                 '#': path.resolve('types')
             },
             extensions: [ '.js', '.ts', '.tsx', '.jsx', '.vue' ]
-        },
-        css: {
-            preprocessorOptions: {
-                less: {
-                    // 设置 less 全局变量
-                    additionalData: `@import "${ path.resolve('src/assets/styles/themeVariable') }";`,
-                    javascriptEnabled: true
-                }
-            }
         },
         build: {
             reportCompressedSize: true,

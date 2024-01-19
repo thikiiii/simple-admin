@@ -22,8 +22,6 @@ const sidebarWidth = computed(() => {
             return sidebar.sidebarWidth
     }
 })
-
-
 </script>
 
 <template>
@@ -42,9 +40,9 @@ const sidebarWidth = computed(() => {
     <mobile-sidebar v-if="base.isMobile" />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layout-sidebar {
-  background: @bg-container;
+  background: theme('backgroundColor.container');
   display: flex;
   flex-direction: column;
   position: relative;
@@ -52,8 +50,8 @@ const sidebarWidth = computed(() => {
   overflow: hidden;
 
   &.dark {
-    background: @bg-dark;
-    color: @text-light;
+    background: theme('backgroundColor.dark');
+    color: theme('textColor.light');
   }
 
   &-container {

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import useAppStore from '@/store/modules/app'
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed,nextTick,ref,watch } from 'vue'
 import useTabBarStore from '@/store/modules/tabBar'
-import { useRoute, useRouter } from 'vue-router'
-import { useEventListener, useToggle } from '@vueuse/core'
+import { useRoute,useRouter } from 'vue-router'
+import { useEventListener,useToggle } from '@vueuse/core'
 
 defineOptions({ name: 'TabBar' })
 
@@ -188,10 +188,10 @@ watch(tabBarStore.tabs, () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .tabBar {
   width: 100%;
-  background: @bg-layout;
+  background: theme('backgroundColor.layout');
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
@@ -205,15 +205,15 @@ watch(tabBarStore.tabs, () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: @bg-container;
-    border-radius: @radius-small;
-    border: 1px solid @border-secondary;
+    background: theme('backgroundColor.container');
+    border-radius: theme('borderRadius.md');
+    border: 1px solid theme('colors.fill-quaternary');
     user-select: none;
     cursor: pointer;
     height: 30px;
-    box-shadow: @shadow-base;
+    box-shadow: theme('boxShadow.base');
     flex-shrink: 0;
-    color: @text;
+    color: theme('textColor.base');
     gap: 5px;
     font-size: 14px;
     white-space: nowrap;
@@ -227,8 +227,8 @@ watch(tabBarStore.tabs, () => {
 
     &.active {
       color: white;
-      background: @primary;
-      box-shadow: 5px 5px 5px @primary-bg;
+      background: theme('colors.primary');
+      box-shadow: 3px 3px 3px theme('colors.primary-shallow');
 
       .tabBar-item-clear {
         color: white !important;
@@ -238,10 +238,10 @@ watch(tabBarStore.tabs, () => {
     &-clear {
       transition: 0.1s;
       margin-right: -5px;
-      color: @text-tertiary;
+      color: theme('textColor.tertiary');
 
       &:hover {
-        color: @text;
+        color: theme('textColor.base');
       }
     }
   }
