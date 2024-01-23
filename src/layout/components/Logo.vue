@@ -2,8 +2,8 @@
 import useAppStore from '@/store/modules/app'
 import { computed } from 'vue'
 
-const { sidebar, base, header } = useAppStore()
-const isHide = computed(() => sidebar.isCollapsed || base.layoutMode === 'mix-side')
+const { sidebar,base,header } = useAppStore()
+const isHide = computed(() => (sidebar.isCollapsed || base.layoutMode === 'mix-side') && !base.isMobile)
 </script>
 
 <template>
@@ -20,6 +20,7 @@ const isHide = computed(() => sidebar.isCollapsed || base.layoutMode === 'mix-si
   justify-content: center;
   gap: 6px;
   transition: height .2s ease-in-out;
+
   &-text {
     font-weight: bold;
     font-size: 18px;

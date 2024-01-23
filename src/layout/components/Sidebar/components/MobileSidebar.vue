@@ -10,16 +10,17 @@ const authStore = useAuthStore()
 </script>
 
 <template>
-    <a-drawer
-v-model:open="sidebar.mobileSidebarVisible" :footer="false" :header="false" :hide-cancel="false"
-              :width="sidebar.sidebarWidth" placement="left" unmount-on-close>
-        <div :class="appStore.dynamicSidebarDark.className" class="mobileSidebar ">
-            <logo />
-            <div class="mobileSidebar-container">
-                <Menu :menus="authStore.routes" />
-            </div>
-        </div>
-    </a-drawer>
+  <a-drawer
+      v-model:open="sidebar.mobileSidebarVisible"
+      :closable="false"
+      :width="sidebar.sidebarWidth" placement="left">
+    <div :class="appStore.dynamicSidebarDark.className" class="mobileSidebar ">
+      <logo />
+      <div class="mobileSidebar-container">
+        <Menu :dark="appStore.dynamicSidebarDark.isDark" :menus="authStore.routes" />
+      </div>
+    </div>
+  </a-drawer>
 </template>
 
 <style lang="scss" scoped>
@@ -33,7 +34,7 @@ v-model:open="sidebar.mobileSidebarVisible" :footer="false" :header="false" :hid
   top: 0;
 
   &.dark {
-    background: theme('backgroundColor.container');
+    background: theme('backgroundColor.dark');
     color: theme('textColor.light');
   }
 

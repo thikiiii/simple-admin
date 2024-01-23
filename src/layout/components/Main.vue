@@ -34,6 +34,6 @@ const transitionName = computed(() => base.isPageStartAnimation ? base.pageAnima
   position: relative;
   height: 100%;
   flex-shrink: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 </style>

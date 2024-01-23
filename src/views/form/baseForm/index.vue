@@ -5,23 +5,23 @@ defineOptions({ name: 'BaseForm' })
 
 const columns = [
   {
-    title: 'name',
+    title: '名称',
     dataIndex: 'name',
     width: 50,
     resizable: true
   },
   {
-    title: 'age',
+    title: '年龄',
     dataIndex: 'age',
     width: 50
   },
   {
-    title: 'address',
+    title: '地址',
     dataIndex: 'address',
     width: 50
   },
   {
-    title: 'operation',
+    title: '操作',
     dataIndex: 'operation',
     width: 50
   }
