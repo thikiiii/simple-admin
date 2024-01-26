@@ -4,7 +4,7 @@ export default {
     name: 'form',
     meta: {
         title: '表单',
-        icon: 'mdi:form-select',
+        icon: 'ic:sharp-format-line-spacing',
         order: 1
     },
     children: [

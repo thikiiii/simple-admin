@@ -35,16 +35,12 @@ const active = ref(0)
 
 const menuSearchKeyPrompt = [
   {
-    icons: [ 'mdi:arrow-left-bottom' ],
-    prompt: '回车'
+    icons: [ 'ic:baseline-subdirectory-arrow-left' ],
+    prompt: '选择'
   },
   {
-    icons: [ 'mdi:arrow-up-thin','mdi:arrow-down-thin' ],
+    icons: [ 'ic:baseline-arrow-upward','ic:baseline-arrow-downward' ],
     prompt: '切换'
-  },
-  {
-    icons: [ 'mdi:keyboard-esc' ],
-    prompt: '关闭'
   }
 ]
 
@@ -137,7 +133,7 @@ watch(searchText,(value) => {
                 <svg-icon v-if="index!==item.labels.length-1" icon="ant-design:right-outlined" size="14" />
               </span>
           </div>
-          <svg-icon icon="mdi:arrow-left-bottom" />
+          <svg-icon icon="ic:outline-subdirectory-arrow-left" />
         </div>
       </div>
     </a-flex>
@@ -155,7 +151,7 @@ watch(searchText,(value) => {
                 :icon="icon"
                 :pointer="false"
                 class="menuSearchModal-footer-prompt-key-icon"
-                size="16"
+                size="14"
             />
             {{ item.prompt }}
           </div>

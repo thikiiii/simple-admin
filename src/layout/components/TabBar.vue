@@ -21,7 +21,7 @@ let timeout: NodeJS.Timeout | null = null
 
 const dropdownList = [
   {
-    icon: 'mdi:restore',
+    icon: 'ic:baseline-refresh',
     title: '刷新',
     disabled: computed(() => route.path !== route.path),
     handle() {
@@ -29,7 +29,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'mdi:close',
+    icon: 'ic:round-close',
     title: '关闭',
     disabled: computed(() => {
       const tab = tabBarStore.tabs.find(item => item.path === route.path)
@@ -41,7 +41,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'mdi:format-horizontal-align-left',
+    icon: 'ic:baseline-first-page',
     title: '关闭左边',
     disabled: computed(() => {
       const index = tabBarStore.getIndex(route.path)
@@ -53,7 +53,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'mdi:format-horizontal-align-right',
+    icon: 'ic:baseline-last-page',
     title: '关闭右边',
     disabled: computed(() => {
       const index = tabBarStore.getIndex(route.path)
@@ -65,7 +65,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'mdi:swap-horizontal',
+    icon: 'ic:baseline-swap-horiz',
     title: '关闭其他',
     disabled: computed(() => {
       return !tabBarStore.tabs.some(item => item.path !== route.path && !item.meta?.affix)
@@ -75,7 +75,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'mdi:minus',
+    icon: 'ic:baseline-minus',
     title: '关闭全部',
     disabled: computed(() => !tabBarStore.tabs.some(item => !item.meta?.affix)),
     handle() {
@@ -143,7 +143,7 @@ watch(tabBarStore.tabs, () => {
 <template>
   <div v-if="header.tabBarVisible" :style="{height:`${header.tabBarHeight}px`}" class="tabBar">
     <div v-if="scrollBtnVisible" class="tabBar-item action" @click="toScroll('left')">
-      <svg-icon icon="mdi:chevron-left" size="18" />
+      <svg-icon icon="ic:baseline-chevron-left" size="18" />
     </div>
     <div ref="tabBarContainer" class="tabBar-container">
       <transition-group name="tab">
@@ -157,18 +157,18 @@ watch(tabBarStore.tabs, () => {
           <svg-icon
               v-if="!item.meta?.affix"
               class="tabBar-item-clear"
-              icon="mdi:close"
+              icon="ic:round-close"
               size="12"
               @click.stop="tabBarStore.closeTab(item)" />
         </div>
       </transition-group>
     </div>
     <div v-if="scrollBtnVisible" class="tabBar-item action" @click="toScroll('right')">
-      <svg-icon icon="mdi:chevron-right" size="18" />
+      <svg-icon icon="ic:baseline-chevron-right" size="18" />
     </div>
     <a-dropdown trigger="click">
       <div class="tabBar-item action">
-        <svg-icon icon="mdi:chevron-down" size="18" />
+        <svg-icon icon="ic:baseline-keyboard-arrow-down" size="18" />
       </div>
       <template #overlay>
         <a-menu>
@@ -178,7 +178,7 @@ watch(tabBarStore.tabs, () => {
               :disabled="item.disabled.value"
               @click="item.handle">
             <template #icon>
-              <svg-icon :icon="item.icon" size="14" />
+              <svg-icon :icon="item.icon" size="16" />
             </template>
             {{ item.title }}
           </a-menu-item>

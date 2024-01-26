@@ -4,7 +4,6 @@ import { useGlobalSubscribe } from '@/hooks/effect/useGlobalSubscribe'
 import useAppStore from '@/store/modules/app'
 
 const appStore = useAppStore()
-
 // 全局初始化
 useGlobalInitialize()
 

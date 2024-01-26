@@ -6,7 +6,7 @@ export default {
     meta: {
         title: '关于',
         roles: [ RoleEnum.SUPER ],
-        icon: 'mdi:account-arrow-down-outline',
+        icon: 'ic:baseline-account-box',
         order: 3,
         permissions: [ 'test', 'test1' ],
         affix: true

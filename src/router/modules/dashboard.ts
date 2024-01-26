@@ -6,7 +6,7 @@ export default {
     component: 'basic',
     meta: {
         title: '控制台',
-        icon: 'mdi:monitor-dashboard',
+        icon: 'ic:baseline-monitor',
         order: 1
     },
     children: [

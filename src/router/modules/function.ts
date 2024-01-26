@@ -4,7 +4,7 @@ export default {
     name: 'function',
     meta: {
         title: '功能',
-        icon: 'mdi:drama-masks',
+        icon: 'ic:baseline-assignment-turned-in',
         order: 1
     },
     children: [

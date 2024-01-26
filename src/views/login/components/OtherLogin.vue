@@ -2,11 +2,11 @@
 // 其他登录方式
 const otherLoginMethods = [
   {
-    icon: 'mdi:github',
+    icon: 'ant-design:github-filled',
     title: 'Github'
   },
   {
-    icon: 'mdi:wechat',
+    icon: 'ant-design:wechat-filled',
     title: '微信'
   },
   {
@@ -18,7 +18,7 @@ const otherLoginMethods = [
     title: '谷歌'
   },
   {
-    icon: 'mdi:twitter-circle',
+    icon: 'ant-design:twitter-circle-filled',
     title: '推特'
   }
 ]

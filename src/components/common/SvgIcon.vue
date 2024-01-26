@@ -1,6 +1,6 @@
 <template>
   <!-- iconify 图标 -->
-  <icon v-if="!localIcon && iconName" :icon="iconName" :style="style" />
+  <Icon v-if="!localIcon && iconName" :icon="iconName" :style="style" />
   <!-- 本地图标 -->
   <svg
       v-else
@@ -37,7 +37,6 @@ export interface IconProps {
   pointer?: boolean
 }
 
-defineOptions({ name: 'Icon' })
 const props = defineProps<IconProps>()
 
 const metaEnv = useMetaEnv()

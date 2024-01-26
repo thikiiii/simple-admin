@@ -24,11 +24,11 @@ watch(() => appStore.base.themeMode,() => {
           @change="onUpdate">
         <template #checkedChildren>
           <svg-icon
-              color="#4f60fc" icon="line-md:sunny-filled-loop-to-moon-filled-loop-transition"
+              color="#4f60fc" icon="ic:baseline-mode-night"
               size="16" />
         </template>
         <template #unCheckedChildren>
-          <svg-icon color="#ffb948" icon="line-md:sunny-filled-loop" size="16" />
+          <svg-icon color="#ffb948" icon="ic:baseline-wb-sunny" size="16" />
         </template>
       </a-switch>
     </config-menu>
