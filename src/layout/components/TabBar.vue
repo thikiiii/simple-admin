@@ -3,7 +3,7 @@ import useAppStore from '@/store/modules/app'
 import { computed,nextTick,ref,watch } from 'vue'
 import useTabBarStore from '@/store/modules/tabBar'
 import { useRoute,useRouter } from 'vue-router'
-import { useEventListener,useToggle } from '@vueuse/core'
+import { useDebounceFn,useEventListener,useToggle } from '@vueuse/core'
 
 defineOptions({ name: 'TabBar' })
 
@@ -13,11 +13,9 @@ const tabBarStore = useTabBarStore()
 const route = useRoute()
 const router = useRouter()
 // 滚动按钮是否可见
-const [ scrollBtnVisible, toggleScrollBtnVisible ] = useToggle()
+const [ scrollBtnVisible,toggleScrollBtnVisible ] = useToggle()
 
 const tabBarContainer = ref<HTMLElement>()
-
-let timeout: NodeJS.Timeout | null = null
 
 const dropdownList = [
   {
@@ -46,7 +44,7 @@ const dropdownList = [
     disabled: computed(() => {
       const index = tabBarStore.getIndex(route.path)
       if (index === 0 || index === -1) return true
-      return !tabBarStore.tabs.slice(0, index).some(item => !item.meta?.affix)
+      return !tabBarStore.tabs.slice(0,index).some(item => !item.meta?.affix)
     }),
     handle() {
       tabBarStore.closeLeft(route.path)
@@ -84,14 +82,11 @@ const dropdownList = [
   }
 ]
 
-const isScroll = async () => {
-  timeout && clearTimeout(timeout)
+// 处理滚动按钮是否显示
+const handleScrollBtnVisible = async () => {
   await nextTick()
-  timeout = setTimeout(() => {
-    toggleScrollBtnVisible(tabBarContainer.value ?
-        tabBarContainer.value?.scrollWidth > tabBarContainer.value?.clientWidth :
-        false)
-  }, 100)
+  if (!tabBarContainer.value) return
+  toggleScrollBtnVisible(tabBarContainer.value.scrollWidth > tabBarContainer.value.clientWidth)
 }
 
 const toScroll = (direction: 'left' | 'right') => {
@@ -99,44 +94,39 @@ const toScroll = (direction: 'left' | 'right') => {
   if (!container) return
   container.scrollTo({
     left: direction === 'right' ?
-        container.clientWidth + container.scrollLeft :
-        container.scrollLeft - container.clientWidth,
+          container.clientWidth + container.scrollLeft :
+          container.scrollLeft - container.clientWidth,
     behavior: 'smooth'
   })
 }
 
 // 滚动到激活的位置
-const scrollToActive = async () => {
-  const container = tabBarContainer.value
-  if (!container) return timeout && clearTimeout(timeout)
+const scrollToActive = useDebounceFn(async () => {
+  if (!tabBarContainer.value) return
   await nextTick()
-  timeout && clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    const index = tabBarStore.getIndex(route.path)
-    const child = container.children[index] as HTMLElement
-    // TODO: 激活项的滚动位置需要优化
-    container.scrollTo({
-      left: child?.offsetLeft,
-      behavior: 'smooth'
-    })
-  }, 300)
-}
+  const container = tabBarContainer.value
+  const index = tabBarStore.getIndex(route.path)
+  const child = container.children[index] as HTMLElement
+  container.scrollTo({
+    left: child?.offsetLeft,
+    behavior: 'smooth'
+  })
+},300)
 
-
-useEventListener('resize', () => {
-  isScroll()
+useEventListener('resize',() => {
+  handleScrollBtnVisible()
 })
 
 // 监听路由变化
-watch(() => route.path, () => {
-  const { meta, name, path, fullPath } = route
-  tabBarStore.addTab({ meta, name, path, fullPath })
+watch(() => route.path,() => {
+  const { meta,name,path,fullPath } = route
+  tabBarStore.addTab({ meta,name,path,fullPath })
   scrollToActive()
-}, { immediate: true })
+},{ immediate: true })
 
-watch(tabBarStore.tabs, () => {
-  isScroll()
-}, { immediate: true })
+watch(tabBarStore.tabs,() => {
+  handleScrollBtnVisible()
+},{ immediate: true })
 
 </script>
 
@@ -146,22 +136,20 @@ watch(tabBarStore.tabs, () => {
       <svg-icon icon="ic:baseline-chevron-left" size="18" />
     </div>
     <div ref="tabBarContainer" class="tabBar-container">
-      <transition-group name="tab">
-        <div
-            v-for="item in tabBarStore.tabs"
-            :key="item.path"
-            :class="route.path === item.path ? 'active' : undefined"
-            class="tabBar-item"
-            @click="router.push(item.fullPath)">
-          {{ item.meta?.title }}
-          <svg-icon
-              v-if="!item.meta?.affix"
-              class="tabBar-item-clear"
-              icon="ic:round-close"
-              size="12"
-              @click.stop="tabBarStore.closeTab(item)" />
-        </div>
-      </transition-group>
+      <div
+          v-for="item in tabBarStore.tabs"
+          :key="item.path"
+          :class="route.path === item.path ? 'active' : undefined"
+          class="tabBar-item"
+          @click="router.push(item.fullPath)">
+        {{ item.meta?.title }}
+        <svg-icon
+            v-if="!item.meta?.affix"
+            class="tabBar-item-clear"
+            icon="ic:round-close"
+            size="12"
+            @click.stop="tabBarStore.closeTab(item)" />
+      </div>
     </div>
     <div v-if="scrollBtnVisible" class="tabBar-item action" @click="toScroll('right')">
       <svg-icon icon="ic:baseline-chevron-right" size="18" />
@@ -255,24 +243,5 @@ watch(tabBarStore.tabs, () => {
     align-items: center;
     position: relative;
   }
-}
-
-.tab-move, /* 对移动中的元素应用的过渡 */
-.tab-enter-active,
-.tab-leave-active {
-  transition: all 0.2s cubic-bezier(0.55, 0, 0.1, 1);
-}
-
-.tab-enter-from,
-.tab-leave-to {
-  opacity: 0;
-  transform: scale(0.01) translate(30px, 0);
-}
-
-/* 确保将离开的元素从布局流中删除
-  以便能够正确地计算移动的动画。 */
-.tab-leave-active {
-  position: absolute;
-  z-index: 1;
 }
 </style>

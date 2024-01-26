@@ -101,7 +101,6 @@ onMounted(() => {
 })
 
 watch(searchText,(value) => {
-  // TODO: 优化搜索，现在有bug,可以搜索目录，改为只可以搜索菜单
   searchResult.value = menus.value.filter(item => item.labels.some(name => value && name.includes(value)))
 })
 </script>
