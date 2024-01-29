@@ -18,7 +18,7 @@ const signOut = async () => {
     <div class="flex-y-center gap-[10px] cursor-pointer">
       <a-avatar :size="32" shape="square">
         <template #icon>
-          <svg-icon local-icon="avatar" size="32" />
+          <i-local-avatar class="w-[32px] h-[32px]" />
         </template>
       </a-avatar>
       <span>admin</span>

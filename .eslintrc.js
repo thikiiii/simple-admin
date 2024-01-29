@@ -59,8 +59,6 @@ module.exports = defineConfig({
     'block-spacing': 'error',
     // 禁止 this 关键字在类或类对象之外出现
     'brace-style': 'error',
-    // 禁用标签语句
-    camelcase: 'error',
     // 禁用不必要的嵌套块
     'comma-dangle': [ 'error','never' ],
     // 禁止出现多个空格

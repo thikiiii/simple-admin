@@ -6,7 +6,7 @@ export default {
     component: 'basic',
     meta: {
         title: '控制台',
-        icon: 'ic:baseline-monitor',
+        icon: 'ant-design:area-chart-outlined',
         order: 1
     },
     children: [

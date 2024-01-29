@@ -2,12 +2,13 @@
 import { useFullscreen } from '@vueuse/core'
 import { computed } from 'vue'
 import IconHoverContainer from '@/layout/components/Header/components/IconHoverContainer.vue'
+
 const { isFullscreen,toggle } = useFullscreen()
-const iconName = computed(()=>!isFullscreen ? 'ant-design:expand-outlined' : 'ant-design:compress-outlined')
+const iconComponent = computed(()=>!isFullscreen ? IAntDesignExpandOutlined : IAntDesignCompressOutlined)
 </script>
 
 <template>
   <icon-hover-container @click="toggle">
-  <svg-icon :icon="iconName" />
+  <component :is="iconComponent" />
   </icon-hover-container>
 </template>

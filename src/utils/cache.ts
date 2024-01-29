@@ -52,7 +52,7 @@ export const createCacheTemplate = <T>(key: string,type: CacheType = CacheType.C
                     store.session.set(key,value)
                     break
                 case CacheType.Cookie:
-                    Cookies.set(key,value,{ expires })
+                    Cookies.set(key,value as string,{ expires })
             }
         },
         get() {

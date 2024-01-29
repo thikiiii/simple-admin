@@ -11,7 +11,7 @@ const goHome = () => {
 
 <template>
     <div class="notFound">
-        <svg-icon local-icon="404" />
+        <i-local-404 />
         <a-button size="large" type="primary" @click="goHome">返回首页</a-button>
     </div>
 </template>

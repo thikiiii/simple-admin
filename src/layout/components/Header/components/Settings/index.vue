@@ -33,10 +33,10 @@ const open = ref(false)
         </template>
     </a-drawer>
     <icon-hover-container @click="open=!open">
-        <svg-icon icon="ic:baseline-settings" />
+      <i-ic:baseline-settings />
     </icon-hover-container>
 </template>
 
-<style lang="scss" scoped>  
+<style lang="scss" scoped>
 
 </style>

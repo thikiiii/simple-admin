@@ -19,7 +19,7 @@ const tabBarContainer = ref<HTMLElement>()
 
 const dropdownList = [
   {
-    icon: 'ic:baseline-refresh',
+    icon: IIcBaselineRefresh,
     title: '刷新',
     disabled: computed(() => route.path !== route.path),
     handle() {
@@ -27,7 +27,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'ic:round-close',
+    icon: IIcRoundClose,
     title: '关闭',
     disabled: computed(() => {
       const tab = tabBarStore.tabs.find(item => item.path === route.path)
@@ -39,7 +39,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'ic:baseline-first-page',
+    icon: IIcBaselineFirstPage,
     title: '关闭左边',
     disabled: computed(() => {
       const index = tabBarStore.getIndex(route.path)
@@ -51,7 +51,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'ic:baseline-last-page',
+    icon: IIcBaselineLastPage,
     title: '关闭右边',
     disabled: computed(() => {
       const index = tabBarStore.getIndex(route.path)
@@ -63,7 +63,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'ic:baseline-swap-horiz',
+    icon: IIcbaselineSwapHoriz,
     title: '关闭其他',
     disabled: computed(() => {
       return !tabBarStore.tabs.some(item => item.path !== route.path && !item.meta?.affix)
@@ -73,7 +73,7 @@ const dropdownList = [
     }
   },
   {
-    icon: 'ic:baseline-minus',
+    icon: IIcBaselineMinus,
     title: '关闭全部',
     disabled: computed(() => !tabBarStore.tabs.some(item => !item.meta?.affix)),
     handle() {
@@ -133,7 +133,7 @@ watch(tabBarStore.tabs,() => {
 <template>
   <div v-if="header.tabBarVisible" :style="{height:`${header.tabBarHeight}px`}" class="tabBar">
     <div v-if="scrollBtnVisible" class="tabBar-item action" @click="toScroll('left')">
-      <svg-icon icon="ic:baseline-chevron-left" size="18" />
+      <i-ic:baseline-chevron-left />
     </div>
     <div ref="tabBarContainer" class="tabBar-container">
       <div
@@ -143,20 +143,19 @@ watch(tabBarStore.tabs,() => {
           class="tabBar-item"
           @click="router.push(item.fullPath)">
         {{ item.meta?.title }}
-        <svg-icon
+        <i-ic:round-close
             v-if="!item.meta?.affix"
-            class="tabBar-item-clear"
-            icon="ic:round-close"
-            size="12"
-            @click.stop="tabBarStore.closeTab(item)" />
+            class="tabBar-item-clear text-xs"
+            @click.stop="tabBarStore.closeTab(item)"
+             />
       </div>
     </div>
     <div v-if="scrollBtnVisible" class="tabBar-item action" @click="toScroll('right')">
-      <svg-icon icon="ic:baseline-chevron-right" size="18" />
+      <i-ic:baseline-chevron-right />
     </div>
     <a-dropdown trigger="click">
       <div class="tabBar-item action">
-        <svg-icon icon="ic:baseline-keyboard-arrow-down" size="18" />
+        <i-ic:baseline-keyboard-arrow-down />
       </div>
       <template #overlay>
         <a-menu>
@@ -166,7 +165,7 @@ watch(tabBarStore.tabs,() => {
               :disabled="item.disabled.value"
               @click="item.handle">
             <template #icon>
-              <svg-icon :icon="item.icon" size="16" />
+              <component :is="item.icon" />
             </template>
             {{ item.title }}
           </a-menu-item>
@@ -199,9 +198,9 @@ watch(tabBarStore.tabs,() => {
     user-select: none;
     cursor: pointer;
     height: 30px;
-    box-shadow: theme('boxShadow.base');
+    box-shadow: theme('boxShadow.main');
     flex-shrink: 0;
-    color: theme('textColor.base');
+    color: theme('textColor.main');
     gap: 5px;
     font-size: 14px;
     white-space: nowrap;
@@ -229,7 +228,7 @@ watch(tabBarStore.tabs,() => {
       color: theme('textColor.tertiary');
 
       &:hover {
-        color: theme('textColor.base');
+        color: theme('textColor.main');
       }
     }
   }

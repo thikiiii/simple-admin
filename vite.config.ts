@@ -4,17 +4,15 @@ import { createVitePlugins } from './build/vite/plugins'
 import { wrapperEnv } from './build/utils'
 import { proxyConfig } from './build/vite/proxy'
 
-export default defineConfig(({ command, mode }) => {
-    // 是否生产环境
-    const isBuild = command === 'build'
+export default defineConfig(({ mode }) => {
     const root = process.cwd()
     // 获取并包装 .env 环境变量
-    const viteEnv = wrapperEnv(loadEnv(mode, root))
-    const { VITE_PORT, VITE_PUBLIC_PATH, VITE_DELETE_CONSOLE } = viteEnv
+    const viteEnv = wrapperEnv(loadEnv(mode,root))
+    const { VITE_PORT,VITE_PUBLIC_PATH,VITE_DELETE_CONSOLE } = viteEnv
     return {
         root,
         base: VITE_PUBLIC_PATH,
-        plugins: createVitePlugins(viteEnv, isBuild),
+        plugins: createVitePlugins(viteEnv),
         server: {
             host: true,
             port: VITE_PORT,
@@ -26,23 +24,21 @@ export default defineConfig(({ command, mode }) => {
                 '@': path.resolve('src'),
                 '#': path.resolve('types')
             },
-            extensions: [ '.js', '.ts', '.tsx', '.jsx', '.vue' ]
+            extensions: [ '.js','.ts','.tsx','.jsx','.vue' ]
         },
         build: {
-            reportCompressedSize: true,
+            reportCompressedSize: false,
             sourcemap: false,
-            chunkSizeWarningLimit: 1000,
-            rollupOptions: {
-                output: {
-                    manualChunks: {
-                        echarts: [ 'echarts' ]
-                    }
+            minify: 'terser',
+            brotliSize: true,
+            terserOptions: {
+                compress: {
+                    // 删除所有 console
+                    drop_console: VITE_DELETE_CONSOLE,
+                    // 删除 所有 debugger
+                    drop_debugger: true
                 }
             }
-        },
-        esbuild: { pure: VITE_DELETE_CONSOLE ? [ 'console.log', 'debugger' ] : [] },
-        optimizeDeps: {
-            include: [ 'echarts', 'lodash-es' ]
         }
     }
 })

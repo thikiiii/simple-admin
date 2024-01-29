@@ -1,13 +1,13 @@
 import { viteMockServe } from 'vite-plugin-mock'
 
-export const setupMock = (isBuild: boolean) => viteMockServe({
+export const mockPlugin = (viteEnv: ImportMetaEnv) => viteMockServe({
     ignore: /^_/,
     // mock文件地址
     mockPath: 'mock',
     // 开发打包开关
-    localEnabled: !isBuild,
+    localEnabled: viteEnv.VITE_USE_MOCK,
     // 生产打包开关
-    prodEnabled: isBuild,
+    prodEnabled: viteEnv.VITE_USE_MOCK,
     // 方便控制 mockjs 是否被打包到最终代码内。如果在 main.ts 内判断，如果关闭了 mock 功能，mockjs 也会打包到构建文件内，这样会增加打包体积。
     injectCode: `
           import { setupProdMockServer } from '../mock/_mockProdServer';

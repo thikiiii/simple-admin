@@ -35,11 +35,11 @@ const active = ref(0)
 
 const menuSearchKeyPrompt = [
   {
-    icons: [ 'ic:baseline-subdirectory-arrow-left' ],
+    icons: [ IIcBaselineSubdirectoryArrowLeft ],
     prompt: '选择'
   },
   {
-    icons: [ 'ic:baseline-arrow-upward','ic:baseline-arrow-downward' ],
+    icons: [ IIcBaselineArrowUpward,IIcBaselineArrowDownward ],
     prompt: '切换'
   }
 ]
@@ -115,7 +115,7 @@ watch(searchText,(value) => {
           size="large"
       >
         <template #suffix>
-          <svg-icon icon="ant-design:search-outlined" />
+          <i-antd:search-outlined />
         </template>
       </a-input>
       <div class="menuSearchModal">
@@ -129,10 +129,10 @@ watch(searchText,(value) => {
           <div class="menuSearchModal-card-name">
             <svg-icon :icon="item.icon" />
             <span v-for="(label,index) in item.labels" :key="label">{{ label }}
-                <svg-icon v-if="index!==item.labels.length-1" icon="ant-design:right-outlined" size="14" />
+              <i-antd:right-outlined v-if="index!==item.labels.length-1" class="text-xs" />
               </span>
           </div>
-          <svg-icon icon="ic:outline-subdirectory-arrow-left" />
+          <i-ic:outline-subdirectory-arrow-left />
         </div>
       </div>
     </a-flex>
@@ -144,13 +144,11 @@ watch(searchText,(value) => {
               :key="item.prompt"
               class="menuSearchModal-footer-prompt-key"
           >
-            <svg-icon
+            <component
                 v-for="icon in item.icons"
+                :is="icon"
                 :key="icon"
-                :icon="icon"
-                :pointer="false"
                 class="menuSearchModal-footer-prompt-key-icon"
-                size="14"
             />
             {{ item.prompt }}
           </div>

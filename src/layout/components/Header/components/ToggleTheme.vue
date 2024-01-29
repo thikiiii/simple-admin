@@ -4,12 +4,12 @@ import IconHoverContainer from '@/layout/components/Header/components/IconHoverC
 import { computed } from 'vue'
 
 const appStore = useAppStore()
-const iconName = computed(() => appStore.base.themeMode === 'dark' ? 'ic:baseline-mode-night' : 'ic:baseline-wb-sunny')
+const iconComponent = computed(() => appStore.base.themeMode === 'dark' ? IIcBaselineModeNight : IIcBaselineWbSunny)
 </script>
 
 <template>
   <icon-hover-container @click="appStore.setThemeMode(appStore.base.themeMode === 'dark'?'light': 'dark')">
-    <svg-icon :icon="iconName" />
+    <component :is="iconComponent" />
   </icon-hover-container>
 </template>
 

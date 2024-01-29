@@ -1,37 +1,34 @@
 // 导出vite插件
 import { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { setupMock } from './plugins/mock'
-import { setupHtml } from './plugins/html'
-import { setupCompress } from './plugins/compress'
+import { mockPlugin } from './plugins/mock'
+import { htmlPlugin } from './plugins/html'
+import { compressPlugin } from './plugins/compress'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import { VitePWA } from 'vite-plugin-pwa'
-import { setupUnplugin } from './plugins/unplugin'
-import { setupLocalSvg } from './plugins/localSvg'
+import { unPlugin } from './plugins/unplugin'
+import { localSvgPlugin } from './plugins/localSvg'
 
-export const createVitePlugins = (viteEnv: ImportMetaEnv,isBuild: boolean): PluginOption[] => {
+export const createVitePlugins = (viteEnv: ImportMetaEnv): PluginOption[] => {
     const { VITE_USE_MOCK,VITE_LEGACY,VITE_USE_PWA } = viteEnv
-    const plugins: PluginOption[] = [
+    return [
         vue(),
         // Jsx 语法
         vueJsx(),
         // 配置 ejs
-        setupHtml(viteEnv,isBuild),
+        htmlPlugin(viteEnv),
         // 配置 本地svg
-        setupLocalSvg(viteEnv),
-        // 配置icon
-        ...setupUnplugin()
-    ]
-    // mock
-    VITE_USE_MOCK && plugins.push(setupMock(isBuild))
-
-    if (isBuild) {
+        localSvgPlugin(viteEnv),
+        // 打包压缩
+        compressPlugin(viteEnv),
+        // 配置icon1
+        ...unPlugin(),
+        // mock
+        VITE_USE_MOCK && mockPlugin(viteEnv),
         // 兼容一些旧版浏览器
-        VITE_LEGACY && plugins.push(legacy({ targets: [ 'defaults','not IE 11' ] }))
+        VITE_LEGACY && legacy({ targets: [ 'defaults','not IE 11' ] }),
         // PWA
-        VITE_USE_PWA && plugins.push(VitePWA({}))
-        plugins.push(...[ setupCompress(viteEnv) ])
-    }
-    return plugins
+        VITE_USE_PWA && VitePWA({})
+    ]
 }

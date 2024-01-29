@@ -4,7 +4,7 @@ export default {
     name: 'form',
     meta: {
         title: '表单',
-        icon: 'ic:sharp-format-line-spacing',
+        icon: 'ant-design:container-outlined',
         order: 1
     },
     children: [

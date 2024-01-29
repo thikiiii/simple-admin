@@ -1,7 +1,7 @@
 <template>
   <div class="w-h-full flex">
     <div v-if="!appStore.base.isMobile" class="w-[50%] h-full bg-primary flex-center">
-      <svg-icon size="80%" local-icon="login" />
+      <i-local:login class="w-[80%]" />
     </div>
     <div class="relative flex-1 flex-center">
       <theme-switch class="absolute right-[15px] top-[15px]" />

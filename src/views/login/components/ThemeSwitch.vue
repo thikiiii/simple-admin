@@ -5,20 +5,15 @@ const settingStore = useAppStore()
 </script>
 
 <template>
-  <svg-icon
-      v-if="settingStore.base.themeMode==='dark'"
+  <i-ic:baseline-mode-night
       @click="settingStore.setThemeMode('light')"
-      pointer
-      size="26"
-      color="#4f60fc"
-      local-icon="night" />
-  <svg-icon
+      v-if="settingStore.base.themeMode==='dark'"
+      class="text-[#4f60fc] text-xl cursor-pointer" />
+  <i-ic:baseline-wb-sunny
       v-else
       @click="settingStore.setThemeMode('dark')"
-      pointer
-      size="26"
-      color="#ffb948"
-      local-icon="sunny" />
+      class="text-[#ffb948] text-xl cursor-pointer"
+  />
 </template>
 
 <style scoped>

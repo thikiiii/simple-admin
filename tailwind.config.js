@@ -24,7 +24,7 @@ module.exports = {
       },
       textColor: {
         // 一级文本色
-        'base': 'var(--colorText)',
+        'main': 'var(--colorText)',
         // 二级级文本色
         'secondary': 'var(--colorTextSecondary)',
         // 三级文本色
@@ -50,14 +50,14 @@ module.exports = {
       },
       borderColor: {
         // 一级边框色
-        'base': 'var(--colorBorder)',
+        'main': 'var(--colorBorder)',
         // 二级边框色
         'secondary': 'var(--colorBorderSecondary)',
         // 边框黑色
         'dark': '#2b2f34'
       },
       boxShadow: {
-        'base': 'var(--boxShadow)',
+        'main': 'var(--boxShadow)',
         'secondary': 'var(--boxShadowSecondary)'
       },
       transitionProperty: {

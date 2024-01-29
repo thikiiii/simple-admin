@@ -38,7 +38,7 @@ const emits = defineEmits<Emits>()
   width: 75px;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: theme('boxShadow.base');
+  box-shadow: theme('boxShadow.main');
   transition: 0.2s ease-in-out;
   border: 3px solid theme('colors.primary-shallow');
   padding: 3px;

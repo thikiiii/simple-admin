@@ -2,7 +2,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 
 // 本地svg
-export const setupLocalSvg = (viteEnv: ImportMetaEnv) => createSvgIconsPlugin({
+export const localSvgPlugin = (viteEnv: ImportMetaEnv) => createSvgIconsPlugin({
     // 指定需要缓存的图标文件夹
     iconDirs: [ path.resolve(process.cwd(), 'src/assets/svgs') ],
     // 指定symbolId格式

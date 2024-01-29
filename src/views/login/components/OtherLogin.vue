@@ -2,23 +2,23 @@
 // 其他登录方式
 const otherLoginMethods = [
   {
-    icon: 'ant-design:github-filled',
+    icon: IAntDesignGithubFilled,
     title: 'Github'
   },
   {
-    icon: 'ant-design:wechat-filled',
+    icon: IAntDesignWechatFilled,
     title: '微信'
   },
   {
-    icon: 'ant-design:alipay-circle-filled',
+    icon: IAntDesignAlipayCircleFilled,
     title: '支付宝'
   },
   {
-    icon: 'ant-design:google-circle-filled',
+    icon: IAntDesignGoogleCircleFilled,
     title: '谷歌'
   },
   {
-    icon: 'ant-design:twitter-circle-filled',
+    icon: IAntDesignTwitterCircleFilled,
     title: '推特'
   }
 ]
@@ -33,7 +33,7 @@ const otherLoginMethods = [
         :title="item.title"
         placement="bottom"
     >
-      <svg-icon :icon="item.icon" pointer size="22" />
+      <component class="text-main cursor-pointer" :is="item.icon" />
     </a-tooltip>
   </a-flex>
 </template>

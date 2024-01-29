@@ -23,12 +23,10 @@ watch(() => appStore.base.themeMode,() => {
           v-model:checked="isDark" checked-color="#464e62" class="themeSwitch" unchecked-color="#464e62"
           @change="onUpdate">
         <template #checkedChildren>
-          <svg-icon
-              color="#4f60fc" icon="ic:baseline-mode-night"
-              size="16" />
+          <i-ic:baseline-mode-night class="text-[#4f60fc]" />
         </template>
         <template #unCheckedChildren>
-          <svg-icon color="#ffb948" icon="ic:baseline-wb-sunny" size="16" />
+          <i-ic:baseline-wb-sunny class="text-[#ffb948]" />
         </template>
       </a-switch>
     </config-menu>
@@ -37,10 +35,10 @@ watch(() => appStore.base.themeMode,() => {
           v-model:checked="appStore.base.themeModeFollowSystem" checked-color="#464e62" class="themeSwitch"
           unchecked-color="#464e62">
         <template #checkedChildren>
-          <svg-icon icon="ic:round-hdr-auto" size="16" />
+          <i-ic:round-hdr-auto />
         </template>
         <template #unCheckedChildren>
-          <svg-icon icon="ic:baseline-do-disturb-on" size="16" />
+          <i-ic:baseline-do-disturb-on />
         </template>
       </a-switch>
     </config-menu>

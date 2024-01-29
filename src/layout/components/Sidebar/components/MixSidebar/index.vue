@@ -17,9 +17,9 @@ const router = useRouter()
 const menus = ref<Route.RouteRecordRaw[]>([])
 const temporaryActivePath = ref<Nullable<string>>()
 
-const collapsedIconName = computed(() => sidebar.isCollapsedMix ?
-                                         'ant-design:double-right-outlined' :
-                                         'ant-design:double-left-outlined')
+const collapsedIcon = computed(() => sidebar.isCollapsedMix ?
+                                     IAntDesignDoubleRightOutlined :
+                                     IAntDesignDoubleLeftOutlined)
 
 const handleMixMenuItem = (menu: Route.RouteRecordRaw) => {
   temporaryActivePath.value = menu.path
@@ -68,7 +68,7 @@ const onMouseLeave = () => {
         :style="{height:`${footer.height}px`}"
         class="mixSidebar-footer"
         @click="()=>appStore.toggleMixSidebarCollapsed()">
-      <svg-icon :icon="collapsedIconName" size="20" />
+      <component :is="collapsedIcon" />
     </div>
     <mix-sidebar-drawers :menus="menus" />
   </div>

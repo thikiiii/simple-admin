@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Menu from '@/layout/components/Menu.vue'
 import useAppStore from '@/store/modules/app'
-import { nextTick } from 'vue'
+import { computed,nextTick } from 'vue'
 
 interface Props {
     menus: Route.RouteRecordRaw[]
@@ -11,6 +11,8 @@ defineProps<Props>()
 
 const appStore = useAppStore()
 const { sidebar, header } = appStore
+
+const thumbtackIcon = computed(()=>sidebar.isFixedMixSidebarDrawer ? IAntdPushpinFilled : IAntdPushpinTwotone)
 
 const onBeforeEnter = async (el: HTMLElement) => {
     await nextTick()
@@ -35,10 +37,9 @@ const onAfterLeave = async (el: HTMLElement) => {
                 class="mixMenuDrawers">
             <div :style="{height:`${header.headerHeight}px`}" class="mixMenuDrawers-header">
                 Simple Admin
-                <svg-icon
-                        :icon="sidebar.isFixedMixSidebarDrawer?'ant-design:pushpin-filled':'ant-design:pushpin-twotone'"
-                        class="mixMenuDrawers-header-fixed"
-                        size="18"
+                <component
+                        :is="thumbtackIcon"
+                        class="mixMenuDrawers-header-fixed text-base"
                         @click="appStore.toggleFixedMixSidebarDrawer()" />
             </div>
             <div :style="{width:`${sidebar.sidebarWidth}px`}" class="mixMenuDrawers-container">
@@ -88,7 +89,7 @@ const onAfterLeave = async (el: HTMLElement) => {
 
     &-fixed {
       position: absolute;
-      right: 10px;
+      right: 5px;
       top: 5px;
       cursor: pointer;
     }

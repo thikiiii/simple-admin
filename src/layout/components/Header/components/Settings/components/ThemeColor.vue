@@ -9,7 +9,7 @@
         :style="{background:item}"
         class="themeCard"
         @click="appStore.setThemeColor(item)">
-      <svg-icon v-if="appStore.base.themeColor===item" icon="ant-design:check-outlined" />
+      <i-antd:check-outlined v-if="appStore.base.themeColor===item" />
     </div>
   </a-flex>
 </template>

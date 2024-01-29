@@ -1,7 +1,7 @@
 // 需要权限的路由模块列表
 import { RouteRecordRaw } from 'vue-router'
 import { Sort } from '@/enums/common'
-import { matchUrl } from '@/utils/regularCheck'
+import RegularUtils from '@/utils/regular'
 import { RoleEnum } from '@/enums/auth'
 import RouterConfig from '@/config/router'
 
@@ -149,7 +149,7 @@ export class RouterTool {
 
     // 是否外链
     static isExternalLink(url) {
-        return matchUrl.test(url)
+        return RegularUtils.MATCH_URL.test(url)
     }
 
     // 打开外链

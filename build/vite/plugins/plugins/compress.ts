@@ -1,10 +1,10 @@
-import compressPlugin from 'vite-plugin-compression'
+import compress from 'vite-plugin-compression'
 
 // 压缩
-export const setupCompress = (viteEnv: ImportMetaEnv) => {
+export const compressPlugin = (viteEnv: ImportMetaEnv) => {
     const { VITE_BUILD_COMPRESS } = viteEnv
     if (VITE_BUILD_COMPRESS === 'none') return
-    return compressPlugin({
+    return compress({
         algorithm: VITE_BUILD_COMPRESS
     })
 }

@@ -4,7 +4,7 @@ export default {
     name: 'function',
     meta: {
         title: '功能',
-        icon: 'ic:baseline-assignment-turned-in',
+        icon: 'ant-design:database-outlined',
         order: 1
     },
     children: [

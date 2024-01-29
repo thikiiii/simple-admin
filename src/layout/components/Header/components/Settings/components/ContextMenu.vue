@@ -25,7 +25,7 @@ defineProps<Props>()
   width: 100%;
 
   &-title {
-    color: theme('textColor.base');
+    color: theme('textColor.main');
   }
 
   &-content {

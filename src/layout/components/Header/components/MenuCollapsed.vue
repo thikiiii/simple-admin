@@ -7,7 +7,7 @@ const { base, sidebar, toggleSidebarCollapsed, toggleMobileSidebarVisible } = us
 
 const isCollapsed = computed(() => base.isMobile ? sidebar.mobileSidebarVisible : sidebar.isCollapsed)
 
-const iconName = computed(() => isCollapsed.value ? 'ant-design:menu-unfold-outlined' : 'ant-design:menu-fold-outlined')
+const iconComponent = computed(() => isCollapsed.value ? IAntDesignMenuUnfoldOutlined : IAntDesignMenuFoldOutlined)
 const handle = () => {
     base.isMobile ? toggleMobileSidebarVisible() : toggleSidebarCollapsed()
 }
@@ -15,7 +15,7 @@ const handle = () => {
 
 <template>
   <icon-hover-container @click="handle">
-    <svg-icon :icon="iconName" />
+    <component :is="iconComponent" />
   </icon-hover-container>
 </template>
 

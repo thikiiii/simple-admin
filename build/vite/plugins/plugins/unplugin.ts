@@ -3,11 +3,28 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import AutoImport from 'unplugin-auto-import/vite'
 
-export const setupUnplugin = () => {
+export const unPlugin = () => {
     // 本地图标集合 key
     const LOCAL_ICON_COLLECTION_KEY = 'local'
+    const iconResolver = IconsResolver({
+        // 别名
+        alias: {
+            antd: 'ant-design'
+        },
+        // 前缀
+        prefix: 'i',
+        customCollections: [ LOCAL_ICON_COLLECTION_KEY ]
+    })
     return [
+        // Api自动导入
+        AutoImport({
+            dts: 'types/auto-import.d.ts',
+            resolvers: [
+                iconResolver
+            ]
+        }),
         // 组件自动导入
         Components({
             // 为全局组件生成 TypeScript 声明
@@ -19,11 +36,7 @@ export const setupUnplugin = () => {
             resolvers: [
                 AntDesignVueResolver({ importStyle: false }),
                 // 自动导入图标
-                IconsResolver({
-                    // 前缀
-                    prefix: 'i',
-                    customCollections: [ LOCAL_ICON_COLLECTION_KEY ]
-                })
+                iconResolver
             ]
         }),
         // 图标
